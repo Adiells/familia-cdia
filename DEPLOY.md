@@ -27,12 +27,16 @@ In the repository settings, set **Pages → Build and deployment → Source** to
 
 ## Cloud Run backend
 
-After `backend/` contains the backend service and its Node.js build manifest, deploy it from the repository root with:
+Create a regional Standard bucket in `us-central1` (Always Free tier) and seed it with `src/data/{students,sponsorships,sigaa-students}.json`, then deploy `backend/` mounting that bucket at `/app/data` with `--execution-environment=gen2` and `--max-instances=1`:
 
 ```sh
 gcloud run deploy familia-cdia-api \
   --source ./backend \
   --region us-central1 \
+  --execution-environment gen2 \
+  --max-instances 1 \
+  --add-volume name=data,type=cloud-storage,bucket=familia-cdia-data-bot-games-511122 \
+  --add-volume-mount volume=data,mount-path=/app/data \
   --allow-unauthenticated
 ```
 

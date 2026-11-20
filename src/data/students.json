@@ -1425,35 +1425,5 @@
     ],
     "sigaaVerified": true,
     "matchConfidence": "TOKEN_SUBSET"
-  },
-  {
-    "id": "sigaa-20260151819",
-    "canonicalName": "Yan Emmanuel Costa Soares",
-    "displayName": "Yan Emmanuel Costa Soares",
-    "matricula": "20260151819",
-    "cohort": "2026.2",
-    "aliases": [],
-    "sigaaVerified": true,
-    "matchConfidence": "EXACT"
-  },
-  {
-    "id": "sigaa-20260011845",
-    "canonicalName": "Daniel Ezra Felix dos Santos",
-    "displayName": "Daniel Ezra Felix dos Santos",
-    "matricula": "20260011845",
-    "cohort": "2026.2",
-    "aliases": [],
-    "sigaaVerified": true,
-    "matchConfidence": "EXACT"
-  },
-  {
-    "id": "sigaa-20260011700",
-    "canonicalName": "Guilherme da Silva Soares",
-    "displayName": "Guilherme da Silva Soares",
-    "matricula": "20260011700",
-    "cohort": "2026.2",
-    "aliases": [],
-    "sigaaVerified": true,
-    "matchConfidence": "EXACT"
   }
 ]

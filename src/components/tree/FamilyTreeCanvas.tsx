@@ -39,7 +39,6 @@ import {
   NODE_WIDTH,
   type LayoutDirection,
   type LineageMode,
-  type RoleFilter,
   type SponsorshipFlowEdge,
   type StudentFlowNode,
 } from '../../lib/graph-layout';
@@ -72,9 +71,6 @@ export interface FamilyTreeCanvasProps {
   onStudentClick?: (student: StudentNodeData) => void;
   /** Optional callback alias passing the selected student ID */
   onNodeSelect?: (studentId: string | null) => void;
-  /** Controlled role filter ('ALL' | 'P2' | 'VETERANO') */
-  roleFilter?: RoleFilter;
-  onRoleFilterChange?: (role: RoleFilter) => void;
   /** Controlled cohort filter ('ALL' | '2024.1' .. '2026.1') */
   cohortFilter?: CohortSemester | 'ALL';
   onCohortFilterChange?: (cohort: CohortSemester | 'ALL') => void;
@@ -103,8 +99,6 @@ function FamilyTreeCanvasInner({
   onSelectStudent,
   onStudentClick,
   onNodeSelect,
-  roleFilter: controlledRoleFilter,
-  onRoleFilterChange,
   cohortFilter: controlledCohortFilter,
   onCohortFilterChange,
   direction: controlledDirection,
@@ -129,9 +123,6 @@ function FamilyTreeCanvasInner({
   const [internalSelectedId, setInternalSelectedId] = useState<string | null>(
     controlledSelectedId ?? null
   );
-  const [internalRoleFilter, setInternalRoleFilter] = useState<RoleFilter>(
-    controlledRoleFilter ?? 'ALL'
-  );
   const [internalCohortFilter, setInternalCohortFilter] = useState<
     CohortSemester | 'ALL'
   >(controlledCohortFilter ?? 'ALL');
@@ -145,8 +136,6 @@ function FamilyTreeCanvasInner({
 
   const activeSelectedId =
     controlledSelectedId !== undefined ? controlledSelectedId : internalSelectedId;
-  const activeRoleFilter =
-    controlledRoleFilter !== undefined ? controlledRoleFilter : internalRoleFilter;
   const activeCohortFilter =
     controlledCohortFilter !== undefined
       ? controlledCohortFilter
@@ -157,14 +146,6 @@ function FamilyTreeCanvasInner({
     controlledLineageMode !== undefined
       ? controlledLineageMode
       : internalLineageMode;
-
-  const handleRoleChange = useCallback(
-    (nextRole: RoleFilter) => {
-      setInternalRoleFilter(nextRole);
-      onRoleFilterChange?.(nextRole);
-    },
-    [onRoleFilterChange]
-  );
 
   const handleCohortChange = useCallback(
     (nextCohort: CohortSemester | 'ALL') => {
@@ -213,7 +194,6 @@ function FamilyTreeCanvasInner({
     () =>
       buildStratifiedGraphLayout(rawStudents, rawSponsorships, {
         direction: activeDirection,
-        roleFilter: activeRoleFilter,
         cohortFilter: activeCohortFilter,
         selectedStudentId: activeSelectedId,
         lineageMode: activeLineageMode,
@@ -223,7 +203,6 @@ function FamilyTreeCanvasInner({
       rawStudents,
       rawSponsorships,
       activeDirection,
-      activeRoleFilter,
       activeCohortFilter,
       activeSelectedId,
       activeLineageMode,
@@ -419,8 +398,6 @@ function FamilyTreeCanvasInner({
               className="!m-2.5 max-w-[calc(100%-1.25rem)]"
             >
               <TreeControls
-                roleFilter={activeRoleFilter}
-                onRoleFilterChange={handleRoleChange}
                 cohortFilter={activeCohortFilter}
                 onCohortFilterChange={handleCohortChange}
                 direction={activeDirection}
@@ -433,10 +410,6 @@ function FamilyTreeCanvasInner({
                 onClearSelection={() => handleSelectStudent(null)}
                 onFitView={handleFitView}
                 onCenterSelected={handleCenterSelected}
-                generationCounts={familyMetrics.generationCounts}
-                visibleStudentsCount={layoutResult.visibleStudentCount}
-                visibleEdgesCount={layoutResult.visibleEdgeCount}
-                totalStudentsCount={rawStudents.length}
               />
             </Panel>
           )}
@@ -547,7 +520,6 @@ function FamilyTreeCanvasInner({
             <button
               type="button"
               onClick={() => {
-                handleRoleChange('ALL');
                 handleCohortChange('ALL');
                 handleLineageModeChange('HIGHLIGHT');
                 handleSelectStudent(null);

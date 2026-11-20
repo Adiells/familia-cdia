@@ -123,25 +123,10 @@ function parseTrio(raw) {
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return { error: 'Apadrinhamento inválido.' };
   const childRegistration = raw.calouroMatricula;
   const semester = raw.semester;
-  let godparentRegistrations;
-  if (Array.isArray(raw.godparentMatriculas)) {
-    if (raw.godparentMatriculas.length < 1 || raw.godparentMatriculas.length > 50 || raw.godparentMatriculas.some((value) => typeof value !== 'string' || !value.trim())) {
-      return { error: 'Informe de 1 a 50 matrículas de padrinhos/madrinhas.' };
-    }
-    godparentRegistrations = raw.godparentMatriculas.map((value) => value.trim());
-  } else {
-    // Backward-compatible input: P2 is required; the second (veterano) is optional.
-    if (typeof raw.p2Matricula !== 'string' || !raw.p2Matricula.trim()) {
-      return { error: 'Informe ao menos uma matrícula de padrinho/madrinha.' };
-    }
-    if (raw.veteranoMatricula !== undefined && raw.veteranoMatricula !== null && typeof raw.veteranoMatricula !== 'string') {
-      return { error: 'Matrícula de padrinho/madrinha inválida.' };
-    }
-    godparentRegistrations = [
-      raw.p2Matricula.trim(),
-      ...(typeof raw.veteranoMatricula === 'string' && raw.veteranoMatricula.trim() ? [raw.veteranoMatricula.trim()] : []),
-    ];
+  if (!Array.isArray(raw.godparentMatriculas) || raw.godparentMatriculas.length < 1 || raw.godparentMatriculas.length > 50 || raw.godparentMatriculas.some((value) => typeof value !== 'string' || !value.trim())) {
+    return { error: 'Informe de 1 a 50 matrículas de padrinhos/madrinhas.' };
   }
+  const godparentRegistrations = raw.godparentMatriculas.map((value) => value.trim());
   if (typeof childRegistration !== 'string' || !childRegistration.trim()) return { error: 'Matrícula do(a) calouro(a) obrigatória.' };
   if (typeof semester !== 'string' || !semesterPattern.test(semester.trim())) return { error: 'Semestre inválido. Use o formato AAAA.1 ou AAAA.2.' };
   const cleanChildRegistration = childRegistration.trim();
@@ -217,17 +202,20 @@ async function createSponsorships(rawTrios) {
     }
 
     let addedSponsorships = 0;
-    const edgeKeys = new Set(sponsorships.map((edge) => `${edge.godparentId}|${edge.godchildId}|${edge.role}|${edge.semester}`));
+    const edgeKeys = new Set(sponsorships.map((edge) => `${edge.godparentId}|${edge.godchildId}|${edge.semester}`));
     for (const item of parsed) {
       const child = resolvedByRegistration.get(item.calouroMatricula);
-      for (const [index, registration] of item.godparentMatriculas.entries()) {
+      for (const registration of item.godparentMatriculas) {
         const godparent = resolvedByRegistration.get(registration);
-        // The shared graph contract distinguishes P2 and VETERANO. Preserve the first
-        // selected parent as P2 and represent any additional parents as VETERANO links.
-        const edge = { godparentId: godparent.id, godchildId: child.id, role: index === 0 ? 'P2' : 'VETERANO' };
-        const edgeKey = `${edge.godparentId}|${edge.godchildId}|${edge.role}|${item.semester}`;
+        const edgeKey = `${godparent.id}|${child.id}|${item.semester}`;
         if (!edgeKeys.has(edgeKey)) {
-          sponsorships.push({ ...edge, id: `${item.semester}-${edge.role.toLowerCase()}-${safeSlug(edge.godparentId)}-${safeSlug(edge.godchildId)}-${randomUUID().slice(0, 8)}`, semester: item.semester, sourceDoc: 'user-added' });
+          sponsorships.push({
+            id: `${item.semester}-${safeSlug(godparent.id)}-${safeSlug(child.id)}-${randomUUID().slice(0, 8)}`,
+            godparentId: godparent.id,
+            godchildId: child.id,
+            semester: item.semester,
+            sourceDoc: 'user-added',
+          });
           edgeKeys.add(edgeKey);
           addedSponsorships += 1;
         }

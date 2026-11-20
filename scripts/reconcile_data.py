@@ -167,10 +167,11 @@ def main():
                ("sponsorships_2025_2", "2025.2", "pdf_2025_2_source"),
                ("sponsorships_2026_1", "2026.1", "pdf_2026_1_source"),
                ("sponsorships_2026_2", "2026.2", "sponsorships_2026_2_source")]
+    seen_edge_ids = set()
     for key, semester, source_key in sources:
         source = raw[source_key]
         for row in raw[key]:
-            # Semester tags are authoritative. The incoming cohort and role
+            # Semester tags are authoritative. The incoming cohort and source column
             # determine fallbacks when a raw row omits a semester tag.
             child, child_name, child_conf, child_official = resolve(row["godchild"], semester)
             p2_fallback = {"2025.1": "2024.2", "2025.2": "2025.1", "2026.1": "2025.2", "2026.2": "2026.1"}[semester]
@@ -186,10 +187,17 @@ def main():
                               "canonicalName": person["canonicalName"], "matricula": person["matricula"],
                               "matchConfidence": confidence,
                               "explanation": ("Matched official SIGAA record" if official else "Resolved from sponsorship PDFs; absent from active SIGAA roster")})
-            for person, role in ((p2, "P2"), (veteran, "VETERANO")):
-                edges.append({"id": f"{semester}-{role.lower()}-{person['id']}-{child['id']}",
+            for person in (p2, veteran):
+                base_id = f"{semester}-{person['id']}-{child['id']}"
+                edge_id = base_id
+                suffix = 2
+                while edge_id in seen_edge_ids:
+                    edge_id = f"{base_id}-{suffix}"
+                    suffix += 1
+                seen_edge_ids.add(edge_id)
+                edges.append({"id": edge_id,
                               "godparentId": person["id"], "godchildId": child["id"],
-                              "role": role, "semester": semester, "sourceDoc": source})
+                              "semester": semester, "sourceDoc": source})
 
     (DATA / "students.json").write_text(json.dumps(people, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DATA / "sponsorships.json").write_text(json.dumps(edges, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

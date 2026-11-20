@@ -1,20 +1,18 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Download, FileUp, Plus, Search, X } from 'lucide-react';
 import type { SigaaStudentRecord, SponsorshipEdgeData, StudentNodeData } from '../../data/types';
 import canonicalStudents from '../../data/students.json';
 import canonicalSponsorships from '../../data/sponsorships.json';
 import sigaaDirectory from '../../data/sigaa-students.json';
-import { getSponsorshipsApiUrl, LOCAL_ADDITIONS_STORAGE_KEY } from '../../lib/api';
+import { getSponsorshipsApiUrl } from '../../lib/api';
+import { normalizeSearchText } from '../../lib/search';
 
 const defaultStudents = canonicalStudents as unknown as StudentNodeData[];
 const defaultSponsorships = canonicalSponsorships as unknown as SponsorshipEdgeData[];
 const defaultSigaaStudents = sigaaDirectory as unknown as SigaaStudentRecord[];
-import { normalizeSearchText } from '../../lib/search';
 
-type StudentAddition = Pick<StudentNodeData, 'id' | 'canonicalName' | 'displayName' | 'matricula' | 'cohort' | 'aliases' | 'sigaaVerified' | 'matchConfidence'>;
-type StoredAdditions = { students: StudentAddition[]; sponsorships: SponsorshipEdgeData[] };
 type Draft = { calouro: string; godparents: string[]; semester: string };
 const emptyDraft = (): Draft => ({ calouro: '', godparents: [''], semester: '2026.2' });
 
@@ -65,21 +63,10 @@ export function AddSponsorshipModal({ open, onOpenChange, students = defaultStud
   const [pickedGodparents, setPickedGodparents] = useState<(SigaaStudentRecord | null)[]>([null]);
   const [batchText, setBatchText] = useState('');
   const [status, setStatus] = useState('');
-  const [additions, setAdditions] = useState<StoredAdditions>({ students: [], sponsorships: [] });
-  const [hydrated, setHydrated] = useState(false);
+  const [statusError, setStatusError] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [serverData, setServerData] = useState<{ students: StudentNodeData[]; sponsorships: SponsorshipEdgeData[] } | null>(null);
 
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem(LOCAL_ADDITIONS_STORAGE_KEY);
-      if (raw) {
-        const value: unknown = JSON.parse(raw);
-        if (value && typeof value === 'object' && Array.isArray((value as StoredAdditions).students) && Array.isArray((value as StoredAdditions).sponsorships)) setAdditions(value as StoredAdditions);
-      }
-    } catch { setStatus('Não foi possível ler os dados locais salvos.'); }
-    setHydrated(true);
-  }, []);
-  useEffect(() => { if (hydrated) { try { localStorage.setItem(LOCAL_ADDITIONS_STORAGE_KEY, JSON.stringify(additions)); } catch { /* Browser storage can be disabled or full. */ } } }, [additions, hydrated]);
   useEffect(() => {
     if (!open) return;
     let cancelled = false;
@@ -90,14 +77,8 @@ export function AddSponsorshipModal({ open, onOpenChange, students = defaultStud
     return () => { cancelled = true; };
   }, [open]);
 
-  const baseStudents = serverData?.students ?? students;
-  const baseSponsorships = serverData?.sponsorships ?? sponsorships;
-  const allStudents = useMemo(() => {
-    const map = new Map(baseStudents.map((student) => [student.id, student]));
-    additions.students.forEach((student) => map.set(student.id, student as StudentNodeData));
-    return [...map.values()];
-  }, [baseStudents, additions.students]);
-  const allEdges = useMemo(() => [...new Map([...baseSponsorships, ...additions.sponsorships].map((edge) => [edge.id, edge])).values()], [baseSponsorships, additions.sponsorships]);
+  const allStudents = serverData?.students ?? students;
+  const allEdges = serverData?.sponsorships ?? sponsorships;
   const directoryByName = useMemo(() => {
     const byKey = new Map<string, StudentNodeData>();
     allStudents.forEach((student) => [student.canonicalName, student.displayName, student.matricula ?? '', ...student.aliases].filter(Boolean).forEach((name) => byKey.set(normalizeSearchText(name), student)));
@@ -108,7 +89,7 @@ export function AddSponsorshipModal({ open, onOpenChange, students = defaultStud
     return byKey;
   }, [allStudents, sigaaStudents]);
 
-  const resolveQueryRecord = (query: string, picked: SigaaStudentRecord | null): SigaaStudentRecord | null => {
+  const resolveQueryRecord = useCallback((query: string, picked: SigaaStudentRecord | null): SigaaStudentRecord | null => {
     if (picked) return picked;
     const q = normalizeSearchText(query);
     if (!q) return null;
@@ -134,12 +115,11 @@ export function AddSponsorshipModal({ open, onOpenChange, students = defaultStud
       };
     }
     return null;
-  };
+  }, [sigaaStudents, directoryByName]);
 
   const effectiveChild = useMemo(
     () => resolveQueryRecord(draft.calouro, pickedChild),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [draft.calouro, pickedChild, sigaaStudents, directoryByName]
+    [draft.calouro, pickedChild, resolveQueryRecord]
   );
 
   const effectiveGodparents = useMemo(
@@ -147,76 +127,10 @@ export function AddSponsorshipModal({ open, onOpenChange, students = defaultStud
       draft.godparents
         .map((q, idx) => resolveQueryRecord(q, pickedGodparents[idx] ?? null))
         .filter((r): r is SigaaStudentRecord => Boolean(r)),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [draft.godparents, pickedGodparents, sigaaStudents, directoryByName]
+    [draft.godparents, pickedGodparents, resolveQueryRecord]
   );
 
   if (!open) return null;
-
-  const publishLocalData = (nextStudents: StudentNodeData[], nextSponsorships: SponsorshipEdgeData[], addedSponsorships: number, addedChildId?: string) => {
-    const baseStudentById = new Map(baseStudents.map((student) => [student.id, student]));
-    const baseEdgeKeys = new Set(baseSponsorships.map((edge) => `${edge.godparentId}|${edge.godchildId}|${edge.role}|${edge.semester}`));
-    const nextAdditions: StoredAdditions = {
-      students: nextStudents.filter((student) => {
-        const base = baseStudentById.get(student.id);
-        return !base || JSON.stringify(base) !== JSON.stringify(student);
-      }),
-      sponsorships: nextSponsorships.filter((edge) => !baseEdgeKeys.has(`${edge.godparentId}|${edge.godchildId}|${edge.role}|${edge.semester}`)),
-    };
-    setAdditions(nextAdditions);
-    try { localStorage.setItem(LOCAL_ADDITIONS_STORAGE_KEY, JSON.stringify(nextAdditions)); } catch { /* Keep the current session usable even if storage is unavailable. */ }
-    setServerData({ students: nextStudents, sponsorships: nextSponsorships });
-    onDataChange?.({ students: nextStudents, sponsorships: nextSponsorships, addedChildId });
-    return addedSponsorships;
-  };
-
-  const saveLocally = (rows: { child: SigaaStudentRecord; godparents: SigaaStudentRecord[]; semester: string }[]) => {
-    const nextStudents = new Map(allStudents.map((student) => [student.id, { ...student }]));
-    const nextSponsorships = [...allEdges];
-    const resolvedByMatricula = new Map<string, StudentNodeData>();
-    const ensureStudent = (record: SigaaStudentRecord, cohort: string) => {
-      let student = [...nextStudents.values()].find((candidate) => candidate.matricula === record.matricula) ?? [...nextStudents.values()].find((candidate) => normalizeSearchText(candidate.canonicalName) === normalizeSearchText(record.name));
-      if (student) {
-        if (student.matricula !== record.matricula || !student.sigaaVerified) {
-          student = { ...student, matricula: record.matricula, sigaaVerified: true, matchConfidence: 'EXACT' };
-          nextStudents.set(student.id, student);
-        }
-      } else {
-        student = {
-          id: `sigaa-${record.matricula}`,
-          canonicalName: record.name,
-          displayName: record.name,
-          matricula: record.matricula,
-          cohort,
-          aliases: [],
-          sigaaVerified: true,
-          matchConfidence: 'EXACT',
-        };
-        nextStudents.set(student.id, student);
-      }
-      resolvedByMatricula.set(record.matricula, student);
-      return student;
-    };
-    let addedSponsorships = 0;
-    let lastChildId: string | undefined;
-    for (const row of rows) {
-      const child = ensureStudent(row.child, row.semester);
-      lastChildId = child.id;
-      const parents = row.godparents.map((record) => ensureStudent(record, `${record.inferredCohort ?? record.matricula.slice(0, 4)}.1`));
-      if (!parents.length || new Set([child.matricula, ...parents.map((parent) => parent.matricula)]).size !== parents.length + 1) {
-        throw new Error('Calouro(a) e padrinhos/madrinhas devem ser estudantes distintos.');
-      }
-      for (const [index, parent] of parents.entries()) {
-        const role = index === 0 ? 'P2' : 'VETERANO';
-        const duplicate = nextSponsorships.some((edge) => edge.godparentId === parent.id && edge.godchildId === child.id && edge.semester === row.semester);
-        if (duplicate) continue;
-        const id = typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : `local-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-        nextSponsorships.push({ id, godparentId: parent.id, godchildId: child.id, role, semester: row.semester, sourceDoc: 'user-added' });
-        addedSponsorships += 1;
-      }
-    }
-    return publishLocalData([...nextStudents.values()], nextSponsorships, addedSponsorships, lastChildId);
-  };
 
   const addRows = async (rows: { child: SigaaStudentRecord; godparents: SigaaStudentRecord[]; semester: string }[]) => {
     let response: Response;
@@ -231,18 +145,21 @@ export function AddSponsorshipModal({ open, onOpenChange, students = defaultStud
         })) }),
       });
     } catch {
-      return { count: saveLocally(rows), persisted: false };
+      throw new Error('Não foi possível conectar à API. Os dados só podem ser salvos quando o servidor estiver online.');
     }
     let result: unknown;
     try {
       result = await response.json();
     } catch {
-      if (response.status >= 500 || response.status === 404) return { count: saveLocally(rows), persisted: false };
-      throw new Error('Resposta inválida da API.');
+      if (!response.ok) {
+        throw new Error(`API indisponível ou inacessível (HTTP ${response.status}). Os dados não foram salvos.`);
+      }
+      throw new Error('Resposta inválida da API. Os dados não foram salvos.');
     }
     if (!response.ok) {
-      if (response.status >= 500 || response.status === 404 || response.status === 408 || response.status === 429) return { count: saveLocally(rows), persisted: false };
-      const message = result && typeof result === 'object' && 'error' in result && typeof result.error === 'string' ? result.error : 'Falha ao salvar no servidor.';
+      const message = result && typeof result === 'object' && 'error' in result && typeof result.error === 'string'
+        ? result.error
+        : `Falha ao salvar na API (HTTP ${response.status}). Verifique se o servidor está online.`;
       throw new Error(message);
     }
     if (!result || typeof result !== 'object' || !Array.isArray((result as { students?: unknown }).students) || !Array.isArray((result as { sponsorships?: unknown }).sponsorships)) {
@@ -258,8 +175,9 @@ export function AddSponsorshipModal({ open, onOpenChange, students = defaultStud
             normalizeSearchText(s.canonicalName) === normalizeSearchText(lastRow.child.name)
         )
       : undefined;
-    publishLocalData(savedStudents, savedSponsorships, (result as { addedSponsorships?: number }).addedSponsorships ?? 0, matchedChild?.id);
-    return { count: (result as { addedSponsorships?: number }).addedSponsorships ?? 0, persisted: true };
+    setServerData({ students: savedStudents, sponsorships: savedSponsorships });
+    onDataChange?.({ students: savedStudents, sponsorships: savedSponsorships, addedChildId: matchedChild?.id });
+    return { count: (result as { addedSponsorships?: number }).addedSponsorships ?? 0 };
   };
   const selectChild = (record: SigaaStudentRecord) => {
     setPickedChild(record);
@@ -295,10 +213,6 @@ export function AddSponsorshipModal({ open, onOpenChange, students = defaultStud
         godparentNames.push(...numberedGodparents);
         const singularGodparent = get('padrinho', 'madrinha', 'godparent');
         if (singularGodparent) godparentNames.push(singularGodparent);
-        const legacyP2 = get('p2', 'padrinho p2');
-        const legacyVeterano = get('veterano', 'padrinho veterano');
-        if (legacyP2) godparentNames.push(legacyP2);
-        if (legacyVeterano) godparentNames.push(legacyVeterano);
         const names = [childName, ...godparentNames];
         const records = names.map((name) => {
           if (!name) return null;
@@ -312,10 +226,22 @@ export function AddSponsorshipModal({ open, onOpenChange, students = defaultStud
         else resolvedRows.push({ child: resolved[0], godparents: resolved.slice(1), semester: get('semester', 'semestre') || '2026.2' });
       });
       if (resolvedRows.length) {
-        const saved = await addRows(resolvedRows);
-        setStatus(`${resolvedRows.length} apadrinhamento(s) processado(s); ${saved.count} novos vínculos ${saved.persisted ? 'salvos na API e neste navegador' : 'salvos localmente (API indisponível)'}. ${errors.slice(0, 3).join(' ')}`);
-      } else setStatus(errors.slice(0, 3).join(' ') || 'Nenhum trio válido encontrado.');
-    } catch (error) { setStatus(error instanceof Error ? error.message : 'Arquivo inválido.'); }
+        setSubmitting(true);
+        try {
+          const saved = await addRows(resolvedRows);
+          setStatusError(false);
+          setStatus(`${resolvedRows.length} apadrinhamento(s) processado(s); ${saved.count} novo(s) vínculo(s) salvo(s) na API. ${errors.slice(0, 3).join(' ')}`.trim());
+        } finally {
+          setSubmitting(false);
+        }
+      } else {
+        setStatusError(true);
+        setStatus(errors.slice(0, 3).join(' ') || 'Nenhum trio válido encontrado.');
+      }
+    } catch (error) {
+      setStatusError(true);
+      setStatus(error instanceof Error ? error.message : 'Arquivo inválido.');
+    }
   };
 
   return <div className="fixed inset-0 z-[100] flex items-end justify-center bg-slate-950/55 px-0 pt-4 backdrop-blur-sm dark:bg-slate-950/75 sm:items-start sm:px-4 sm:pt-[10vh]" onMouseDown={(event) => { if (event.target === event.currentTarget) onOpenChange(false); }}>
@@ -340,9 +266,9 @@ export function AddSponsorshipModal({ open, onOpenChange, students = defaultStud
           <button type="button" onClick={() => { setDraft((current) => ({ ...current, godparents: [...current.godparents, ''] })); setPickedGodparents((current) => [...current, null]); }} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:border-sky-500 hover:text-sky-700 dark:border-slate-700 dark:text-slate-200 dark:hover:text-sky-300"><Plus className="h-4 w-4" />Adicionar outro padrinho/madrinha</button>
         </div>
         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">Semestre do vínculo<input value={draft.semester} onChange={(event) => setDraft((current) => ({ ...current, semester: event.target.value }))} className="mt-1 block min-h-11 w-40 rounded-lg border border-slate-300 bg-slate-50 px-3 py-2 text-base text-slate-900 dark:border-slate-700 dark:bg-slate-950/70 dark:text-slate-100 sm:text-sm" /></label>
-        <button type="button" disabled={!effectiveChild || effectiveGodparents.length === 0 || !draft.semester.trim()} onClick={async () => { try { const saved = await addRows([{ child: effectiveChild!, godparents: effectiveGodparents, semester: draft.semester.trim() }]); setStatus(saved.persisted ? (saved.count ? `${effectiveGodparents.length} padrinho(s)/madrinha(s) salvo(s) na API e exibido(s) na árvore!` : 'Estes vínculos já existiam; os dados foram sincronizados.') : `${effectiveGodparents.length} padrinho(s)/madrinha(s) salvo(s) localmente e exibido(s) na árvore!`); setDraft(emptyDraft()); setPickedChild(null); setPickedGodparents([null]); } catch (error) { setStatus(error instanceof Error ? error.message : 'Falha ao salvar.'); } }} className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-sky-500 dark:text-slate-950 dark:hover:bg-sky-400"><Plus className="h-4 w-4" />Adicionar apadrinhamento</button>
-      </div> : <div className="space-y-3 p-4 sm:p-5"><p className="text-sm text-slate-600 dark:text-slate-400">Use colunas como <code className="text-slate-800 dark:text-slate-200">calouro,padrinho1,padrinho2,semestre</code> ou <code className="text-slate-800 dark:text-slate-200">calouro,padrinhos,semestre</code>, com padrinhos separados por ; ou |. O formato antigo <code className="text-slate-800 dark:text-slate-200">calouro,p2,veterano,semestre</code> também funciona; veterano é opcional. JSON aceita <code className="text-slate-800 dark:text-slate-200">godparents: []</code>.</p><textarea value={batchText} onChange={(event) => setBatchText(event.target.value)} rows={7} placeholder={'calouro,padrinho1,padrinho2,semestre\nNome Calouro,Nome Padrinho 1,Nome Padrinho 2,2026.1'} className="w-full rounded-lg border border-slate-300 bg-slate-50 p-3 font-mono text-xs text-slate-900 outline-none focus:border-sky-500 dark:border-slate-700 dark:bg-slate-950/70 dark:text-slate-100" /><div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap"><button type="button" onClick={() => void importBatch()} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-700 dark:bg-sky-500 dark:text-slate-950 dark:hover:bg-sky-400"><FileUp className="h-4 w-4" />Importar conteúdo</button><label className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 hover:border-sky-500/50 dark:border-slate-700 dark:text-slate-200"><FileUp className="h-4 w-4" />Selecionar CSV/JSON<input type="file" accept=".csv,.json,text/csv,application/json" className="sr-only" onChange={async (event) => { const file = event.currentTarget.files?.[0]; if (!file) return; const text = await file.text(); setBatchText(text); await importBatch(text, file.name); event.currentTarget.value = ''; }} /></label></div></div>}
-      <footer className="flex flex-col gap-3 border-t border-slate-200 px-4 py-4 dark:border-slate-800 sm:flex-row sm:items-center sm:justify-between sm:px-5"><p role="status" className="text-xs text-slate-600 dark:text-slate-400">{status || `${allStudents.length} estudantes · ${allEdges.length} vínculos`}</p><button type="button" onClick={exportData} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-800 hover:border-sky-500/50 dark:border-slate-700 dark:text-slate-200"><Download className="h-4 w-4" />Baixar JSON atualizado</button></footer>
+        <button type="button" disabled={submitting || !effectiveChild || effectiveGodparents.length === 0 || !draft.semester.trim()} onClick={async () => { setSubmitting(true); try { const saved = await addRows([{ child: effectiveChild!, godparents: effectiveGodparents, semester: draft.semester.trim() }]); setStatusError(false); setStatus(saved.count ? `${effectiveGodparents.length} padrinho(s)/madrinha(s) salvo(s) na API e exibido(s) na árvore!` : 'Estes vínculos já existiam; os dados foram sincronizados.'); setDraft(emptyDraft()); setPickedChild(null); setPickedGodparents([null]); } catch (error) { setStatusError(true); setStatus(error instanceof Error ? error.message : 'Falha ao salvar.'); } finally { setSubmitting(false); } }} className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-sky-500 dark:text-slate-950 dark:hover:bg-sky-400"><Plus className="h-4 w-4" />{submitting ? 'Salvando...' : 'Adicionar apadrinhamento'}</button>
+      </div> : <div className="space-y-3 p-4 sm:p-5"><p className="text-sm text-slate-600 dark:text-slate-400">Use colunas como <code className="text-slate-800 dark:text-slate-200">calouro,padrinho1,padrinho2,semestre</code> ou <code className="text-slate-800 dark:text-slate-200">calouro,padrinhos,semestre</code>, com padrinhos separados por ; ou |. JSON aceita <code className="text-slate-800 dark:text-slate-200">godparents: []</code>.</p><textarea value={batchText} onChange={(event) => setBatchText(event.target.value)} rows={7} placeholder={'calouro,padrinho1,padrinho2,semestre\nNome Calouro,Nome Padrinho 1,Nome Padrinho 2,2026.1'} className="w-full rounded-lg border border-slate-300 bg-slate-50 p-3 font-mono text-xs text-slate-900 outline-none focus:border-sky-500 dark:border-slate-700 dark:bg-slate-950/70 dark:text-slate-100" /><div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap"><button type="button" disabled={submitting} onClick={() => void importBatch()} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-sky-500 dark:text-slate-950 dark:hover:bg-sky-400"><FileUp className="h-4 w-4" />{submitting ? 'Importando...' : 'Importar conteúdo'}</button><label className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 hover:border-sky-500/50 dark:border-slate-700 dark:text-slate-200"><FileUp className="h-4 w-4" />Selecionar CSV/JSON<input type="file" disabled={submitting} accept=".csv,.json,text/csv,application/json" className="sr-only" onChange={async (event) => { const file = event.currentTarget.files?.[0]; if (!file) return; const text = await file.text(); setBatchText(text); await importBatch(text, file.name); event.currentTarget.value = ''; }} /></label></div></div>}
+      <footer className="flex flex-col gap-3 border-t border-slate-200 px-4 py-4 dark:border-slate-800 sm:flex-row sm:items-center sm:justify-between sm:px-5"><p role={statusError ? 'alert' : 'status'} className={`text-xs ${statusError ? 'font-medium text-rose-600 dark:text-rose-400' : 'text-slate-600 dark:text-slate-400'}`}>{status || `${allStudents.length} estudantes · ${allEdges.length} vínculos`}</p><button type="button" onClick={exportData} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-800 hover:border-sky-500/50 dark:border-slate-700 dark:text-slate-200"><Download className="h-4 w-4" />Baixar JSON atualizado</button></footer>
     </section>
   </div>;
 }

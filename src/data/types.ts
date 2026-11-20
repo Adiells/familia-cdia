@@ -1,6 +1,16 @@
-export type CohortSemester = '2024.1' | '2024.2' | '2025.1' | '2025.2' | '2026.1' | string;
-
-export type SponsorshipRole = 'P2' | 'VETERANO';
+export type CohortSemester =
+  | '2021.2'
+  | '2022.1'
+  | '2022.2'
+  | '2023.1'
+  | '2023.2'
+  | '2024.1'
+  | '2024.2'
+  | '2025.1'
+  | '2025.2'
+  | '2026.1'
+  | '2026.2'
+  | string;
 
 export type MatchConfidence = 'EXACT' | 'TOKEN_SUBSET' | 'FUZZY' | 'PDF_ONLY';
 
@@ -38,8 +48,6 @@ export interface SponsorshipEdgeData {
   godparentId: string;
   /** Canonical ID of the godchild (Calouro/Afilhado) */
   godchildId: string;
-  /** Sponsorship type: P2 (immediate second-period mentor) or VETERANO (senior mentor) */
-  role: SponsorshipRole;
   /** Semester when the sponsorship took place (e.g., "2025.2" or "2026.1") */
   semester: CohortSemester;
   /** Source PDF document identifier */

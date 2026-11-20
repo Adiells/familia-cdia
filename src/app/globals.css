@@ -20,8 +20,6 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-accent: var(--accent);
-  --color-p2: var(--p2);
-  --color-veterano: var(--veterano);
 }
 
 /* Light mode (slate-50 / sky-600 / blue-700) */
@@ -36,8 +34,6 @@
   --primary: #0284c7; /* sky-600 */
   --primary-foreground: #ffffff;
   --accent: #1d4ed8; /* blue-700 */
-  --p2: #0284c7;
-  --veterano: #7c3aed;
   --hero-glow: radial-gradient(
     ellipse 80% 50% at 50% -10%,
     rgba(14, 165, 233, 0.16),
@@ -60,8 +56,6 @@
   --primary: #0ea5e9; /* sky-500 */
   --primary-foreground: #020617;
   --accent: #22d3ee; /* cyan-400 */
-  --p2: #38bdf8; /* sky-400 */
-  --veterano: #a78bfa; /* violet-400 */
   --hero-glow: radial-gradient(
     ellipse 80% 50% at 50% -10%,
     rgba(14, 165, 233, 0.16),

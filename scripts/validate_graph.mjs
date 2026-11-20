@@ -17,9 +17,16 @@ for (const student of students) {
   canonicals.set(key, student.canonicalName);
   if (!student.id || !student.canonicalName || !student.displayName || !student.cohort || !Array.isArray(student.aliases) || typeof student.sigaaVerified !== 'boolean' || !['EXACT', 'TOKEN_SUBSET', 'FUZZY', 'PDF_ONLY'].includes(student.matchConfidence)) fail(`Invalid StudentNodeData: ${student.id}`);
 }
+const edgeIdSet = new Set();
+const edgeKeySet = new Set();
 for (const edge of edges) {
+  if (!edge.id || edgeIdSet.has(edge.id)) fail(`Invalid or duplicate edge ID: ${edge.id}`);
+  edgeIdSet.add(edge.id);
   if (!idSet.has(edge.godparentId) || !idSet.has(edge.godchildId)) fail(`Dangling edge ${edge.id}`);
-  if (!['P2', 'VETERANO'].includes(edge.role) || !edge.semester || !edge.sourceDoc) fail(`Invalid SponsorshipEdgeData: ${edge.id}`);
+  if (edge.role !== undefined || !edge.semester || !edge.sourceDoc) fail(`Invalid SponsorshipEdgeData: ${edge.id}`);
+  const edgeKey = `${edge.godparentId}|${edge.godchildId}|${edge.semester}`;
+  if (edgeKeySet.has(edgeKey)) fail(`Duplicate sponsorship edge: ${edgeKey}`);
+  edgeKeySet.add(edgeKey);
 }
 for (const entry of audit) {
   if (!idSet.has(entry.resolvedStudentId) || !entry.rawName || !entry.sourceDoc || !entry.canonicalName || !entry.matchConfidence || !entry.explanation) fail(`Invalid audit record: ${entry.rawName}`);

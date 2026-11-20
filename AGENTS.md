@@ -28,7 +28,7 @@ Academic genealogy and sponsorship tree platform for the Data Science and Artifi
 
 All components, scripts, and API endpoints must conform to `src/data/types.ts`:
 - `StudentNodeData`: Canonical student entity (`id`, `canonicalName`, `displayName`, `matricula`, `cohort`, `aliases`, `sigaaVerified`, `matchConfidence`).
-- `SponsorshipEdgeData`: Directed sponsorship edge (`id`, `godparentId`, `godchildId`, `role`, `semester`, `sourceDoc`).
+- `SponsorshipEdgeData`: Directed sponsorship edge (`id`, `godparentId`, `godchildId`, `semester`, `sourceDoc`).
 
 ## Verification Commands
 

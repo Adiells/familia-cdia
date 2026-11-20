@@ -3,7 +3,6 @@ import { Position, type Edge, type Node } from '@xyflow/react';
 import type {
   CohortSemester,
   SponsorshipEdgeData,
-  SponsorshipRole,
   StudentNodeData,
 } from '../data/types';
 
@@ -24,7 +23,6 @@ export const DEFAULT_NODE_SEP = 52;
 export const DEFAULT_RANK_SEP = 180;
 
 export type LayoutDirection = 'TB' | 'LR';
-export type RoleFilter = 'ALL' | SponsorshipRole;
 export type LineageMode = 'HIGHLIGHT' | 'ISOLATE';
 export type LineageRelation = 'SELF' | 'ANCESTOR' | 'DESCENDANT' | 'NONE';
 export type EdgeLineageSegment = 'UPSTREAM' | 'DOWNSTREAM' | 'NONE';
@@ -217,18 +215,12 @@ export function getCohortTheme(cohort: CohortSemester): CohortTheme {
 }
 
 export interface StudentFlowNodeData extends StudentNodeData, Record<string, unknown> {
-  /** Direct P2 godparents of this student */
-  p2Godparents: StudentNodeData[];
-  /** Direct Veterano godparents of this student */
-  veteranoGodparents: StudentNodeData[];
+  /** Direct godparents of this student */
+  godparents: StudentNodeData[];
   /** Total direct godparents count */
   godparentsCount: number;
   /** Total direct godchildren count */
   godchildrenCount: number;
-  /** Direct godchildren sponsored as P2 */
-  p2GodchildrenCount: number;
-  /** Direct godchildren sponsored as VETERANO */
-  veteranoGodchildrenCount: number;
   /** Total recursive academic ancestors count */
   ancestorsCount: number;
   /** Total recursive academic descendants count */
@@ -282,11 +274,9 @@ type EdgeLike =
       godchildId?: string;
       source?: string;
       target?: string;
-      role?: SponsorshipRole;
       data?: {
         godparentId?: string;
         godchildId?: string;
-        role?: SponsorshipRole;
       };
     };
 
@@ -294,7 +284,6 @@ function extractEdgeEndpoints(edge: EdgeLike): {
   id: string;
   godparentId: string;
   godchildId: string;
-  role: SponsorshipRole;
 } {
   const anyEdge = edge as Record<string, unknown>;
   const data = (anyEdge.data as Record<string, unknown> | undefined) ?? undefined;
@@ -304,10 +293,8 @@ function extractEdgeEndpoints(edge: EdgeLike): {
   const godchildId = String(
     anyEdge.godchildId ?? data?.godchildId ?? anyEdge.target ?? ''
   );
-  const rawRole = (anyEdge.role ?? data?.role ?? 'P2') as SponsorshipRole;
-  const role: SponsorshipRole = rawRole === 'VETERANO' ? 'VETERANO' : 'P2';
-  const id = String(anyEdge.id ?? `${godparentId}->${godchildId}:${role}`);
-  return { id, godparentId, godchildId, role };
+  const id = String(anyEdge.id ?? `${godparentId}->${godchildId}`);
+  return { id, godparentId, godchildId };
 }
 
 /**
@@ -316,17 +303,15 @@ function extractEdgeEndpoints(edge: EdgeLike): {
  */
 export function getAncestors(
   studentId: string,
-  edges: ReadonlyArray<EdgeLike>,
-  roleFilter: RoleFilter = 'ALL'
+  edges: ReadonlyArray<EdgeLike>
 ): Set<string> {
   const ancestors = new Set<string>();
   if (!studentId) return ancestors;
 
   const parentsByChild = new Map<string, string[]>();
   for (const rawEdge of edges) {
-    const { godparentId, godchildId, role } = extractEdgeEndpoints(rawEdge);
+    const { godparentId, godchildId } = extractEdgeEndpoints(rawEdge);
     if (!godparentId || !godchildId) continue;
-    if (roleFilter !== 'ALL' && role !== roleFilter) continue;
 
     const list = parentsByChild.get(godchildId);
     if (list) {
@@ -360,17 +345,15 @@ export function getAncestors(
  */
 export function getDescendants(
   studentId: string,
-  edges: ReadonlyArray<EdgeLike>,
-  roleFilter: RoleFilter = 'ALL'
+  edges: ReadonlyArray<EdgeLike>
 ): Set<string> {
   const descendants = new Set<string>();
   if (!studentId) return descendants;
 
   const childrenByParent = new Map<string, string[]>();
   for (const rawEdge of edges) {
-    const { godparentId, godchildId, role } = extractEdgeEndpoints(rawEdge);
+    const { godparentId, godchildId } = extractEdgeEndpoints(rawEdge);
     if (!godparentId || !godchildId) continue;
-    if (roleFilter !== 'ALL' && role !== roleFilter) continue;
 
     const list = childrenByParent.get(godparentId);
     if (list) {
@@ -406,8 +389,7 @@ export function getDescendants(
  */
 export function getLineageDepths(
   studentId: string,
-  edges: ReadonlyArray<EdgeLike>,
-  roleFilter: RoleFilter = 'ALL'
+  edges: ReadonlyArray<EdgeLike>
 ): Map<string, number> {
   const depths = new Map<string, number>();
   if (!studentId) return depths;
@@ -418,9 +400,8 @@ export function getLineageDepths(
   const childrenByParent = new Map<string, string[]>();
 
   for (const rawEdge of edges) {
-    const { godparentId, godchildId, role } = extractEdgeEndpoints(rawEdge);
+    const { godparentId, godchildId } = extractEdgeEndpoints(rawEdge);
     if (!godparentId || !godchildId) continue;
-    if (roleFilter !== 'ALL' && role !== roleFilter) continue;
 
     const pList = parentsByChild.get(godchildId);
     if (pList) pList.push(godparentId);
@@ -467,26 +448,20 @@ export function getLineageDepths(
 }
 
 export interface DirectStudentRelations {
-  p2Godparents: StudentNodeData[];
-  veteranoGodparents: StudentNodeData[];
   allGodparents: Array<{
     student: StudentNodeData;
-    role: SponsorshipRole;
     semester: CohortSemester;
     edgeId: string;
   }>;
   directGodchildren: Array<{
     student: StudentNodeData;
-    role: SponsorshipRole;
     semester: CohortSemester;
     edgeId: string;
   }>;
-  p2Godchildren: StudentNodeData[];
-  veteranoGodchildren: StudentNodeData[];
 }
 
 /**
- * Returns direct 1-hop godparents (split by P2 and Veterano) and direct godchildren for a student.
+ * Returns direct 1-hop godparents and direct godchildren for a student.
  */
 export function getDirectRelations(
   studentId: string,
@@ -498,12 +473,8 @@ export function getDirectRelations(
     nodeMap.set(node.id, node);
   }
 
-  const p2Godparents: StudentNodeData[] = [];
-  const veteranoGodparents: StudentNodeData[] = [];
   const allGodparents: DirectStudentRelations['allGodparents'] = [];
   const directGodchildren: DirectStudentRelations['directGodchildren'] = [];
-  const p2Godchildren: StudentNodeData[] = [];
-  const veteranoGodchildren: StudentNodeData[] = [];
 
   for (const edge of edges) {
     if (edge.godchildId === studentId) {
@@ -511,41 +482,25 @@ export function getDirectRelations(
       if (godparent) {
         allGodparents.push({
           student: godparent,
-          role: edge.role,
           semester: edge.semester,
           edgeId: edge.id,
         });
-        if (edge.role === 'P2') {
-          p2Godparents.push(godparent);
-        } else {
-          veteranoGodparents.push(godparent);
-        }
       }
     } else if (edge.godparentId === studentId) {
       const godchild = nodeMap.get(edge.godchildId);
       if (godchild) {
         directGodchildren.push({
           student: godchild,
-          role: edge.role,
           semester: edge.semester,
           edgeId: edge.id,
         });
-        if (edge.role === 'P2') {
-          p2Godchildren.push(godchild);
-        } else {
-          veteranoGodchildren.push(godchild);
-        }
       }
     }
   }
 
   return {
-    p2Godparents,
-    veteranoGodparents,
     allGodparents,
     directGodchildren,
-    p2Godchildren,
-    veteranoGodchildren,
   };
 }
 
@@ -568,15 +523,11 @@ export interface LineageSubgraphResult {
 export function getLineageSubgraph(
   studentId: string,
   nodes: ReadonlyArray<StudentNodeData>,
-  edges: ReadonlyArray<SponsorshipEdgeData>,
-  roleFilter: RoleFilter = 'ALL'
+  edges: ReadonlyArray<SponsorshipEdgeData>
 ): LineageSubgraphResult {
-  const filteredEdges =
-    roleFilter === 'ALL' ? edges : edges.filter((e) => e.role === roleFilter);
-
-  const ancestors = getAncestors(studentId, filteredEdges, roleFilter);
-  const descendants = getDescendants(studentId, filteredEdges, roleFilter);
-  const depths = getLineageDepths(studentId, filteredEdges, roleFilter);
+  const ancestors = getAncestors(studentId, edges);
+  const descendants = getDescendants(studentId, edges);
+  const depths = getLineageDepths(studentId, edges);
 
   const lineageNodeIds = new Set<string>();
   if (studentId) {
@@ -591,7 +542,7 @@ export function getLineageSubgraph(
   const lineageEdges: SponsorshipEdgeData[] = [];
   const lineageEdgeIds = new Set<string>();
 
-  for (const edge of filteredEdges) {
+  for (const edge of edges) {
     const isUpstreamLink =
       upstreamSet.has(edge.godparentId) && upstreamSet.has(edge.godchildId);
     const isDownstreamLink =
@@ -620,8 +571,6 @@ export function getLineageSubgraph(
 export interface TopGodparentMetric {
   student: StudentNodeData;
   directGodchildren: number;
-  p2Count: number;
-  veteranoCount: number;
   totalDescendants: number;
 }
 
@@ -636,8 +585,6 @@ export interface LargestLineageMetric {
 export interface FamilyMetrics {
   totalStudents: number;
   totalSponsorships: number;
-  p2EdgesCount: number;
-  veteranoEdgesCount: number;
   sigaaVerifiedCount: number;
   sigaaVerifiedPercentage: number;
   generationCounts: Record<string, number>;
@@ -654,7 +601,7 @@ export interface FamilyMetrics {
  * - Generation counts by cohort ('2024.1' -> '2026.1')
  * - Top godparents (direct godchildren & total recursive academic descendants)
  * - Largest academic lineage (founder/root student with the biggest descendant family tree)
- * - SIGAA verification statistics & P2 vs Veterano edge distribution
+ * - SIGAA verification statistics
  */
 export function calculateFamilyMetrics(
   nodes: ReadonlyArray<StudentNodeData>,
@@ -673,12 +620,7 @@ export function calculateFamilyMetrics(
     }
   }
 
-  let p2EdgesCount = 0;
-  let veteranoEdgesCount = 0;
-  const directCounts = new Map<
-    string,
-    { total: number; p2: number; veterano: number }
-  >();
+  const directCounts = new Map<string, number>();
   const undirectedAdj = new Map<string, Set<string>>();
 
   for (const node of nodes) {
@@ -686,18 +628,10 @@ export function calculateFamilyMetrics(
   }
 
   for (const edge of edges) {
-    if (edge.role === 'P2') p2EdgesCount += 1;
-    else veteranoEdgesCount += 1;
-
-    const current = directCounts.get(edge.godparentId) ?? {
-      total: 0,
-      p2: 0,
-      veterano: 0,
-    };
-    current.total += 1;
-    if (edge.role === 'P2') current.p2 += 1;
-    else current.veterano += 1;
-    directCounts.set(edge.godparentId, current);
+    directCounts.set(
+      edge.godparentId,
+      (directCounts.get(edge.godparentId) ?? 0) + 1
+    );
 
     if (!undirectedAdj.has(edge.godparentId)) {
       undirectedAdj.set(edge.godparentId, new Set<string>());
@@ -749,13 +683,9 @@ export function calculateFamilyMetrics(
   let maxGenerationalDepth = 0;
 
   for (const node of nodes) {
-    const direct = directCounts.get(node.id) ?? {
-      total: 0,
-      p2: 0,
-      veterano: 0,
-    };
-    const descendants = getDescendants(node.id, edges, 'ALL');
-    const depths = getLineageDepths(node.id, edges, 'ALL');
+    const directTotal = directCounts.get(node.id) ?? 0;
+    const descendants = getDescendants(node.id, edges);
+    const depths = getLineageDepths(node.id, edges);
 
     let nodeMaxDownDepth = 0;
     for (const d of depths.values()) {
@@ -767,12 +697,10 @@ export function calculateFamilyMetrics(
       maxGenerationalDepth = nodeMaxDownDepth;
     }
 
-    if (direct.total > 0 || descendants.size > 0) {
+    if (directTotal > 0 || descendants.size > 0) {
       topGodparentsAll.push({
         student: node,
-        directGodchildren: direct.total,
-        p2Count: direct.p2,
-        veteranoCount: direct.veterano,
+        directGodchildren: directTotal,
         totalDescendants: descendants.size,
       });
     }
@@ -782,8 +710,8 @@ export function calculateFamilyMetrics(
       descendants.size > largestLineage.descendantsCount ||
       (descendants.size === largestLineage.descendantsCount &&
         descendants.size > 0 &&
-        direct.total >
-          (directCounts.get(largestLineage.rootStudent?.id ?? '')?.total ?? 0));
+        directTotal >
+          (directCounts.get(largestLineage.rootStudent?.id ?? '') ?? 0));
 
     if (isBetterRoot) {
       largestLineage = {
@@ -813,8 +741,6 @@ export function calculateFamilyMetrics(
   return {
     totalStudents,
     totalSponsorships: edges.length,
-    p2EdgesCount,
-    veteranoEdgesCount,
     sigaaVerifiedCount,
     sigaaVerifiedPercentage,
     generationCounts,
@@ -826,9 +752,6 @@ export function calculateFamilyMetrics(
     largestComponentSize,
   };
 }
-
-export const getFamilyMetrics = calculateFamilyMetrics;
-export const computeGraphMetrics = calculateFamilyMetrics;
 
 export interface CohortTierBand {
   cohort: CohortSemester;
@@ -845,7 +768,6 @@ export interface CohortTierBand {
 
 export interface GraphLayoutOptions {
   direction?: LayoutDirection;
-  roleFilter?: RoleFilter;
   cohortFilter?: CohortSemester | 'ALL';
   selectedStudentId?: string | null;
   lineageMode?: LineageMode;
@@ -877,7 +799,6 @@ export function buildStratifiedGraphLayout(
 ): StratifiedLayoutResult {
   const {
     direction = 'TB',
-    roleFilter = 'ALL',
     cohortFilter = 'ALL',
     selectedStudentId = null,
     lineageMode = 'HIGHLIGHT',
@@ -901,17 +822,11 @@ export function buildStratifiedGraphLayout(
     allNodeMap.set(n.id, n);
   }
 
-  // Filter edges by role ('ALL' | 'P2' | 'VETERANO')
-  const roleFilteredEdges =
-    roleFilter === 'ALL'
-      ? [...rawEdges]
-      : rawEdges.filter((e) => e.role === roleFilter);
-
   // Calculate active lineage subgraph if a student is selected
   const hasValidSelection =
     Boolean(selectedStudentId) && allNodeMap.has(selectedStudentId!);
   const activeLineage = hasValidSelection
-    ? getLineageSubgraph(selectedStudentId!, rawNodes, roleFilteredEdges, roleFilter)
+    ? getLineageSubgraph(selectedStudentId!, rawNodes, rawEdges)
     : null;
 
   // Determine which nodes are visible on the canvas
@@ -936,7 +851,7 @@ export function buildStratifiedGraphLayout(
   const visibleNodeIdSet = new Set<string>(visibleRawNodes.map((n) => n.id));
 
   // Filter edges whose endpoints are both visible
-  const visibleRawEdges = roleFilteredEdges.filter(
+  const visibleRawEdges = rawEdges.filter(
     (e) =>
       visibleNodeIdSet.has(e.godparentId) && visibleNodeIdSet.has(e.godchildId)
   );
@@ -973,7 +888,7 @@ export function buildStratifiedGraphLayout(
       edge.godparentId,
       edge.godchildId,
       {
-        weight: edge.role === 'P2' ? 3 : 1,
+        weight: rankDiff === 1 ? 3 : 1,
         minlen: rankDiff,
       },
       edge.id
@@ -1121,9 +1036,9 @@ export function buildStratifiedGraphLayout(
       const x = isHorizontal ? primaryCoord : sec;
       const y = isHorizontal ? sec : primaryCoord;
 
-      const direct = getDirectRelations(student.id, rawNodes, roleFilteredEdges);
-      const ancestors = getAncestors(student.id, roleFilteredEdges, roleFilter);
-      const descendants = getDescendants(student.id, roleFilteredEdges, roleFilter);
+      const direct = getDirectRelations(student.id, rawNodes, rawEdges);
+      const ancestors = getAncestors(student.id, rawEdges);
+      const descendants = getDescendants(student.id, rawEdges);
 
       const isSelected = student.id === selectedStudentId;
       const isAncestor = activeLineage ? activeLineage.ancestors.has(student.id) : false;
@@ -1173,12 +1088,9 @@ export function buildStratifiedGraphLayout(
         zIndex: isSelected ? 50 : isInLineage ? 40 : 20,
         data: {
           ...student,
-          p2Godparents: direct.p2Godparents,
-          veteranoGodparents: direct.veteranoGodparents,
+          godparents: direct.allGodparents.map((g) => g.student),
           godparentsCount: direct.allGodparents.length,
           godchildrenCount: direct.directGodchildren.length,
-          p2GodchildrenCount: direct.p2Godchildren.length,
-          veteranoGodchildrenCount: direct.veteranoGodchildren.length,
           ancestorsCount: ancestors.size,
           descendantsCount: descendants.size,
           direction,
@@ -1324,7 +1236,3 @@ export function buildStratifiedGraphLayout(
     visibleEdgeCount: flowEdges.length,
   };
 }
-
-export const getLayoutedElements = buildStratifiedGraphLayout;
-export const layoutFamilyTree = buildStratifiedGraphLayout;
-export const computeStratifiedLayout = buildStratifiedGraphLayout;

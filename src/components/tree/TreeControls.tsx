@@ -15,12 +15,9 @@ import type { CohortSemester, StudentNodeData } from '../../data/types';
 import type {
   LayoutDirection,
   LineageMode,
-  RoleFilter,
 } from '../../lib/graph-layout';
 
 export interface TreeControlsProps {
-  roleFilter?: RoleFilter;
-  onRoleFilterChange?: (role: RoleFilter) => void;
   cohortFilter?: CohortSemester | 'ALL';
   onCohortFilterChange?: (cohort: CohortSemester | 'ALL') => void;
   direction: LayoutDirection;
@@ -33,15 +30,10 @@ export interface TreeControlsProps {
   onClearSelection?: () => void;
   onFitView?: () => void;
   onCenterSelected?: () => void;
-  generationCounts?: Record<string, number>;
-  visibleStudentsCount?: number;
-  visibleEdgesCount?: number;
-  totalStudentsCount?: number;
   className?: string;
 }
 
 export function TreeControls({
-  onRoleFilterChange,
   cohortFilter = 'ALL',
   onCohortFilterChange,
   direction,
@@ -62,7 +54,6 @@ export function TreeControls({
     lineageMode === 'ISOLATE';
 
   const handleResetAll = () => {
-    onRoleFilterChange?.('ALL');
     onCohortFilterChange?.('ALL');
     onLineageModeChange('HIGHLIGHT');
     onClearSelection?.();

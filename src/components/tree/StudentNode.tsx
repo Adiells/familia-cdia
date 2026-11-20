@@ -32,12 +32,9 @@ export const StudentNode = memo(function StudentNode({
   const isDimmed = Boolean(data.isDimmed);
   const isSearchMatch = Boolean(data.isSearchMatch);
 
-  const allGodparents = [
-    ...(data.p2Godparents ?? []),
-    ...(data.veteranoGodparents ?? []),
-  ];
+  const godparents = data.godparents ?? [];
   const uniqueGodparentNames = Array.from(
-    new Set(allGodparents.map((g) => shortenPersonName(g.displayName)))
+    new Set(godparents.map((g) => shortenPersonName(g.displayName)))
   );
 
   let containerStateClass =
@@ -141,7 +138,7 @@ export const StudentNode = memo(function StudentNode({
         {uniqueGodparentNames.length > 0 ? (
           <div
             className="inline-flex items-center gap-1.5 max-w-full truncate rounded-md bg-sky-500/10 border border-sky-500/25 px-2 py-0.5 text-[9px] font-medium text-sky-700 dark:text-sky-300"
-            title={`Padrinhos: ${allGodparents.map((g) => g.displayName).join(', ')}`}
+            title={`Padrinhos: ${godparents.map((g) => g.displayName).join(', ')}`}
           >
             <UserCheck className="h-2.5 w-2.5 text-sky-600 dark:text-sky-400 shrink-0" />
             <span className="truncate">

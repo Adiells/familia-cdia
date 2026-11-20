@@ -1,1546 +1,1318 @@
 [
   {
-    "id": "2025.1-p2-sofia-pontes-leitao-lima-maria-eloisa-silva-sousa",
+    "id": "2025.1-sofia-pontes-leitao-lima-maria-eloisa-silva-sousa",
     "godparentId": "sofia-pontes-leitao-lima",
     "godchildId": "maria-eloisa-silva-sousa",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-joao-vitor-pereira-costa-maria-eloisa-silva-sousa",
+    "id": "2025.1-joao-vitor-pereira-costa-maria-eloisa-silva-sousa",
     "godparentId": "joao-vitor-pereira-costa",
     "godchildId": "maria-eloisa-silva-sousa",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-ana-beatriz-mota-cruz-maria-clara-caldas-fernandes",
+    "id": "2025.1-ana-beatriz-mota-cruz-maria-clara-caldas-fernandes",
     "godparentId": "ana-beatriz-mota-cruz",
     "godchildId": "maria-clara-caldas-fernandes",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-samuel-victor-fernandes-dantas-vicente-maria-clara-caldas-fernandes",
+    "id": "2025.1-samuel-victor-fernandes-dantas-vicente-maria-clara-caldas-fernandes",
     "godparentId": "samuel-victor-fernandes-dantas-vicente",
     "godchildId": "maria-clara-caldas-fernandes",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-sarah-fernanda-calixto-araujo-luana-caze",
+    "id": "2025.1-sarah-fernanda-calixto-araujo-luana-caze",
     "godparentId": "sarah-fernanda-calixto-araujo",
     "godchildId": "luana-caze",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-pedro-henrique-kruta-araujo-bispo-luana-caze",
+    "id": "2025.1-pedro-henrique-kruta-araujo-bispo-luana-caze",
     "godparentId": "pedro-henrique-kruta-araujo-bispo",
     "godchildId": "luana-caze",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-ana-beatriz-mota-cruz-nicole-costa-silva",
+    "id": "2025.1-ana-beatriz-mota-cruz-nicole-costa-silva",
     "godparentId": "ana-beatriz-mota-cruz",
     "godchildId": "nicole-costa-silva",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-matheus-silva-nunes-nicole-costa-silva",
+    "id": "2025.1-matheus-silva-nunes-nicole-costa-silva",
     "godparentId": "matheus-silva-nunes",
     "godchildId": "nicole-costa-silva",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-sofia-pontes-leitao-lima-elia-dutra-sena",
+    "id": "2025.1-sofia-pontes-leitao-lima-elia-dutra-sena",
     "godparentId": "sofia-pontes-leitao-lima",
     "godchildId": "elia-dutra-sena",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-thiago-henrique-meneses-bezerra-elia-dutra-sena",
+    "id": "2025.1-thiago-henrique-meneses-bezerra-elia-dutra-sena",
     "godparentId": "thiago-henrique-meneses-bezerra",
     "godchildId": "elia-dutra-sena",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-sarah-fernanda-calixto-araujo-liliana",
+    "id": "2025.1-sarah-fernanda-calixto-araujo-liliana",
     "godparentId": "sarah-fernanda-calixto-araujo",
     "godchildId": "liliana",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-erick-batista-silva-liliana",
+    "id": "2025.1-erick-batista-silva-liliana",
     "godparentId": "erick-batista-silva",
     "godchildId": "liliana",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-thiago-henrique-meneses-bezerra-brenda-leticia-nascimento-dias",
+    "id": "2025.1-thiago-henrique-meneses-bezerra-brenda-leticia-nascimento-dias",
     "godparentId": "thiago-henrique-meneses-bezerra",
     "godchildId": "brenda-leticia-nascimento-dias",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-nathan-david-figueiredo-barros-brenda-leticia-nascimento-dias",
+    "id": "2025.1-nathan-david-figueiredo-barros-brenda-leticia-nascimento-dias",
     "godparentId": "nathan-david-figueiredo-barros",
     "godchildId": "brenda-leticia-nascimento-dias",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-luiz-carlos-veloso-araujo-lima-neto-artur-amorim-barbosa",
+    "id": "2025.1-luiz-carlos-veloso-araujo-lima-neto-artur-amorim-barbosa",
     "godparentId": "luiz-carlos-veloso-araujo-lima-neto",
     "godchildId": "artur-amorim-barbosa",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-anne-fernandes-costa-oliveira-artur-amorim-barbosa",
+    "id": "2025.1-anne-fernandes-costa-oliveira-artur-amorim-barbosa",
     "godparentId": "anne-fernandes-costa-oliveira",
     "godchildId": "artur-amorim-barbosa",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-thiago-mateus-marques-ribeiro-carlos-adauto-sa-batista",
+    "id": "2025.1-thiago-mateus-marques-ribeiro-carlos-adauto-sa-batista",
     "godparentId": "thiago-mateus-marques-ribeiro",
     "godchildId": "carlos-adauto-sa-batista",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-igor-melo-pessoa-carlos-adauto-sa-batista",
+    "id": "2025.1-igor-melo-pessoa-carlos-adauto-sa-batista",
     "godparentId": "igor-melo-pessoa",
     "godchildId": "carlos-adauto-sa-batista",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-diego-sousa-maciel-alonso-costa-sousa-araujo",
+    "id": "2025.1-diego-sousa-maciel-alonso-costa-sousa-araujo",
     "godparentId": "diego-sousa-maciel",
     "godchildId": "alonso-costa-sousa-araujo",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-samuel-victor-fernandes-dantas-vicente-alonso-costa-sousa-araujo",
+    "id": "2025.1-samuel-victor-fernandes-dantas-vicente-alonso-costa-sousa-araujo",
     "godparentId": "samuel-victor-fernandes-dantas-vicente",
     "godchildId": "alonso-costa-sousa-araujo",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-yosef-joseph-goncalves-nascimento-lucas-aprigio-santos-oliveira",
+    "id": "2025.1-yosef-joseph-goncalves-nascimento-lucas-aprigio-santos-oliveira",
     "godparentId": "yosef-joseph-goncalves-nascimento",
     "godchildId": "lucas-aprigio-santos-oliveira",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-samuel-victor-fernandes-dantas-vicente-lucas-aprigio-santos-oliveira",
+    "id": "2025.1-samuel-victor-fernandes-dantas-vicente-lucas-aprigio-santos-oliveira",
     "godparentId": "samuel-victor-fernandes-dantas-vicente",
     "godchildId": "lucas-aprigio-santos-oliveira",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-joao-victor-souza-lucena-meireles-adiel-emilson-silva",
+    "id": "2025.1-joao-victor-souza-lucena-meireles-adiel-emilson-silva",
     "godparentId": "joao-victor-souza-lucena-meireles",
     "godchildId": "adiel-emilson-silva",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-igor-melo-pessoa-adiel-emilson-silva",
+    "id": "2025.1-igor-melo-pessoa-adiel-emilson-silva",
     "godparentId": "igor-melo-pessoa",
     "godchildId": "adiel-emilson-silva",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-jonatas-miguel-sousa-soares-eduardo-oliveira-silva",
+    "id": "2025.1-jonatas-miguel-sousa-soares-eduardo-oliveira-silva",
     "godparentId": "jonatas-miguel-sousa-soares",
     "godchildId": "eduardo-oliveira-silva",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-pedro-henrique-kruta-araujo-bispo-eduardo-oliveira-silva",
+    "id": "2025.1-pedro-henrique-kruta-araujo-bispo-eduardo-oliveira-silva",
     "godparentId": "pedro-henrique-kruta-araujo-bispo",
     "godchildId": "eduardo-oliveira-silva",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-caua-henrique-formiga-lacerda-davi-cavalcante-pereira",
+    "id": "2025.1-caua-henrique-formiga-lacerda-davi-cavalcante-pereira",
     "godparentId": "caua-henrique-formiga-lacerda",
     "godchildId": "davi-cavalcante-pereira",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-anne-fernandes-costa-oliveira-davi-cavalcante-pereira",
+    "id": "2025.1-anne-fernandes-costa-oliveira-davi-cavalcante-pereira",
     "godparentId": "anne-fernandes-costa-oliveira",
     "godchildId": "davi-cavalcante-pereira",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-nathan-david-figueiredo-barros-arthur-medeiros-nascimento",
+    "id": "2025.1-nathan-david-figueiredo-barros-arthur-medeiros-nascimento",
     "godparentId": "nathan-david-figueiredo-barros",
     "godchildId": "arthur-medeiros-nascimento",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-thiago-henrique-meneses-bezerra-arthur-medeiros-nascimento",
+    "id": "2025.1-thiago-henrique-meneses-bezerra-arthur-medeiros-nascimento",
     "godparentId": "thiago-henrique-meneses-bezerra",
     "godchildId": "arthur-medeiros-nascimento",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-thiago-mateus-marques-ribeiro-davidys-cavalcante-pontes",
+    "id": "2025.1-thiago-mateus-marques-ribeiro-davidys-cavalcante-pontes",
     "godparentId": "thiago-mateus-marques-ribeiro",
     "godchildId": "davidys-cavalcante-pontes",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-joao-vitor-pereira-costa-davidys-cavalcante-pontes",
+    "id": "2025.1-joao-vitor-pereira-costa-davidys-cavalcante-pontes",
     "godparentId": "joao-vitor-pereira-costa",
     "godchildId": "davidys-cavalcante-pontes",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-joao-victor-souza-lucena-meireles-ilay-goncalves-vieira-alves",
+    "id": "2025.1-joao-victor-souza-lucena-meireles-ilay-goncalves-vieira-alves",
     "godparentId": "joao-victor-souza-lucena-meireles",
     "godchildId": "ilay-goncalves-vieira-alves",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-ana-beatriz-mota-cruz-ilay-goncalves-vieira-alves",
+    "id": "2025.1-ana-beatriz-mota-cruz-ilay-goncalves-vieira-alves",
     "godparentId": "ana-beatriz-mota-cruz",
     "godchildId": "ilay-goncalves-vieira-alves",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-yosef-joseph-goncalves-nascimento-kaio-vitor-santos-lima",
+    "id": "2025.1-yosef-joseph-goncalves-nascimento-kaio-vitor-santos-lima",
     "godparentId": "yosef-joseph-goncalves-nascimento",
     "godchildId": "kaio-vitor-santos-lima",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-matheus-silva-nunes-kaio-vitor-santos-lima",
+    "id": "2025.1-matheus-silva-nunes-kaio-vitor-santos-lima",
     "godparentId": "matheus-silva-nunes",
     "godchildId": "kaio-vitor-santos-lima",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-jonatas-miguel-sousa-soares-elton-assis-guedes-neto",
+    "id": "2025.1-jonatas-miguel-sousa-soares-elton-assis-guedes-neto",
     "godparentId": "jonatas-miguel-sousa-soares",
     "godchildId": "elton-assis-guedes-neto",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-beatriz-barreto-cavalcanti-elton-assis-guedes-neto",
+    "id": "2025.1-beatriz-barreto-cavalcanti-elton-assis-guedes-neto",
     "godparentId": "beatriz-barreto-cavalcanti",
     "godchildId": "elton-assis-guedes-neto",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-caua-henrique-formiga-lacerda-luis-fernando-araujo-oliveira",
+    "id": "2025.1-caua-henrique-formiga-lacerda-luis-fernando-araujo-oliveira",
     "godparentId": "caua-henrique-formiga-lacerda",
     "godchildId": "luis-fernando-araujo-oliveira",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-igor-melo-pessoa-luis-fernando-araujo-oliveira",
+    "id": "2025.1-igor-melo-pessoa-luis-fernando-araujo-oliveira",
     "godparentId": "igor-melo-pessoa",
     "godchildId": "luis-fernando-araujo-oliveira",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-luiz-carlos-veloso-araujo-lima-neto-ricardo-morais-pistori-nascimento",
+    "id": "2025.1-luiz-carlos-veloso-araujo-lima-neto-ricardo-morais-pistori-nascimento",
     "godparentId": "luiz-carlos-veloso-araujo-lima-neto",
     "godchildId": "ricardo-morais-pistori-nascimento",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-erick-batista-silva-ricardo-morais-pistori-nascimento",
+    "id": "2025.1-erick-batista-silva-ricardo-morais-pistori-nascimento",
     "godparentId": "erick-batista-silva",
     "godchildId": "ricardo-morais-pistori-nascimento",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-diego-sousa-maciel-pedro-lucas-moreira-rolim",
+    "id": "2025.1-diego-sousa-maciel-pedro-lucas-moreira-rolim",
     "godparentId": "diego-sousa-maciel",
     "godchildId": "pedro-lucas-moreira-rolim",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-pedro-henrique-kruta-araujo-bispo-pedro-lucas-moreira-rolim",
+    "id": "2025.1-pedro-henrique-kruta-araujo-bispo-pedro-lucas-moreira-rolim",
     "godparentId": "pedro-henrique-kruta-araujo-bispo",
     "godchildId": "pedro-lucas-moreira-rolim",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-p2-ana-beatriz-mota-cruz-joao-rafael-gadelha-araujo",
+    "id": "2025.1-ana-beatriz-mota-cruz-joao-rafael-gadelha-araujo",
     "godparentId": "ana-beatriz-mota-cruz",
     "godchildId": "joao-rafael-gadelha-araujo",
-    "role": "P2",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.1-veterano-anne-fernandes-costa-oliveira-joao-rafael-gadelha-araujo",
+    "id": "2025.1-anne-fernandes-costa-oliveira-joao-rafael-gadelha-araujo",
     "godparentId": "anne-fernandes-costa-oliveira",
     "godchildId": "joao-rafael-gadelha-araujo",
-    "role": "VETERANO",
     "semester": "2025.1",
     "sourceDoc": "user-provided-2025-1-list"
   },
   {
-    "id": "2025.2-p2-brenda-leticia-nascimento-dias-ana-luiza-gomes-araujo",
+    "id": "2025.2-brenda-leticia-nascimento-dias-ana-luiza-gomes-araujo",
     "godparentId": "brenda-leticia-nascimento-dias",
     "godchildId": "ana-luiza-gomes-araujo",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-samuel-victor-fernandes-dantas-vicente-ana-luiza-gomes-araujo",
+    "id": "2025.2-samuel-victor-fernandes-dantas-vicente-ana-luiza-gomes-araujo",
     "godparentId": "samuel-victor-fernandes-dantas-vicente",
     "godchildId": "ana-luiza-gomes-araujo",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-arthur-medeiros-nascimento-antonio-sergio-duarte-lacerda",
+    "id": "2025.2-arthur-medeiros-nascimento-antonio-sergio-duarte-lacerda",
     "godparentId": "arthur-medeiros-nascimento",
     "godchildId": "antonio-sergio-duarte-lacerda",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-ana-beatriz-mota-cruz-antonio-sergio-duarte-lacerda",
+    "id": "2025.2-ana-beatriz-mota-cruz-antonio-sergio-duarte-lacerda",
     "godparentId": "ana-beatriz-mota-cruz",
     "godchildId": "antonio-sergio-duarte-lacerda",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-pedro-lucas-moreira-rolim-caio-cezar-monteiro-paiva",
+    "id": "2025.2-pedro-lucas-moreira-rolim-caio-cezar-monteiro-paiva",
     "godparentId": "pedro-lucas-moreira-rolim",
     "godchildId": "caio-cezar-monteiro-paiva",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-matheus-silva-nunes-caio-cezar-monteiro-paiva",
+    "id": "2025.2-matheus-silva-nunes-caio-cezar-monteiro-paiva",
     "godparentId": "matheus-silva-nunes",
     "godchildId": "caio-cezar-monteiro-paiva",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-eduardo-oliveira-silva-eduardo-antonio-leitao-oliveira-lima-moura-filho",
+    "id": "2025.2-eduardo-oliveira-silva-eduardo-antonio-leitao-oliveira-lima-moura-filho",
     "godparentId": "eduardo-oliveira-silva",
     "godchildId": "eduardo-antonio-leitao-oliveira-lima-moura-filho",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-pedro-henrique-kruta-araujo-bispo-eduardo-antonio-leitao-oliveira-lima-moura-filho",
+    "id": "2025.2-pedro-henrique-kruta-araujo-bispo-eduardo-antonio-leitao-oliveira-lima-moura-filho",
     "godparentId": "pedro-henrique-kruta-araujo-bispo",
     "godchildId": "eduardo-antonio-leitao-oliveira-lima-moura-filho",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-joao-gabriel-oliveira-arruda-gabriel-costa-morais",
+    "id": "2025.2-joao-gabriel-oliveira-arruda-gabriel-costa-morais",
     "godparentId": "joao-gabriel-oliveira-arruda",
     "godchildId": "gabriel-costa-morais",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-caua-henrique-formiga-lacerda-gabriel-costa-morais",
+    "id": "2025.2-caua-henrique-formiga-lacerda-gabriel-costa-morais",
     "godparentId": "caua-henrique-formiga-lacerda",
     "godchildId": "gabriel-costa-morais",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-brenda-leticia-nascimento-dias-gabriel-lopes-santos-silva",
+    "id": "2025.2-brenda-leticia-nascimento-dias-gabriel-lopes-santos-silva",
     "godparentId": "brenda-leticia-nascimento-dias",
     "godchildId": "gabriel-lopes-santos-silva",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-joao-victor-souza-lucena-meireles-gabriel-lopes-santos-silva",
+    "id": "2025.2-joao-victor-souza-lucena-meireles-gabriel-lopes-santos-silva",
     "godparentId": "joao-victor-souza-lucena-meireles",
     "godchildId": "gabriel-lopes-santos-silva",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-davidys-cavalcante-pontes-guilherme-souza-ribeiro",
+    "id": "2025.2-davidys-cavalcante-pontes-guilherme-souza-ribeiro",
     "godparentId": "davidys-cavalcante-pontes",
     "godchildId": "guilherme-souza-ribeiro",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-erick-batista-silva-guilherme-souza-ribeiro",
+    "id": "2025.2-erick-batista-silva-guilherme-souza-ribeiro",
     "godparentId": "erick-batista-silva",
     "godchildId": "guilherme-souza-ribeiro",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-pedro-lucas-moreira-rolim-gustavo-ramos-melo-borges",
+    "id": "2025.2-pedro-lucas-moreira-rolim-gustavo-ramos-melo-borges",
     "godparentId": "pedro-lucas-moreira-rolim",
     "godchildId": "gustavo-ramos-melo-borges",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-matheus-silva-nunes-gustavo-ramos-melo-borges",
+    "id": "2025.2-matheus-silva-nunes-gustavo-ramos-melo-borges",
     "godparentId": "matheus-silva-nunes",
     "godchildId": "gustavo-ramos-melo-borges",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-nicole-costa-silva-helena-couto-santos",
+    "id": "2025.2-nicole-costa-silva-helena-couto-santos",
     "godparentId": "nicole-costa-silva",
     "godchildId": "helena-couto-santos",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-thiago-henrique-meneses-bezerra-helena-couto-santos",
+    "id": "2025.2-thiago-henrique-meneses-bezerra-helena-couto-santos",
     "godparentId": "thiago-henrique-meneses-bezerra",
     "godchildId": "helena-couto-santos",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-joao-rafael-gadelha-araujo-henrique-jales-teixeira",
+    "id": "2025.2-joao-rafael-gadelha-araujo-henrique-jales-teixeira",
     "godparentId": "joao-rafael-gadelha-araujo",
     "godchildId": "henrique-jales-teixeira",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-joao-vitor-pereira-costa-henrique-jales-teixeira",
+    "id": "2025.2-joao-vitor-pereira-costa-henrique-jales-teixeira",
     "godparentId": "joao-vitor-pereira-costa",
     "godchildId": "henrique-jales-teixeira",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-elton-assis-guedes-neto-igor-mendonca-souza",
+    "id": "2025.2-elton-assis-guedes-neto-igor-mendonca-souza",
     "godparentId": "elton-assis-guedes-neto",
     "godchildId": "igor-mendonca-souza",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-pedro-henrique-kruta-araujo-bispo-igor-mendonca-souza",
+    "id": "2025.2-pedro-henrique-kruta-araujo-bispo-igor-mendonca-souza",
     "godparentId": "pedro-henrique-kruta-araujo-bispo",
     "godchildId": "igor-mendonca-souza",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-adiel-emilson-silva-joao-andre-medeiros-arnaud",
+    "id": "2025.2-adiel-emilson-silva-joao-andre-medeiros-arnaud",
     "godparentId": "adiel-emilson-silva",
     "godchildId": "joao-andre-medeiros-arnaud",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-luiz-carlos-veloso-araujo-lima-neto-joao-andre-medeiros-arnaud",
+    "id": "2025.2-luiz-carlos-veloso-araujo-lima-neto-joao-andre-medeiros-arnaud",
     "godparentId": "luiz-carlos-veloso-araujo-lima-neto",
     "godchildId": "joao-andre-medeiros-arnaud",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-maria-eloisa-silva-sousa-joao-gabriel-lima-lucena",
+    "id": "2025.2-maria-eloisa-silva-sousa-joao-gabriel-lima-lucena",
     "godparentId": "maria-eloisa-silva-sousa",
     "godchildId": "joao-gabriel-lima-lucena",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-joao-vitor-pereira-costa-joao-gabriel-lima-lucena",
+    "id": "2025.2-joao-vitor-pereira-costa-joao-gabriel-lima-lucena",
     "godparentId": "joao-vitor-pereira-costa",
     "godchildId": "joao-gabriel-lima-lucena",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-carlos-adauto-sa-batista-joao-pedro-silva-araujo",
+    "id": "2025.2-carlos-adauto-sa-batista-joao-pedro-silva-araujo",
     "godparentId": "carlos-adauto-sa-batista",
     "godchildId": "joao-pedro-silva-araujo",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-anne-fernandes-costa-oliveira-joao-pedro-silva-araujo",
+    "id": "2025.2-anne-fernandes-costa-oliveira-joao-pedro-silva-araujo",
     "godparentId": "anne-fernandes-costa-oliveira",
     "godchildId": "joao-pedro-silva-araujo",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-elia-dutra-sena-maria-rita-santos-silva",
+    "id": "2025.2-elia-dutra-sena-maria-rita-santos-silva",
     "godparentId": "elia-dutra-sena",
     "godchildId": "maria-rita-santos-silva",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-sarah-fernanda-calixto-araujo-maria-rita-santos-silva",
+    "id": "2025.2-sarah-fernanda-calixto-araujo-maria-rita-santos-silva",
     "godparentId": "sarah-fernanda-calixto-araujo",
     "godchildId": "maria-rita-santos-silva",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-elia-dutra-sena-mariana-esthefany-xavier-santos",
+    "id": "2025.2-elia-dutra-sena-mariana-esthefany-xavier-santos",
     "godparentId": "elia-dutra-sena",
     "godchildId": "mariana-esthefany-xavier-santos",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-sofia-pontes-leitao-lima-mariana-esthefany-xavier-santos",
+    "id": "2025.2-sofia-pontes-leitao-lima-mariana-esthefany-xavier-santos",
     "godparentId": "sofia-pontes-leitao-lima",
     "godchildId": "mariana-esthefany-xavier-santos",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-davi-cavalcante-pereira-mikael-rodrigues-santos",
+    "id": "2025.2-davi-cavalcante-pereira-mikael-rodrigues-santos",
     "godparentId": "davi-cavalcante-pereira",
     "godchildId": "mikael-rodrigues-santos",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-samuel-victor-fernandes-dantas-vicente-mikael-rodrigues-santos",
+    "id": "2025.2-samuel-victor-fernandes-dantas-vicente-mikael-rodrigues-santos",
     "godparentId": "samuel-victor-fernandes-dantas-vicente",
     "godchildId": "mikael-rodrigues-santos",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-davi-cavalcante-pereira-paulo-henrique-nunes-fernandes-silva",
+    "id": "2025.2-davi-cavalcante-pereira-paulo-henrique-nunes-fernandes-silva",
     "godparentId": "davi-cavalcante-pereira",
     "godchildId": "paulo-henrique-nunes-fernandes-silva",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-caua-henrique-formiga-lacerda-paulo-henrique-nunes-fernandes-silva",
+    "id": "2025.2-caua-henrique-formiga-lacerda-paulo-henrique-nunes-fernandes-silva",
     "godparentId": "caua-henrique-formiga-lacerda",
     "godchildId": "paulo-henrique-nunes-fernandes-silva",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-joao-henrique-araujo-pereira-pedro-borras-souto",
+    "id": "2025.2-joao-henrique-araujo-pereira-pedro-borras-souto",
     "godparentId": "joao-henrique-araujo-pereira",
     "godchildId": "pedro-borras-souto",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-anne-fernandes-costa-oliveira-pedro-borras-souto",
+    "id": "2025.2-anne-fernandes-costa-oliveira-pedro-borras-souto",
     "godparentId": "anne-fernandes-costa-oliveira",
     "godchildId": "pedro-borras-souto",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-nicole-costa-silva-ricardo-bezerra-borges",
+    "id": "2025.2-nicole-costa-silva-ricardo-bezerra-borges",
     "godparentId": "nicole-costa-silva",
     "godchildId": "ricardo-bezerra-borges",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-igor-melo-pessoa-ricardo-bezerra-borges",
+    "id": "2025.2-igor-melo-pessoa-ricardo-bezerra-borges",
     "godparentId": "igor-melo-pessoa",
     "godchildId": "ricardo-bezerra-borges",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-artur-rodrigues-nunes-almeida-samuel-chaves-morais-lima",
+    "id": "2025.2-artur-rodrigues-nunes-almeida-samuel-chaves-morais-lima",
     "godparentId": "artur-rodrigues-nunes-almeida",
     "godchildId": "samuel-chaves-morais-lima",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-igor-melo-pessoa-samuel-chaves-morais-lima",
+    "id": "2025.2-igor-melo-pessoa-samuel-chaves-morais-lima",
     "godparentId": "igor-melo-pessoa",
     "godchildId": "samuel-chaves-morais-lima",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-joao-victor-souza-lucena-meireles-tarsis-lima-gomes-silva",
+    "id": "2025.2-joao-victor-souza-lucena-meireles-tarsis-lima-gomes-silva",
     "godparentId": "joao-victor-souza-lucena-meireles",
     "godchildId": "tarsis-lima-gomes-silva",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-erick-batista-silva-tarsis-lima-gomes-silva",
+    "id": "2025.2-erick-batista-silva-tarsis-lima-gomes-silva",
     "godparentId": "erick-batista-silva",
     "godchildId": "tarsis-lima-gomes-silva",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-joao-rafael-gadelha-araujo-thiago-santos-lacerda",
+    "id": "2025.2-joao-rafael-gadelha-araujo-thiago-santos-lacerda",
     "godparentId": "joao-rafael-gadelha-araujo",
     "godchildId": "thiago-santos-lacerda",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-jonatas-miguel-sousa-soares-thiago-santos-lacerda",
+    "id": "2025.2-jonatas-miguel-sousa-soares-thiago-santos-lacerda",
     "godparentId": "jonatas-miguel-sousa-soares",
     "godchildId": "thiago-santos-lacerda",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-maria-clara-caldas-fernandes-vitoria-maria-silva",
+    "id": "2025.2-maria-clara-caldas-fernandes-vitoria-maria-silva",
     "godparentId": "maria-clara-caldas-fernandes",
     "godchildId": "vitoria-maria-silva",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-sofia-pontes-leitao-lima-vitoria-maria-silva",
+    "id": "2025.2-sofia-pontes-leitao-lima-vitoria-maria-silva",
     "godparentId": "sofia-pontes-leitao-lima",
     "godchildId": "vitoria-maria-silva",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-p2-maria-eloisa-silva-sousa-yasmin-sousa-batista",
+    "id": "2025.2-maria-eloisa-silva-sousa-yasmin-sousa-batista",
     "godparentId": "maria-eloisa-silva-sousa",
     "godchildId": "yasmin-sousa-batista",
-    "role": "P2",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2025.2-veterano-thiago-henrique-meneses-bezerra-yasmin-sousa-batista",
+    "id": "2025.2-thiago-henrique-meneses-bezerra-yasmin-sousa-batista",
     "godparentId": "thiago-henrique-meneses-bezerra",
     "godchildId": "yasmin-sousa-batista",
-    "role": "VETERANO",
     "semester": "2025.2",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf"
   },
   {
-    "id": "2026.1-p2-joao-andre-medeiros-arnaud-arthur-lima-alves",
+    "id": "2026.1-joao-andre-medeiros-arnaud-arthur-lima-alves",
     "godparentId": "joao-andre-medeiros-arnaud",
     "godchildId": "arthur-lima-alves",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-samuel-chaves-morais-lima-arthur-lima-alves",
+    "id": "2026.1-samuel-chaves-morais-lima-arthur-lima-alves",
     "godparentId": "samuel-chaves-morais-lima",
     "godchildId": "arthur-lima-alves",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-mariana-esthefany-xavier-santos-gabriela-francisca-alves-silva",
+    "id": "2026.1-mariana-esthefany-xavier-santos-gabriela-francisca-alves-silva",
     "godparentId": "mariana-esthefany-xavier-santos",
     "godchildId": "gabriela-francisca-alves-silva",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-brenda-leticia-nascimento-dias-gabriela-francisca-alves-silva",
+    "id": "2026.1-brenda-leticia-nascimento-dias-gabriela-francisca-alves-silva",
     "godparentId": "brenda-leticia-nascimento-dias",
     "godchildId": "gabriela-francisca-alves-silva",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-vitoria-maria-silva-matheus-meira-cintra-filho",
+    "id": "2026.1-vitoria-maria-silva-matheus-meira-cintra-filho",
     "godparentId": "vitoria-maria-silva",
     "godchildId": "matheus-meira-cintra-filho",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-eduardo-oliveira-silva-matheus-meira-cintra-filho",
+    "id": "2026.1-eduardo-oliveira-silva-matheus-meira-cintra-filho",
     "godparentId": "eduardo-oliveira-silva",
     "godchildId": "matheus-meira-cintra-filho",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-igor-mendonca-souza-italo-mateus-santos-silva",
+    "id": "2026.1-igor-mendonca-souza-italo-mateus-santos-silva",
     "godparentId": "igor-mendonca-souza",
     "godchildId": "italo-mateus-santos-silva",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-elton-assis-guedes-neto-italo-mateus-santos-silva",
+    "id": "2026.1-elton-assis-guedes-neto-italo-mateus-santos-silva",
     "godparentId": "elton-assis-guedes-neto",
     "godchildId": "italo-mateus-santos-silva",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-igor-mendonca-souza-thiago-dias-figueiredo",
+    "id": "2026.1-igor-mendonca-souza-thiago-dias-figueiredo",
     "godparentId": "igor-mendonca-souza",
     "godchildId": "thiago-dias-figueiredo",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-caua-henrique-formiga-lacerda-thiago-dias-figueiredo",
+    "id": "2026.1-caua-henrique-formiga-lacerda-thiago-dias-figueiredo",
     "godparentId": "caua-henrique-formiga-lacerda",
     "godchildId": "thiago-dias-figueiredo",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-mikael-rodrigues-santos-paulo-cezar-silva-rocha",
+    "id": "2026.1-mikael-rodrigues-santos-paulo-cezar-silva-rocha",
     "godparentId": "mikael-rodrigues-santos",
     "godchildId": "paulo-cezar-silva-rocha",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-samuel-chaves-morais-lima-paulo-cezar-silva-rocha",
+    "id": "2026.1-samuel-chaves-morais-lima-paulo-cezar-silva-rocha",
     "godparentId": "samuel-chaves-morais-lima",
     "godchildId": "paulo-cezar-silva-rocha",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-ana-luiza-gomes-araujo-pedro-henrique-macedo-alves",
+    "id": "2026.1-ana-luiza-gomes-araujo-pedro-henrique-macedo-alves",
     "godparentId": "ana-luiza-gomes-araujo",
     "godchildId": "pedro-henrique-macedo-alves",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-lucas-aprigio-santos-oliveira-pedro-henrique-macedo-alves",
+    "id": "2026.1-lucas-aprigio-santos-oliveira-pedro-henrique-macedo-alves",
     "godparentId": "lucas-aprigio-santos-oliveira",
     "godchildId": "pedro-henrique-macedo-alves",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-maria-rita-santos-silva-raphael-jose-tavares-brito",
+    "id": "2026.1-maria-rita-santos-silva-raphael-jose-tavares-brito",
     "godparentId": "maria-rita-santos-silva",
     "godchildId": "raphael-jose-tavares-brito",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-lucas-aprigio-santos-oliveira-raphael-jose-tavares-brito",
+    "id": "2026.1-lucas-aprigio-santos-oliveira-raphael-jose-tavares-brito",
     "godparentId": "lucas-aprigio-santos-oliveira",
     "godchildId": "raphael-jose-tavares-brito",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-pedro-borras-souto-kaleb-dantas-rocha-feitosa",
+    "id": "2026.1-pedro-borras-souto-kaleb-dantas-rocha-feitosa",
     "godparentId": "pedro-borras-souto",
     "godchildId": "kaleb-dantas-rocha-feitosa",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-elton-assis-guedes-neto-kaleb-dantas-rocha-feitosa",
+    "id": "2026.1-elton-assis-guedes-neto-kaleb-dantas-rocha-feitosa",
     "godparentId": "elton-assis-guedes-neto",
     "godchildId": "kaleb-dantas-rocha-feitosa",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-joao-andre-medeiros-arnaud-pedro-egydio-amorim-madruga",
+    "id": "2026.1-joao-andre-medeiros-arnaud-pedro-egydio-amorim-madruga",
     "godparentId": "joao-andre-medeiros-arnaud",
     "godchildId": "pedro-egydio-amorim-madruga",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-joao-rafael-gadelha-araujo-pedro-egydio-amorim-madruga",
+    "id": "2026.1-joao-rafael-gadelha-araujo-pedro-egydio-amorim-madruga",
     "godparentId": "joao-rafael-gadelha-araujo",
     "godchildId": "pedro-egydio-amorim-madruga",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-antonio-sergio-duarte-lacerda-joana-trindade-santos",
+    "id": "2026.1-antonio-sergio-duarte-lacerda-joana-trindade-santos",
     "godparentId": "antonio-sergio-duarte-lacerda",
     "godchildId": "joana-trindade-santos",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-maria-eloisa-silva-sousa-joana-trindade-santos",
+    "id": "2026.1-maria-eloisa-silva-sousa-joana-trindade-santos",
     "godparentId": "maria-eloisa-silva-sousa",
     "godchildId": "joana-trindade-santos",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-mariana-esthefany-xavier-santos-sophia-carvalho-beltrao",
+    "id": "2026.1-mariana-esthefany-xavier-santos-sophia-carvalho-beltrao",
     "godparentId": "mariana-esthefany-xavier-santos",
     "godchildId": "sophia-carvalho-beltrao",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-thiago-henrique-meneses-bezerra-sophia-carvalho-beltrao",
+    "id": "2026.1-thiago-henrique-meneses-bezerra-sophia-carvalho-beltrao",
     "godparentId": "thiago-henrique-meneses-bezerra",
     "godchildId": "sophia-carvalho-beltrao",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-vitoria-maria-silva-jonas-alexandre-santana-capucci",
+    "id": "2026.1-vitoria-maria-silva-jonas-alexandre-santana-capucci",
     "godparentId": "vitoria-maria-silva",
     "godchildId": "jonas-alexandre-santana-capucci",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-paulo-henrique-nunes-fernandes-silva-jonas-alexandre-santana-capucci",
+    "id": "2026.1-paulo-henrique-nunes-fernandes-silva-jonas-alexandre-santana-capucci",
     "godparentId": "paulo-henrique-nunes-fernandes-silva",
     "godchildId": "jonas-alexandre-santana-capucci",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-guilherme-souza-ribeiro-matheus-rodrigues-henrique-silva",
+    "id": "2026.1-guilherme-souza-ribeiro-matheus-rodrigues-henrique-silva",
     "godparentId": "guilherme-souza-ribeiro",
     "godchildId": "matheus-rodrigues-henrique-silva",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-adiel-emilson-silva-matheus-rodrigues-henrique-silva",
+    "id": "2026.1-adiel-emilson-silva-matheus-rodrigues-henrique-silva",
     "godparentId": "adiel-emilson-silva",
     "godchildId": "matheus-rodrigues-henrique-silva",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-yasmin-sousa-batista-guilherme-trindade-oliveira",
+    "id": "2026.1-yasmin-sousa-batista-guilherme-trindade-oliveira",
     "godparentId": "yasmin-sousa-batista",
     "godchildId": "guilherme-trindade-oliveira",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-caua-henrique-formiga-lacerda-guilherme-trindade-oliveira",
+    "id": "2026.1-caua-henrique-formiga-lacerda-guilherme-trindade-oliveira",
     "godparentId": "caua-henrique-formiga-lacerda",
     "godchildId": "guilherme-trindade-oliveira",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-mikael-rodrigues-santos-caio-rodrigues-silva",
+    "id": "2026.1-mikael-rodrigues-santos-caio-rodrigues-silva",
     "godparentId": "mikael-rodrigues-santos",
     "godchildId": "caio-rodrigues-silva",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-artur-rodrigues-nunes-almeida-caio-rodrigues-silva",
+    "id": "2026.1-artur-rodrigues-nunes-almeida-caio-rodrigues-silva",
     "godparentId": "artur-rodrigues-nunes-almeida",
     "godchildId": "caio-rodrigues-silva",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-joao-gabriel-lima-lucena-gabriel-antunes-lima",
+    "id": "2026.1-joao-gabriel-lima-lucena-gabriel-antunes-lima",
     "godparentId": "joao-gabriel-lima-lucena",
     "godchildId": "gabriel-antunes-lima",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-paulo-henrique-nunes-fernandes-silva-gabriel-antunes-lima",
+    "id": "2026.1-paulo-henrique-nunes-fernandes-silva-gabriel-antunes-lima",
     "godparentId": "paulo-henrique-nunes-fernandes-silva",
     "godchildId": "gabriel-antunes-lima",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-maria-rita-santos-silva-cecilia-candeia-lyra",
+    "id": "2026.1-maria-rita-santos-silva-cecilia-candeia-lyra",
     "godparentId": "maria-rita-santos-silva",
     "godchildId": "cecilia-candeia-lyra",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-matheus-silva-nunes-cecilia-candeia-lyra",
+    "id": "2026.1-matheus-silva-nunes-cecilia-candeia-lyra",
     "godparentId": "matheus-silva-nunes",
     "godchildId": "cecilia-candeia-lyra",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-pedro-borras-souto-guilherme-andrade-bronzeado",
+    "id": "2026.1-pedro-borras-souto-guilherme-andrade-bronzeado",
     "godparentId": "pedro-borras-souto",
     "godchildId": "guilherme-andrade-bronzeado",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-joao-rafael-gadelha-araujo-guilherme-andrade-bronzeado",
+    "id": "2026.1-joao-rafael-gadelha-araujo-guilherme-andrade-bronzeado",
     "godparentId": "joao-rafael-gadelha-araujo",
     "godchildId": "guilherme-andrade-bronzeado",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-mariana-esthefany-xavier-santos-dayanna-hevellyn-ferreira-xavier",
+    "id": "2026.1-mariana-esthefany-xavier-santos-dayanna-hevellyn-ferreira-xavier",
     "godparentId": "mariana-esthefany-xavier-santos",
     "godchildId": "dayanna-hevellyn-ferreira-xavier",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-artur-rodrigues-nunes-almeida-dayanna-hevellyn-ferreira-xavier",
+    "id": "2026.1-artur-rodrigues-nunes-almeida-dayanna-hevellyn-ferreira-xavier",
     "godparentId": "artur-rodrigues-nunes-almeida",
     "godchildId": "dayanna-hevellyn-ferreira-xavier",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-antonio-sergio-duarte-lacerda-matheus-fernandes-santos",
+    "id": "2026.1-antonio-sergio-duarte-lacerda-matheus-fernandes-santos",
     "godparentId": "antonio-sergio-duarte-lacerda",
     "godchildId": "matheus-fernandes-santos",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-thiago-henrique-meneses-bezerra-matheus-fernandes-santos",
+    "id": "2026.1-thiago-henrique-meneses-bezerra-matheus-fernandes-santos",
     "godparentId": "thiago-henrique-meneses-bezerra",
     "godchildId": "matheus-fernandes-santos",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-mikael-rodrigues-santos-josue-mykael-henrique-santos-silva",
+    "id": "2026.1-mikael-rodrigues-santos-josue-mykael-henrique-santos-silva",
     "godparentId": "mikael-rodrigues-santos",
     "godchildId": "josue-mykael-henrique-santos-silva",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-samuel-chaves-morais-lima-josue-mykael-henrique-santos-silva",
+    "id": "2026.1-samuel-chaves-morais-lima-josue-mykael-henrique-santos-silva",
     "godparentId": "samuel-chaves-morais-lima",
     "godchildId": "josue-mykael-henrique-santos-silva",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-vitoria-maria-silva-heloisa-stella-azevedo-reis",
+    "id": "2026.1-vitoria-maria-silva-heloisa-stella-azevedo-reis",
     "godparentId": "vitoria-maria-silva",
     "godchildId": "heloisa-stella-azevedo-reis",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-matheus-silva-nunes-heloisa-stella-azevedo-reis",
+    "id": "2026.1-matheus-silva-nunes-heloisa-stella-azevedo-reis",
     "godparentId": "matheus-silva-nunes",
     "godchildId": "heloisa-stella-azevedo-reis",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-ana-luiza-gomes-araujo-paula-gabriela-fernandes-agostinho",
+    "id": "2026.1-ana-luiza-gomes-araujo-paula-gabriela-fernandes-agostinho",
     "godparentId": "ana-luiza-gomes-araujo",
     "godchildId": "paula-gabriela-fernandes-agostinho",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-maria-eloisa-silva-sousa-paula-gabriela-fernandes-agostinho",
+    "id": "2026.1-maria-eloisa-silva-sousa-paula-gabriela-fernandes-agostinho",
     "godparentId": "maria-eloisa-silva-sousa",
     "godchildId": "paula-gabriela-fernandes-agostinho",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-guilherme-souza-ribeiro-julio-cesar-araujo-silva",
+    "id": "2026.1-guilherme-souza-ribeiro-julio-cesar-araujo-silva",
     "godparentId": "guilherme-souza-ribeiro",
     "godchildId": "julio-cesar-araujo-silva",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-adiel-emilson-silva-julio-cesar-araujo-silva",
+    "id": "2026.1-adiel-emilson-silva-julio-cesar-araujo-silva",
     "godparentId": "adiel-emilson-silva",
     "godchildId": "julio-cesar-araujo-silva",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-joao-gabriel-lima-lucena-yuri-augusto-cardoso-melo",
+    "id": "2026.1-joao-gabriel-lima-lucena-yuri-augusto-cardoso-melo",
     "godparentId": "joao-gabriel-lima-lucena",
     "godchildId": "yuri-augusto-cardoso-melo",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-eduardo-oliveira-silva-yuri-augusto-cardoso-melo",
+    "id": "2026.1-eduardo-oliveira-silva-yuri-augusto-cardoso-melo",
     "godparentId": "eduardo-oliveira-silva",
     "godchildId": "yuri-augusto-cardoso-melo",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-p2-yasmin-sousa-batista-joana-victoria-alves-silva",
+    "id": "2026.1-yasmin-sousa-batista-joana-victoria-alves-silva",
     "godparentId": "yasmin-sousa-batista",
     "godchildId": "joana-victoria-alves-silva",
-    "role": "P2",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.1-veterano-brenda-leticia-nascimento-dias-joana-victoria-alves-silva",
+    "id": "2026.1-brenda-leticia-nascimento-dias-joana-victoria-alves-silva",
     "godparentId": "brenda-leticia-nascimento-dias",
     "godchildId": "joana-victoria-alves-silva",
-    "role": "VETERANO",
     "semester": "2026.1",
     "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf"
   },
   {
-    "id": "2026.2-p2-cecilia-candeia-lyra-sarah-ariel-bazante-alexandre",
+    "id": "2026.2-cecilia-candeia-lyra-sarah-ariel-bazante-alexandre",
     "godparentId": "cecilia-candeia-lyra",
     "godchildId": "sarah-ariel-bazante-alexandre",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-artur-rodrigues-nunes-almeida-sarah-ariel-bazante-alexandre",
+    "id": "2026.2-artur-rodrigues-nunes-almeida-sarah-ariel-bazante-alexandre",
     "godparentId": "artur-rodrigues-nunes-almeida",
     "godchildId": "sarah-ariel-bazante-alexandre",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-guilherme-trindade-oliveira-clarisse-gabriela-silvino-rodrigues",
+    "id": "2026.2-guilherme-trindade-oliveira-clarisse-gabriela-silvino-rodrigues",
     "godparentId": "guilherme-trindade-oliveira",
     "godchildId": "clarisse-gabriela-silvino-rodrigues",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-ana-beatriz-mota-cruz-clarisse-gabriela-silvino-rodrigues",
+    "id": "2026.2-ana-beatriz-mota-cruz-clarisse-gabriela-silvino-rodrigues",
     "godparentId": "ana-beatriz-mota-cruz",
     "godchildId": "clarisse-gabriela-silvino-rodrigues",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-sophia-carvalho-beltrao-ana-beatriz-soares-viegas-mangueira",
+    "id": "2026.2-sophia-carvalho-beltrao-ana-beatriz-soares-viegas-mangueira",
     "godparentId": "sophia-carvalho-beltrao",
     "godchildId": "ana-beatriz-soares-viegas-mangueira",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-ana-beatriz-mota-cruz-ana-beatriz-soares-viegas-mangueira",
+    "id": "2026.2-ana-beatriz-mota-cruz-ana-beatriz-soares-viegas-mangueira",
     "godparentId": "ana-beatriz-mota-cruz",
     "godchildId": "ana-beatriz-soares-viegas-mangueira",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-dayanna-hevellyn-ferreira-xavier-maria-kauane-xavier-goncalves",
+    "id": "2026.2-dayanna-hevellyn-ferreira-xavier-maria-kauane-xavier-goncalves",
     "godparentId": "dayanna-hevellyn-ferreira-xavier",
     "godchildId": "maria-kauane-xavier-goncalves",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-guilherme-souza-ribeiro-maria-kauane-xavier-goncalves",
+    "id": "2026.2-guilherme-souza-ribeiro-maria-kauane-xavier-goncalves",
     "godparentId": "guilherme-souza-ribeiro",
     "godchildId": "maria-kauane-xavier-goncalves",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-kaleb-dantas-rocha-feitosa-angela-maria-guilhermino-alves",
+    "id": "2026.2-kaleb-dantas-rocha-feitosa-angela-maria-guilhermino-alves",
     "godparentId": "kaleb-dantas-rocha-feitosa",
     "godchildId": "angela-maria-guilhermino-alves",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-ana-luiza-gomes-araujo-angela-maria-guilhermino-alves",
+    "id": "2026.2-ana-luiza-gomes-araujo-angela-maria-guilhermino-alves",
     "godparentId": "ana-luiza-gomes-araujo",
     "godchildId": "angela-maria-guilhermino-alves",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-joana-trindade-santos-debora-dantas-oliveira",
+    "id": "2026.2-joana-trindade-santos-debora-dantas-oliveira",
     "godparentId": "joana-trindade-santos",
     "godchildId": "debora-dantas-oliveira",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-ana-beatriz-mota-cruz-debora-dantas-oliveira",
+    "id": "2026.2-ana-beatriz-mota-cruz-debora-dantas-oliveira",
     "godparentId": "ana-beatriz-mota-cruz",
     "godchildId": "debora-dantas-oliveira",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-cecilia-candeia-lyra-maria-vithoria-lima-moscoso",
+    "id": "2026.2-cecilia-candeia-lyra-maria-vithoria-lima-moscoso",
     "godparentId": "cecilia-candeia-lyra",
     "godchildId": "maria-vithoria-lima-moscoso",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-antonio-sergio-duarte-lacerda-maria-vithoria-lima-moscoso",
+    "id": "2026.2-antonio-sergio-duarte-lacerda-maria-vithoria-lima-moscoso",
     "godparentId": "antonio-sergio-duarte-lacerda",
     "godchildId": "maria-vithoria-lima-moscoso",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-italo-mateus-santos-silva-nicolas-hiego-valentim-lima",
+    "id": "2026.2-italo-mateus-santos-silva-nicolas-hiego-valentim-lima",
     "godparentId": "italo-mateus-santos-silva",
     "godchildId": "nicolas-hiego-valentim-lima",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-guilherme-souza-ribeiro-nicolas-hiego-valentim-lima",
+    "id": "2026.2-guilherme-souza-ribeiro-nicolas-hiego-valentim-lima",
     "godparentId": "guilherme-souza-ribeiro",
     "godchildId": "nicolas-hiego-valentim-lima",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-guilherme-andrade-bronzeado-helio-jose-barbosa-junior",
+    "id": "2026.2-guilherme-andrade-bronzeado-helio-jose-barbosa-junior",
     "godparentId": "guilherme-andrade-bronzeado",
     "godchildId": "helio-jose-barbosa-junior",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-paulo-henrique-nunes-fernandes-silva-helio-jose-barbosa-junior",
+    "id": "2026.2-paulo-henrique-nunes-fernandes-silva-helio-jose-barbosa-junior",
     "godparentId": "paulo-henrique-nunes-fernandes-silva",
     "godchildId": "helio-jose-barbosa-junior",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-pedro-henrique-macedo-alves-artur-vieira-pereira",
+    "id": "2026.2-pedro-henrique-macedo-alves-artur-vieira-pereira",
     "godparentId": "pedro-henrique-macedo-alves",
     "godchildId": "artur-vieira-pereira",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-paulo-henrique-nunes-fernandes-silva-artur-vieira-pereira",
+    "id": "2026.2-paulo-henrique-nunes-fernandes-silva-artur-vieira-pereira",
     "godparentId": "paulo-henrique-nunes-fernandes-silva",
     "godchildId": "artur-vieira-pereira",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-guilherme-trindade-oliveira-felipe-gabriel-batista-silva",
+    "id": "2026.2-guilherme-trindade-oliveira-felipe-gabriel-batista-silva",
     "godparentId": "guilherme-trindade-oliveira",
     "godchildId": "felipe-gabriel-batista-silva",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-gabriel-costa-morais-felipe-gabriel-batista-silva",
+    "id": "2026.2-gabriel-costa-morais-felipe-gabriel-batista-silva",
     "godparentId": "gabriel-costa-morais",
     "godchildId": "felipe-gabriel-batista-silva",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-heloisa-stella-azevedo-reis-giorgio-nicolas-arruda-bertino",
+    "id": "2026.2-heloisa-stella-azevedo-reis-giorgio-nicolas-arruda-bertino",
     "godparentId": "heloisa-stella-azevedo-reis",
     "godchildId": "giorgio-nicolas-arruda-bertino",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-artur-rodrigues-nunes-almeida-giorgio-nicolas-arruda-bertino",
+    "id": "2026.2-artur-rodrigues-nunes-almeida-giorgio-nicolas-arruda-bertino",
     "godparentId": "artur-rodrigues-nunes-almeida",
     "godchildId": "giorgio-nicolas-arruda-bertino",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-kaleb-dantas-rocha-feitosa-adriano-jorge-siqueira-figueiredo-filho",
+    "id": "2026.2-kaleb-dantas-rocha-feitosa-adriano-jorge-siqueira-figueiredo-filho",
     "godparentId": "kaleb-dantas-rocha-feitosa",
     "godchildId": "adriano-jorge-siqueira-figueiredo-filho",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-guilherme-rocha-sampaio-adriano-jorge-siqueira-figueiredo-filho",
+    "id": "2026.2-guilherme-rocha-sampaio-adriano-jorge-siqueira-figueiredo-filho",
     "godparentId": "guilherme-rocha-sampaio",
     "godchildId": "adriano-jorge-siqueira-figueiredo-filho",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-matheus-fernandes-santos-joao-henrique-silva-modesto-junior",
+    "id": "2026.2-matheus-fernandes-santos-joao-henrique-silva-modesto-junior",
     "godparentId": "matheus-fernandes-santos",
     "godchildId": "joao-henrique-silva-modesto-junior",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-gabriel-costa-morais-joao-henrique-silva-modesto-junior",
+    "id": "2026.2-gabriel-costa-morais-joao-henrique-silva-modesto-junior",
     "godparentId": "gabriel-costa-morais",
     "godchildId": "joao-henrique-silva-modesto-junior",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-sophia-carvalho-beltrao-samuel-sousa-linhares",
+    "id": "2026.2-sophia-carvalho-beltrao-samuel-sousa-linhares",
     "godparentId": "sophia-carvalho-beltrao",
     "godchildId": "samuel-sousa-linhares",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-ana-luiza-gomes-araujo-samuel-sousa-linhares",
+    "id": "2026.2-ana-luiza-gomes-araujo-samuel-sousa-linhares",
     "godparentId": "ana-luiza-gomes-araujo",
     "godchildId": "samuel-sousa-linhares",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-joana-trindade-santos-gabriel-santos-nascimento",
+    "id": "2026.2-joana-trindade-santos-gabriel-santos-nascimento",
     "godparentId": "joana-trindade-santos",
     "godchildId": "gabriel-santos-nascimento",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-guilherme-souza-ribeiro-gabriel-santos-nascimento",
+    "id": "2026.2-guilherme-souza-ribeiro-gabriel-santos-nascimento",
     "godparentId": "guilherme-souza-ribeiro",
     "godchildId": "gabriel-santos-nascimento",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-italo-mateus-santos-silva-jose-antonio-kariston-lopes-borges",
+    "id": "2026.2-italo-mateus-santos-silva-jose-antonio-kariston-lopes-borges",
     "godparentId": "italo-mateus-santos-silva",
     "godchildId": "jose-antonio-kariston-lopes-borges",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-guilherme-rocha-sampaio-jose-antonio-kariston-lopes-borges",
+    "id": "2026.2-guilherme-rocha-sampaio-jose-antonio-kariston-lopes-borges",
     "godparentId": "guilherme-rocha-sampaio",
     "godchildId": "jose-antonio-kariston-lopes-borges",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-dayanna-hevellyn-ferreira-xavier-gabriel-olivier-lima-franca",
+    "id": "2026.2-dayanna-hevellyn-ferreira-xavier-gabriel-olivier-lima-franca",
     "godparentId": "dayanna-hevellyn-ferreira-xavier",
     "godchildId": "gabriel-olivier-lima-franca",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-artur-rodrigues-nunes-almeida-gabriel-olivier-lima-franca",
+    "id": "2026.2-artur-rodrigues-nunes-almeida-gabriel-olivier-lima-franca",
     "godparentId": "artur-rodrigues-nunes-almeida",
     "godchildId": "gabriel-olivier-lima-franca",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-p2-pedro-henrique-macedo-alves-gustavo-tenorio-vasconcelos-neves-cavalcanti",
+    "id": "2026.2-pedro-henrique-macedo-alves-gustavo-tenorio-vasconcelos-neves-cavalcanti",
     "godparentId": "pedro-henrique-macedo-alves",
     "godchildId": "gustavo-tenorio-vasconcelos-neves-cavalcanti",
-    "role": "P2",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
   },
   {
-    "id": "2026.2-veterano-paulo-henrique-nunes-fernandes-silva-gustavo-tenorio-vasconcelos-neves-cavalcanti",
+    "id": "2026.2-paulo-henrique-nunes-fernandes-silva-gustavo-tenorio-vasconcelos-neves-cavalcanti",
     "godparentId": "paulo-henrique-nunes-fernandes-silva",
     "godchildId": "gustavo-tenorio-vasconcelos-neves-cavalcanti",
-    "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
-  },
-  {
-    "godparentId": "adiel-emilson-silva",
-    "godchildId": "sigaa-20260151819",
-    "role": "P2",
-    "id": "2026.2-p2-adiel-emilson-silva-sigaa-20260151819-1e08b955",
-    "semester": "2026.2",
-    "sourceDoc": "user-added"
-  },
-  {
-    "godparentId": "matheus-fernandes-santos",
-    "godchildId": "sigaa-20260011845",
-    "role": "P2",
-    "id": "2026.2-p2-matheus-fernandes-santos-sigaa-20260011845-02161484",
-    "semester": "2026.2",
-    "sourceDoc": "user-added"
-  },
-  {
-    "godparentId": "paulo-henrique-nunes-fernandes-silva",
-    "godchildId": "sigaa-20260011845",
-    "role": "VETERANO",
-    "id": "2026.2-veterano-paulo-henrique-nunes-fernandes-silva-sigaa-20260011845-076d2f02",
-    "semester": "2026.2",
-    "sourceDoc": "user-added"
-  },
-  {
-    "godparentId": "matheus-fernandes-santos",
-    "godchildId": "sigaa-20260011700",
-    "role": "P2",
-    "id": "2026.2-p2-matheus-fernandes-santos-sigaa-20260011700-a4cb66c2",
-    "semester": "2026.2",
-    "sourceDoc": "user-added"
-  },
-  {
-    "godparentId": "paulo-henrique-nunes-fernandes-silva",
-    "godchildId": "sigaa-20260011700",
-    "role": "VETERANO",
-    "id": "2026.2-veterano-paulo-henrique-nunes-fernandes-silva-sigaa-20260011700-b7ce4244",
-    "semester": "2026.2",
-    "sourceDoc": "user-added"
   }
 ]

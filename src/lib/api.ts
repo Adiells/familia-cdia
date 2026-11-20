@@ -1,8 +1,5 @@
 const SPONSORSHIPS_PATH = '/api/sponsorships';
 
-/** Shared key for browser-only additions when the API cannot be reached. */
-export const LOCAL_ADDITIONS_STORAGE_KEY = 'familia-cdia:user-additions:v1';
-
 /** Resolve the standalone API origin at build time, or use the local standalone backend on port 8080 when running on localhost. */
 export function getSponsorshipsApiUrl(): string {
   const configuredUrl = process.env.NEXT_PUBLIC_API_URL?.trim();

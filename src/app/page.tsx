@@ -5,10 +5,8 @@ import {
   Award,
   Crown,
   GitBranch,
-  GitFork,
   Search,
   Sparkles,
-  Users,
 } from "lucide-react";
 import { Header, type AppTab } from "@/components/layout/Header";
 import { StatsBar, type TreeStats } from "@/components/layout/StatsBar";
@@ -24,10 +22,9 @@ import {
   getDirectRelations,
   type LayoutDirection,
   type LineageMode,
-  type RoleFilter,
 } from "@/lib/graph-layout";
 import { normalizeSearchText } from "@/lib/search";
-import { getSponsorshipsApiUrl, LOCAL_ADDITIONS_STORAGE_KEY } from "@/lib/api";
+import { getSponsorshipsApiUrl } from "@/lib/api";
 import type {
   CohortSemester,
   SigaaStudentRecord,
@@ -44,24 +41,7 @@ const initialSponsorships =
   initialSponsorshipsJson as unknown as SponsorshipEdgeData[];
 const sigaaStudents = sigaaStudentsJson as unknown as SigaaStudentRecord[];
 
-type PersistedAdditions = { students?: StudentNodeData[]; sponsorships?: SponsorshipEdgeData[] };
-
-function mergeStudents(...groups: StudentNodeData[][]): StudentNodeData[] {
-  const byId = new Map<string, StudentNodeData>();
-  for (const group of groups) for (const student of group) byId.set(student.id, student);
-  return [...byId.values()];
-}
-
-function mergeSponsorships(...groups: SponsorshipEdgeData[][]): SponsorshipEdgeData[] {
-  const byRelation = new Map<string, SponsorshipEdgeData>();
-  for (const group of groups) {
-    for (const edge of group) {
-      const key = `${edge.godparentId}|${edge.godchildId}|${edge.role}|${edge.semester}`;
-      byRelation.set(key, edge);
-    }
-  }
-  return [...byRelation.values()];
-}
+type ApiSponsorshipData = { students?: StudentNodeData[]; sponsorships?: SponsorshipEdgeData[] };
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<AppTab>("tree");
@@ -71,31 +51,20 @@ export default function Home() {
 
   useEffect(() => {
     let active = true;
-    let localAdditions: PersistedAdditions = {};
-    try {
-      const stored = localStorage.getItem(LOCAL_ADDITIONS_STORAGE_KEY);
-      if (stored) {
-        localAdditions = JSON.parse(stored) as PersistedAdditions;
-        if (Array.isArray(localAdditions.students)) setStudents((current) => mergeStudents(current, localAdditions.students!));
-        if (Array.isArray(localAdditions.sponsorships)) setSponsorships((current) => mergeSponsorships(current, localAdditions.sponsorships!));
-      }
-    } catch {
-      // Static bundled data remains available if browser storage is malformed or disabled.
-    }
 
     fetch(getSponsorshipsApiUrl(), { cache: "no-store" })
       .then(async (response) => {
         if (!response.ok) throw new Error("Sponsorship API unavailable");
         const data: unknown = await response.json();
-        if (!data || typeof data !== "object" || !Array.isArray((data as PersistedAdditions).students) || !Array.isArray((data as PersistedAdditions).sponsorships)) {
+        if (!data || typeof data !== "object" || !Array.isArray((data as ApiSponsorshipData).students) || !Array.isArray((data as ApiSponsorshipData).sponsorships)) {
           throw new Error("Invalid sponsorship API response");
         }
-        return data as Required<PersistedAdditions>;
+        return data as Required<ApiSponsorshipData>;
       })
       .then((data) => {
         if (!active) return;
-        setStudents((current) => mergeStudents(current, data.students, localAdditions.students ?? []));
-        setSponsorships((current) => mergeSponsorships(current, data.sponsorships, localAdditions.sponsorships ?? []));
+        setStudents(data.students);
+        setSponsorships(data.sponsorships);
       })
       .catch(() => undefined);
 
@@ -107,7 +76,6 @@ export default function Home() {
   );
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
-  const [roleFilter, setRoleFilter] = useState<RoleFilter>("ALL");
   const [cohortFilter, setCohortFilter] = useState<CohortSemester | "ALL">(
     "ALL"
   );
@@ -159,7 +127,7 @@ export default function Home() {
       };
     }
     const direct = getDirectRelations(selectedStudentId, students, sponsorships);
-    const descendants = getDescendants(selectedStudentId, sponsorships, "ALL");
+    const descendants = getDescendants(selectedStudentId, sponsorships);
 
     return {
       godparents: direct.allGodparents.map((g) => g.student),
@@ -172,8 +140,8 @@ export default function Home() {
   const lineageRankings = useMemo(() => {
     return students
       .map((student) => {
-        const descendants = getDescendants(student.id, sponsorships, "ALL");
-        const ancestors = getAncestors(student.id, sponsorships, "ALL");
+        const descendants = getDescendants(student.id, sponsorships);
+        const ancestors = getAncestors(student.id, sponsorships);
         const direct = getDirectRelations(student.id, students, sponsorships);
         return {
           student,
@@ -261,8 +229,6 @@ export default function Home() {
               sponsorships={sponsorships}
               selectedStudentId={selectedStudentId}
               onSelectStudent={handleSelectStudent}
-              roleFilter={roleFilter}
-              onRoleFilterChange={setRoleFilter}
               cohortFilter={cohortFilter}
               onCohortFilterChange={setCohortFilter}
               direction={direction}
