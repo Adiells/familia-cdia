@@ -497,10 +497,10 @@ function FamilyTreeCanvasInner({
                     onClick={() =>
                       handleSelectStudent(familyMetrics.largestLineage.rootStudent)
                     }
-                    className="ml-2 inline-flex items-center gap-1 rounded-md border border-amber-500/35 bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-800 hover:bg-amber-500/20 dark:border-amber-500/30 dark:text-amber-300 transition-colors"
+                    className="ml-2 inline-flex items-center gap-1 rounded-md border border-amber-600/45 bg-amber-100/90 px-2.5 py-0.5 text-[10px] font-bold text-amber-950 hover:bg-amber-200/90 dark:border-amber-500/35 dark:bg-amber-500/15 dark:text-amber-300 dark:hover:bg-amber-500/25 transition-colors"
                     title="Focar na maior linhagem acadêmica do curso"
                   >
-                    <Crown className="h-3 w-3 text-amber-500 dark:text-amber-400" />
+                    <Crown className="h-3 w-3 text-amber-700 dark:text-amber-400" />
                     <span>
                       Maior Linhagem:{' '}
                       {familyMetrics.largestLineage.rootStudent.displayName} (+
