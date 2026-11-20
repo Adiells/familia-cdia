@@ -51,13 +51,13 @@ export const StudentNode = memo(function StudentNode({
       'bg-white border-cyan-500 ring-2 ring-cyan-500/50 shadow-md dark:bg-slate-900 dark:border-cyan-400 dark:ring-cyan-400/50';
   } else if (isAncestor) {
     containerStateClass =
-      'bg-white border-sky-500/80 ring-1 ring-sky-500/35 shadow-sm dark:bg-slate-900 dark:border-sky-400/75 dark:ring-sky-400/35';
+      'bg-white border-emerald-500 ring-2 ring-emerald-500/40 shadow-md dark:bg-slate-900 dark:border-emerald-400 dark:ring-emerald-400/45';
   } else if (isDescendant) {
     containerStateClass =
-      'bg-white border-cyan-500/80 ring-1 ring-cyan-500/35 shadow-sm dark:bg-slate-900 dark:border-cyan-400/75 dark:ring-cyan-400/35';
+      'bg-white border-sky-500 ring-2 ring-sky-500/40 shadow-md dark:bg-slate-900 dark:border-sky-400 dark:ring-sky-400/45';
   }
 
-  const opacityClass = isDimmed ? 'opacity-20' : 'opacity-100';
+  const opacityClass = isDimmed ? 'opacity-15' : 'opacity-100';
 
   const depthLabel =
     typeof data.lineageDepth === 'number' && data.lineageDepth !== 0
@@ -108,7 +108,13 @@ export const StudentNode = memo(function StudentNode({
         )}
 
         {!isSelected && depthLabel && (
-          <span className="truncate rounded-md border bg-sky-500/10 border-sky-500/30 px-1.5 py-0.5 text-[9px] font-medium text-sky-700 dark:bg-sky-500/15 dark:border-sky-400/35 dark:text-sky-300">
+          <span
+            className={`truncate rounded-md border px-1.5 py-0.5 text-[9px] font-semibold ${
+              isAncestor
+                ? 'bg-emerald-500/15 border-emerald-500/35 text-emerald-700 dark:text-emerald-300'
+                : 'bg-sky-500/15 border-sky-500/35 text-sky-700 dark:text-sky-300'
+            }`}
+          >
             {depthLabel}
           </span>
         )}

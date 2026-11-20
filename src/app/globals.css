@@ -251,3 +251,26 @@
   --xy-background-color: transparent;
   --xy-edge-stroke-default: var(--muted-foreground);
 }
+
+/* Ensure student cards ALWAYS render above sponsorship edge lines */
+.react-flow__edges {
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+.react-flow__edge {
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+.react-flow__nodes {
+  z-index: 10 !important;
+}
+
+.react-flow__node {
+  z-index: 20 !important;
+}
+
+.react-flow__node.selected {
+  z-index: 50 !important;
+}

@@ -83,7 +83,7 @@ for (const [matricula, name] of expectedSigaaMatches) {
 
 const pdfOnlyNames = [
   ['Bia Barreto', '2024.1'], ['Luana Cazé', '2025.1'],
-  ['Liliana', '2025.1'], ['Samuel do Bem', '2024.1'],
+  ['Liliana', '2025.1'],
 ];
 for (const [name, cohort] of pdfOnlyNames) {
   const matches = students.filter((student) => student.aliases.some((alias) =>
@@ -92,5 +92,14 @@ for (const [name, cohort] of pdfOnlyNames) {
     fail(`Expected ${name} (${cohort}) to remain a single unresolved PDF-only student`);
   }
 }
+const samuelMatches = students.filter((student) => student.matricula === '20240011249');
+if (samuelMatches.length !== 1 || samuelMatches[0].canonicalName !== 'Samuel Victor Fernandes Dantas Vicente') {
+  fail('Samuel do Bem did not resolve to SIGAA matrícula 20240011249');
+}
+for (const alias of ['Samuel do Bem', 'Samuel Vicente']) {
+  if (!samuelMatches[0].aliases.some((value) => normalized(value.replace(/\s*\([^)]*\)/g, '')) === normalized(alias))) {
+    fail(`Confirmed Samuel alias missing: ${alias}`);
+  }
+}
 
-console.log(`Validation passed: ${students.length} unique students, ${edges.length} edges (${expected} pairings × 2), ${audit.length} audit entries, 7 required SIGAA matches, 4 unresolved PDF-only identities preserved, 100% edge integrity, acyclic graph.`);
+console.log(`Validation passed: ${students.length} unique students, ${edges.length} edges (${expected} pairings × 2), ${audit.length} audit entries, 7 required SIGAA matches plus confirmed Samuel identity, 3 unresolved PDF-only identities preserved, 100% edge integrity, acyclic graph.`);

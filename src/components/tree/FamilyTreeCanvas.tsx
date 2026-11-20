@@ -446,14 +446,20 @@ function FamilyTreeCanvasInner({
             <div className="pointer-events-auto flex flex-col gap-2 rounded-xl border border-slate-200 bg-white/95 px-3.5 py-2.5 text-[11px] text-slate-700 shadow-lg dark:border-slate-800 dark:bg-slate-950/90 dark:text-slate-300 dark:shadow-xl">
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1.5">
+                  <span className="inline-block h-0.5 w-5 rounded-full bg-emerald-500" />
+                  <span className="font-semibold text-emerald-700 dark:text-emerald-300">
+                    Ancestrais (Padrinhos)
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5">
                   <span className="inline-block h-0.5 w-5 rounded-full bg-sky-500 dark:bg-sky-400" />
                   <span className="font-semibold text-sky-700 dark:text-sky-300">
-                    Vínculo de Apadrinhamento
+                    Descendentes (Afilhados)
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
                   <Info className="h-3.5 w-3.5 text-sky-600 dark:text-cyan-400" />
-                  <span>Clique em um aluno para explorar sua linhagem</span>
+                  <span>Clique em um aluno para destacar sua linhagem</span>
                 </div>
                 <button
                   type="button"

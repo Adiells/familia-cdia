@@ -62,16 +62,17 @@
     "matchConfidence": "TOKEN_SUBSET"
   },
   {
-    "id": "samuel-bem",
-    "canonicalName": "Samuel do Bem",
-    "displayName": "Samuel do Bem",
-    "matricula": null,
+    "id": "samuel-victor-fernandes-dantas-vicente",
+    "canonicalName": "Samuel Victor Fernandes Dantas Vicente",
+    "displayName": "Samuel Victor Fernandes Dantas Vicente",
+    "matricula": "20240011249",
     "cohort": "2024.1",
     "aliases": [
-      "Samuel do Bem (2024.1)"
+      "Samuel do Bem (2024.1)",
+      "Samuel Vicente (2024.1)"
     ],
-    "sigaaVerified": false,
-    "matchConfidence": "PDF_ONLY"
+    "sigaaVerified": true,
+    "matchConfidence": "TOKEN_SUBSET"
   },
   {
     "id": "luana-caze",
@@ -538,18 +539,6 @@
     "aliases": [
       "Ana Luiza (2025.2)",
       "Ana Luiza"
-    ],
-    "sigaaVerified": true,
-    "matchConfidence": "TOKEN_SUBSET"
-  },
-  {
-    "id": "samuel-victor-fernandes-dantas-vicente",
-    "canonicalName": "Samuel Victor Fernandes Dantas Vicente",
-    "displayName": "Samuel Victor Fernandes Dantas Vicente",
-    "matricula": "20240011249",
-    "cohort": "2024.1",
-    "aliases": [
-      "Samuel Vicente (2024.1)"
     ],
     "sigaaVerified": true,
     "matchConfidence": "TOKEN_SUBSET"

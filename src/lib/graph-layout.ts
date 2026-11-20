@@ -17,13 +17,14 @@ export const COHORT_ORDER: readonly CohortSemester[] = [
 
 export const NODE_WIDTH = 252;
 export const NODE_HEIGHT = 138;
-export const DEFAULT_NODE_SEP = 36;
-export const DEFAULT_RANK_SEP = 112;
+export const DEFAULT_NODE_SEP = 52;
+export const DEFAULT_RANK_SEP = 180;
 
 export type LayoutDirection = 'TB' | 'LR';
 export type RoleFilter = 'ALL' | SponsorshipRole;
 export type LineageMode = 'HIGHLIGHT' | 'ISOLATE';
 export type LineageRelation = 'SELF' | 'ANCESTOR' | 'DESCENDANT' | 'NONE';
+export type EdgeLineageSegment = 'UPSTREAM' | 'DOWNSTREAM' | 'NONE';
 
 export interface CohortTheme {
   cohort: CohortSemester;
@@ -199,6 +200,12 @@ export interface SponsorshipFlowEdgeData
   godchildName?: string;
   isHighlighted: boolean;
   isDimmed: boolean;
+  hasSelection: boolean;
+  lineageSegment: EdgeLineageSegment;
+  parallelOffset: number;
+  sourceOffset: number;
+  targetOffset: number;
+  curvatureOffset: number;
   direction: LayoutDirection;
 }
 
@@ -1093,6 +1100,7 @@ export function buildStratifiedGraphLayout(
         sourcePosition: isHorizontal ? Position.Right : Position.Bottom,
         targetPosition: isHorizontal ? Position.Left : Position.Top,
         selected: isSelected,
+        zIndex: isSelected ? 50 : isInLineage ? 40 : 20,
         data: {
           ...student,
           p2Godparents: direct.p2Godparents,
@@ -1133,13 +1141,82 @@ export function buildStratifiedGraphLayout(
     });
   }
 
+  // Precompute per-edge fan-out offsets so edges leaving the same godparent
+  // or entering the same godchild never stack on the same collinear path
+  const outgoingByParent = new Map<string, SponsorshipEdgeData[]>();
+  const incomingByChild = new Map<string, SponsorshipEdgeData[]>();
+
+  for (const edge of visibleRawEdges) {
+    const outList = outgoingByParent.get(edge.godparentId);
+    if (outList) outList.push(edge);
+    else outgoingByParent.set(edge.godparentId, [edge]);
+
+    const inList = incomingByChild.get(edge.godchildId);
+    if (inList) inList.push(edge);
+    else incomingByChild.set(edge.godchildId, [edge]);
+  }
+
+  const edgeSourceOffset = new Map<string, number>();
+  const edgeTargetOffset = new Map<string, number>();
+
+  for (const [, outEdges] of outgoingByParent) {
+    outEdges.sort(
+      (a, b) =>
+        (secondaryCoord.get(a.godchildId) ?? 0) -
+        (secondaryCoord.get(b.godchildId) ?? 0)
+    );
+    const k = outEdges.length;
+    for (let i = 0; i < k; i++) {
+      edgeSourceOffset.set(outEdges[i].id, i - (k - 1) / 2);
+    }
+  }
+
+  for (const [, inEdges] of incomingByChild) {
+    inEdges.sort(
+      (a, b) =>
+        (secondaryCoord.get(a.godparentId) ?? 0) -
+        (secondaryCoord.get(b.godparentId) ?? 0)
+    );
+    const m = inEdges.length;
+    for (let j = 0; j < m; j++) {
+      edgeTargetOffset.set(inEdges[j].id, j - (m - 1) / 2);
+    }
+  }
+
+  const upstreamNodeSet = activeLineage
+    ? new Set<string>([activeLineage.focusId, ...activeLineage.ancestors])
+    : null;
+  const downstreamNodeSet = activeLineage
+    ? new Set<string>([activeLineage.focusId, ...activeLineage.descendants])
+    : null;
+
   // Build React Flow custom edges ('sponsorship')
-  const flowEdges: SponsorshipFlowEdge[] = visibleRawEdges.map((edge) => {
+  const flowEdges: SponsorshipFlowEdge[] = visibleRawEdges.map((edge, idx) => {
     const isHighlighted = activeLineage
       ? activeLineage.lineageEdgeIds.has(edge.id)
       : false;
     const isDimmed =
       activeLineage && lineageMode === 'HIGHLIGHT' ? !isHighlighted : false;
+
+    let lineageSegment: EdgeLineageSegment = 'NONE';
+    if (isHighlighted && activeLineage) {
+      if (
+        upstreamNodeSet?.has(edge.godparentId) &&
+        upstreamNodeSet?.has(edge.godchildId)
+      ) {
+        lineageSegment = 'UPSTREAM';
+      } else if (
+        downstreamNodeSet?.has(edge.godparentId) &&
+        downstreamNodeSet?.has(edge.godchildId)
+      ) {
+        lineageSegment = 'DOWNSTREAM';
+      }
+    }
+
+    const srcOff = edgeSourceOffset.get(edge.id) ?? 0;
+    const tgtOff = edgeTargetOffset.get(edge.id) ?? 0;
+    const microSpread = ((idx % 5) - 2) * 0.25;
+    const parallelOffset = srcOff * 0.9 + tgtOff * 0.9 + microSpread;
 
     const godparent = allNodeMap.get(edge.godparentId);
     const godchild = allNodeMap.get(edge.godchildId);
@@ -1150,13 +1227,19 @@ export function buildStratifiedGraphLayout(
       source: edge.godparentId,
       target: edge.godchildId,
       animated: false,
-      zIndex: isHighlighted ? 30 : 10,
+      zIndex: isHighlighted ? 15 : 1,
       data: {
         ...edge,
         godparentName: godparent?.displayName ?? edge.godparentId,
         godchildName: godchild?.displayName ?? edge.godchildId,
         isHighlighted,
         isDimmed,
+        hasSelection: Boolean(activeLineage),
+        lineageSegment,
+        parallelOffset,
+        sourceOffset: srcOff,
+        targetOffset: tgtOff,
+        curvatureOffset: parallelOffset,
         direction,
       },
     };

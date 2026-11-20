@@ -14,6 +14,10 @@ CANONICAL_SPELLING = {
     "pedro borras souto": "Pedro Borrás Souto",
     "maria eloisa": "Maria Eloísa",
 }
+# Confirmed identity aliases that differ too much for name-based matching.
+CONFIRMED_MATRICULAS = {
+    "samuel bem": "20240011249",
+}
 
 
 def normalize(text):
@@ -85,6 +89,12 @@ def main():
                 ratio = SequenceMatcher(None, " ".join(tokens), " ".join(rt)).ratio()
                 if ratio >= 0.86:
                     candidates.append((2, record, "FUZZY"))
+        confirmed_matricula = CONFIRMED_MATRICULAS.get(" ".join(tokens))
+        if confirmed_matricula:
+            confirmed_records = [record for record in sigaa if record["matricula"] == confirmed_matricula]
+            if len(confirmed_records) != 1:
+                raise ValueError(f"Confirmed matrícula {confirmed_matricula} for {raw_name!r} is missing or ambiguous")
+            candidates = [(1, confirmed_records[0], "TOKEN_SUBSET")]
         # PDF cohort tags identify the student's entry year. Short names can
         # match several active students, so use the matrícula prefix to
         # disambiguate before deciding whether the best tier is unique.

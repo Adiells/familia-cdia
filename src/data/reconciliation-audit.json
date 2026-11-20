@@ -47,11 +47,11 @@
   {
     "rawName": "Samuel do Bem (2024.1)",
     "sourceDoc": "user-provided-2025-1-list",
-    "resolvedStudentId": "samuel-bem",
-    "canonicalName": "Samuel do Bem",
-    "matricula": null,
-    "matchConfidence": "PDF_ONLY",
-    "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"
+    "resolvedStudentId": "samuel-victor-fernandes-dantas-vicente",
+    "canonicalName": "Samuel Victor Fernandes Dantas Vicente",
+    "matricula": "20240011249",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
   },
   {
     "rawName": "Luana Cazé (2025.1)",
@@ -263,11 +263,11 @@
   {
     "rawName": "Samuel do Bem (2024.1)",
     "sourceDoc": "user-provided-2025-1-list",
-    "resolvedStudentId": "samuel-bem",
-    "canonicalName": "Samuel do Bem",
-    "matricula": null,
-    "matchConfidence": "PDF_ONLY",
-    "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"
+    "resolvedStudentId": "samuel-victor-fernandes-dantas-vicente",
+    "canonicalName": "Samuel Victor Fernandes Dantas Vicente",
+    "matricula": "20240011249",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
   },
   {
     "rawName": "Lucas Aprigio Santos de Oliveira (2025.1)",
@@ -290,11 +290,11 @@
   {
     "rawName": "Samuel do Bem (2024.1)",
     "sourceDoc": "user-provided-2025-1-list",
-    "resolvedStudentId": "samuel-bem",
-    "canonicalName": "Samuel do Bem",
-    "matricula": null,
-    "matchConfidence": "PDF_ONLY",
-    "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"
+    "resolvedStudentId": "samuel-victor-fernandes-dantas-vicente",
+    "canonicalName": "Samuel Victor Fernandes Dantas Vicente",
+    "matricula": "20240011249",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
   },
   {
     "rawName": "Adiel Emilson (2025.1)",
