@@ -56,7 +56,8 @@
     "matricula": "20240011060",
     "cohort": "2024.2",
     "aliases": [
-      "Ana Beatriz (2024.2)"
+      "Ana Beatriz (2024.2)",
+      "Beatriz Cruz (2024.2)"
     ],
     "sigaaVerified": true,
     "matchConfidence": "TOKEN_SUBSET"
@@ -538,7 +539,8 @@
     "cohort": "2025.2",
     "aliases": [
       "Ana Luiza (2025.2)",
-      "Ana Luiza"
+      "Ana Luiza",
+      "Ana Luiza Gomes de Araújo (2025.2)"
     ],
     "sigaaVerified": true,
     "matchConfidence": "TOKEN_SUBSET"
@@ -551,7 +553,8 @@
     "cohort": "2025.2",
     "aliases": [
       "Antonio Duarte (2025.2)",
-      "Antonio Duarte"
+      "Antonio Duarte",
+      "Antonio Duarte de Lacerda (2025.2)"
     ],
     "sigaaVerified": true,
     "matchConfidence": "TOKEN_SUBSET"
@@ -784,9 +787,9 @@
     "canonicalName": "João Henrique de Araújo Pereira",
     "displayName": "João Henrique de Araújo Pereira",
     "matricula": null,
-    "cohort": "2025.1",
+    "cohort": "2021.2",
     "aliases": [
-      "João Henrique de Araújo Pereira (2025.1)"
+      "João Henrique de Araújo Pereira (2021.2)"
     ],
     "sigaaVerified": false,
     "matchConfidence": "PDF_ONLY"
@@ -823,7 +826,8 @@
     "matricula": "20250018637",
     "cohort": "2025.1",
     "aliases": [
-      "Artur Rodrigues Nunes de Almeida (2025.1)"
+      "Artur Rodrigues Nunes de Almeida (2025.1)",
+      "Artur Almeida (2025.1)"
     ],
     "sigaaVerified": true,
     "matchConfidence": "EXACT"
@@ -914,7 +918,8 @@
     "matricula": "20260011460",
     "cohort": "2026.1",
     "aliases": [
-      "Ítalo Mateus Santos da Silva"
+      "Ítalo Mateus Santos da Silva",
+      "Ítalo Mateus Santos da Silva (2026.1)"
     ],
     "sigaaVerified": true,
     "matchConfidence": "EXACT"
@@ -945,7 +950,9 @@
     "displayName": "Pedro Henrique de Macedo Alves",
     "matricula": "20260011362",
     "cohort": "2026.1",
-    "aliases": [],
+    "aliases": [
+      "Pedro Henrique de Macedo Alves (2026.1)"
+    ],
     "sigaaVerified": true,
     "matchConfidence": "EXACT"
   },
@@ -967,7 +974,9 @@
     "displayName": "Kaleb Dantas Rocha Feitosa",
     "matricula": "20260012127",
     "cohort": "2026.1",
-    "aliases": [],
+    "aliases": [
+      "Kaleb Dantas Rocha Feitosa (2026.1)"
+    ],
     "sigaaVerified": true,
     "matchConfidence": "EXACT"
   },
@@ -987,7 +996,9 @@
     "displayName": "Joana Trindade dos Santos",
     "matricula": "20260011406",
     "cohort": "2026.1",
-    "aliases": [],
+    "aliases": [
+      "Joana Trindade dos Santos (2026.1)"
+    ],
     "sigaaVerified": true,
     "matchConfidence": "EXACT"
   },
@@ -998,7 +1009,8 @@
     "matricula": "20260011264",
     "cohort": "2026.1",
     "aliases": [
-      "sophia de carvalho beltrão"
+      "sophia de carvalho beltrão",
+      "Sophia de Carvalho Beltrão (2026.1)"
     ],
     "sigaaVerified": true,
     "matchConfidence": "EXACT"
@@ -1029,7 +1041,9 @@
     "displayName": "Guilherme Trindade de Oliveira",
     "matricula": "20260011729",
     "cohort": "2026.1",
-    "aliases": [],
+    "aliases": [
+      "Guilherme Trindade de Oliveira (2026.1)"
+    ],
     "sigaaVerified": true,
     "matchConfidence": "EXACT"
   },
@@ -1060,7 +1074,8 @@
     "matricula": "20260011442",
     "cohort": "2026.1",
     "aliases": [
-      "Cecília Candeia Lyra"
+      "Cecília Candeia Lyra",
+      "Cecília Candeia Lyra (2026.1)"
     ],
     "sigaaVerified": true,
     "matchConfidence": "EXACT"
@@ -1071,7 +1086,9 @@
     "displayName": "Guilherme de Andrade Bronzeado",
     "matricula": "20260011068",
     "cohort": "2026.1",
-    "aliases": [],
+    "aliases": [
+      "Guilherme de Andrade Bronzeado (2026.1)"
+    ],
     "sigaaVerified": true,
     "matchConfidence": "EXACT"
   },
@@ -1081,7 +1098,9 @@
     "displayName": "Dayanna Hevellyn Ferreira Xavier",
     "matricula": "20260012083",
     "cohort": "2026.1",
-    "aliases": [],
+    "aliases": [
+      "Dayanna Hevellyn Ferreira Xavier (2026.1)"
+    ],
     "sigaaVerified": true,
     "matchConfidence": "EXACT"
   },
@@ -1091,7 +1110,9 @@
     "displayName": "Matheus Fernandes dos Santos",
     "matricula": "20260011148",
     "cohort": "2026.1",
-    "aliases": [],
+    "aliases": [
+      "Matheus Fernandes dos Santos (2026.1)"
+    ],
     "sigaaVerified": true,
     "matchConfidence": "EXACT"
   },
@@ -1114,7 +1135,8 @@
     "matricula": "20260089436",
     "cohort": "2026.1",
     "aliases": [
-      "Heloísa Stella Azevedo Reis"
+      "Heloísa Stella Azevedo Reis",
+      "Heloísa Stella Azevedo Reis (2026.1)"
     ],
     "sigaaVerified": true,
     "matchConfidence": "EXACT"
@@ -1162,5 +1184,246 @@
     "aliases": [],
     "sigaaVerified": false,
     "matchConfidence": "PDF_ONLY"
+  },
+  {
+    "id": "sarah-ariel-bazante-alexandre",
+    "canonicalName": "Sarah Ariel Bazante Alexandre",
+    "displayName": "Sarah Ariel Bazante Alexandre",
+    "matricula": "20260011881",
+    "cohort": "2026.2",
+    "aliases": [
+      "Sarah Ari (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "TOKEN_SUBSET"
+  },
+  {
+    "id": "clarisse-gabriela-silvino-rodrigues",
+    "canonicalName": "Clarisse Gabriela Silvino Rodrigues",
+    "displayName": "Clarisse Gabriela Silvino Rodrigues",
+    "matricula": "20260011620",
+    "cohort": "2026.2",
+    "aliases": [
+      "Clarisse Gabriela Silvino Rodrigues (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "ana-beatriz-soares-viegas-mangueira",
+    "canonicalName": "Ana Beatriz Soares Viegas Mangueira",
+    "displayName": "Ana Beatriz Soares Viegas Mangueira",
+    "matricula": "20260124947",
+    "cohort": "2026.2",
+    "aliases": [
+      "Ana Beatriz Viegas (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "TOKEN_SUBSET"
+  },
+  {
+    "id": "maria-kauane-xavier-goncalves",
+    "canonicalName": "Maria Kauane Xavier Goncalves",
+    "displayName": "Maria Kauane Xavier Goncalves",
+    "matricula": "20260012145",
+    "cohort": "2026.2",
+    "aliases": [
+      "Maria Kauane Xavier Gonçalves (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "angela-maria-guilhermino-alves",
+    "canonicalName": "Angela Maria Guilhermino Alves",
+    "displayName": "Angela Maria Guilhermino Alves",
+    "matricula": "20260089490",
+    "cohort": "2026.2",
+    "aliases": [
+      "Ângela Maria Guilhermino Alves (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "debora-dantas-oliveira",
+    "canonicalName": "Debora Dantas de Oliveira",
+    "displayName": "Debora Dantas de Oliveira",
+    "matricula": "20260089516",
+    "cohort": "2026.2",
+    "aliases": [
+      "Débora Dantas de Oliveira (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "maria-vithoria-lima-moscoso",
+    "canonicalName": "Maria Vithoria Lima Moscoso",
+    "displayName": "Maria Vithoria Lima Moscoso",
+    "matricula": "20260011783",
+    "cohort": "2026.2",
+    "aliases": [
+      "Maria Vithória Lima Moscôso (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "nicolas-hiego-valentim-lima",
+    "canonicalName": "Nicolas Hiego Valentim de Lima",
+    "displayName": "Nicolas Hiego Valentim de Lima",
+    "matricula": "20260143094",
+    "cohort": "2026.2",
+    "aliases": [
+      "Nícolas Hiego Valentim de Lima (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "helio-jose-barbosa-junior",
+    "canonicalName": "Helio Jose Barbosa Junior",
+    "displayName": "Helio Jose Barbosa Junior",
+    "matricula": "20260011765",
+    "cohort": "2026.2",
+    "aliases": [
+      "Hélio Júnior (Vulgo Patatá) (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "TOKEN_SUBSET",
+    "notes": "Vulgo Patatá"
+  },
+  {
+    "id": "artur-vieira-pereira",
+    "canonicalName": "Artur Vieira Pereira",
+    "displayName": "Artur Vieira Pereira",
+    "matricula": "20260011587",
+    "cohort": "2026.2",
+    "aliases": [
+      "Artur Vieira Pereira (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "felipe-gabriel-batista-silva",
+    "canonicalName": "Felipe Gabriel Batista da Silva",
+    "displayName": "Felipe Gabriel Batista da Silva",
+    "matricula": "20260124965",
+    "cohort": "2026.2",
+    "aliases": [
+      "Felipe Gabriel Batista da Silva (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "giorgio-nicolas-arruda-bertino",
+    "canonicalName": "Giorgio Nicolas de Arruda Bertino",
+    "displayName": "Giorgio Nicolas de Arruda Bertino",
+    "matricula": "20260011685",
+    "cohort": "2026.2",
+    "aliases": [
+      "Giorgio Nícolas de Arruda Bertino (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "adriano-jorge-siqueira-figueiredo-filho",
+    "canonicalName": "Adriano Jorge de Siqueira Figueiredo Filho",
+    "displayName": "Adriano Jorge de Siqueira Figueiredo Filho",
+    "matricula": "20260011522",
+    "cohort": "2026.2",
+    "aliases": [
+      "Adriano Jorge de Siqueira Figueiredo Filho (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "guilherme-rocha-sampaio",
+    "canonicalName": "Guilherme Rocha Sampaio",
+    "displayName": "Guilherme Rocha Sampaio",
+    "matricula": "20250019133",
+    "cohort": "2025.1",
+    "aliases": [
+      "Guilherme Rocha Sampaio (2025.1)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "joao-henrique-silva-modesto-junior",
+    "canonicalName": "Joao Henrique da Silva Modesto Junior",
+    "displayName": "Joao Henrique da Silva Modesto Junior",
+    "matricula": "20260011863",
+    "cohort": "2026.2",
+    "aliases": [
+      "João Henrique da Silva Modesto Junior (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "samuel-sousa-linhares",
+    "canonicalName": "Samuel de Sousa Linhares",
+    "displayName": "Samuel de Sousa Linhares",
+    "matricula": "20260012029",
+    "cohort": "2026.2",
+    "aliases": [
+      "Samuel de Sousa Linhares (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "gabriel-santos-nascimento",
+    "canonicalName": "Gabriel dos Santos Nascimento",
+    "displayName": "Gabriel dos Santos Nascimento",
+    "matricula": "20260089338",
+    "cohort": "2026.2",
+    "aliases": [
+      "Gabriel dos Santos Nascimento (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "jose-antonio-kariston-lopes-borges",
+    "canonicalName": "Jose Antonio Kariston Lopes Borges",
+    "displayName": "Jose Antonio Kariston Lopes Borges",
+    "matricula": "20260089356",
+    "cohort": "2026.2",
+    "aliases": [
+      "Jose Antônio Kariston Lopes Borges (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "gabriel-olivier-lima-franca",
+    "canonicalName": "Gabriel Olivier Lima de Franca",
+    "displayName": "Gabriel Olivier Lima de Franca",
+    "matricula": "20260124983",
+    "cohort": "2026.2",
+    "aliases": [
+      "Gabriel Olivier Lima de França (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "EXACT"
+  },
+  {
+    "id": "gustavo-tenorio-vasconcelos-neves-cavalcanti",
+    "canonicalName": "Gustavo Tenorio de Vasconcelos Neves Cavalcanti",
+    "displayName": "Gustavo Tenorio de Vasconcelos Neves Cavalcanti",
+    "matricula": "20260011747",
+    "cohort": "2026.2",
+    "aliases": [
+      "Gustavo Tenório (2026.2)"
+    ],
+    "sigaaVerified": true,
+    "matchConfidence": "TOKEN_SUBSET"
   }
 ]

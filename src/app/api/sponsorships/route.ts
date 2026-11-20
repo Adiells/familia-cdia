@@ -16,8 +16,7 @@ let writeQueue: Promise<unknown> = Promise.resolve();
 
 type TrioInput = {
   calouroMatricula: string;
-  p2Matricula: string;
-  veteranoMatricula: string;
+  godparentMatriculas: string[];
   semester: string;
 };
 
@@ -104,16 +103,33 @@ export async function POST(request: Request) {
   for (const item of trios) {
     if (!item || typeof item !== 'object') return NextResponse.json({ error: 'Trio inválido.' }, { status: 400 });
     const trio = item as Record<string, unknown>;
-    const values = [trio.calouroMatricula, trio.p2Matricula, trio.veteranoMatricula, trio.semester];
-    if (values.some((value) => typeof value !== 'string' || !value.trim())) {
-      return NextResponse.json({ error: 'Cada trio precisa conter três matrículas e um semestre.' }, { status: 400 });
+    const calouroMatricula = trio.calouroMatricula;
+    const semester = trio.semester;
+    let godparentMatriculas: string[];
+    if (Array.isArray(trio.godparentMatriculas)) {
+      if (trio.godparentMatriculas.length < 1 || trio.godparentMatriculas.length > 50 || trio.godparentMatriculas.some((value) => typeof value !== 'string' || !value.trim())) {
+        return NextResponse.json({ error: 'Informe de 1 a 50 matrículas de padrinhos/madrinhas.' }, { status: 400 });
+      }
+      godparentMatriculas = trio.godparentMatriculas.map((value) => (value as string).trim());
+    } else {
+      // Backward-compatible payload: P2 is required, veteran is optional.
+      if (typeof trio.p2Matricula !== 'string' || !trio.p2Matricula.trim()) {
+        return NextResponse.json({ error: 'Informe ao menos uma matrícula de padrinho/madrinha.' }, { status: 400 });
+      }
+      if (trio.veteranoMatricula !== undefined && trio.veteranoMatricula !== null && typeof trio.veteranoMatricula !== 'string') {
+        return NextResponse.json({ error: 'Matrícula de padrinho/madrinha inválida.' }, { status: 400 });
+      }
+      godparentMatriculas = [trio.p2Matricula.trim(), ...(typeof trio.veteranoMatricula === 'string' && trio.veteranoMatricula.trim() ? [trio.veteranoMatricula.trim()] : [])];
     }
-    const [calouroMatricula, p2Matricula, veteranoMatricula, semester] = values as string[];
+    if (typeof calouroMatricula !== 'string' || !calouroMatricula.trim() || typeof semester !== 'string' || !semester.trim()) {
+      return NextResponse.json({ error: 'Cada apadrinhamento precisa conter calouro(a), padrinhos/madrinhas e semestre.' }, { status: 400 });
+    }
+    const cleanCalouroMatricula = calouroMatricula.trim();
     if (!allowedSemesters.has(semester)) return NextResponse.json({ error: `Semestre inválido: ${semester}.` }, { status: 400 });
-    if (new Set([calouroMatricula, p2Matricula, veteranoMatricula]).size !== 3) {
-      return NextResponse.json({ error: 'Calouro(a), P2 e veterano(a) precisam ser pessoas distintas.' }, { status: 400 });
+    if (new Set([cleanCalouroMatricula, ...godparentMatriculas]).size !== godparentMatriculas.length + 1) {
+      return NextResponse.json({ error: 'Calouro(a) e padrinhos/madrinhas precisam ser pessoas distintas.' }, { status: 400 });
     }
-    parsed.push({ calouroMatricula, p2Matricula, veteranoMatricula, semester });
+    parsed.push({ calouroMatricula: cleanCalouroMatricula, godparentMatriculas, semester });
   }
 
   try {
@@ -132,7 +148,7 @@ export async function POST(request: Request) {
       let studentRecordsChanged = false;
 
       for (const trio of parsed) {
-        for (const matricula of [trio.calouroMatricula, trio.p2Matricula, trio.veteranoMatricula]) {
+        for (const matricula of [trio.calouroMatricula, ...trio.godparentMatriculas]) {
           const official = officialByMatricula.get(matricula);
           if (!official) return NextResponse.json({ error: `Matrícula ${matricula} não está no cadastro ativo do SIGAA.` }, { status: 422 });
           let student = studentByMatricula.get(matricula) ?? studentByOfficialName.get(normalizeName(official.name));
@@ -174,12 +190,9 @@ export async function POST(request: Request) {
       let addedSponsorships = 0;
       for (const trio of parsed) {
         const child = byMatricula.get(trio.calouroMatricula)!;
-        const p2 = byMatricula.get(trio.p2Matricula)!;
-        const veteran = byMatricula.get(trio.veteranoMatricula)!;
-        for (const link of [
-          { godparentId: p2.id, godchildId: child.id, role: 'P2' as const },
-          { godparentId: veteran.id, godchildId: child.id, role: 'VETERANO' as const },
-        ]) {
+        for (const [index, matricula] of trio.godparentMatriculas.entries()) {
+          const godparent = byMatricula.get(matricula)!;
+          const link = { godparentId: godparent.id, godchildId: child.id, role: index === 0 ? 'P2' as const : 'VETERANO' as const };
           const duplicate = sponsorships.some((edge) => edge.godparentId === link.godparentId && edge.godchildId === link.godchildId && edge.role === link.role && edge.semester === trio.semester);
           if (!duplicate) {
             sponsorships.push({ ...link, id: `${trio.semester}-${link.role.toLowerCase()}-${safeSlug(link.godparentId)}-${safeSlug(link.godchildId)}-${randomUUID().slice(0, 8)}`, semester: trio.semester, sourceDoc: 'user-added' });

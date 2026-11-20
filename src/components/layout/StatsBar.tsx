@@ -22,22 +22,25 @@ interface StatsBarProps {
 function Stat({
   icon: Icon,
   label,
+  compactLabel,
   value,
   tone,
 }: {
   icon: typeof Users;
   label: string;
+  compactLabel: string;
   value: number;
   tone: string;
 }) {
   return (
-    <div className="glass-card flex min-w-0 items-center gap-2 px-2 py-2 sm:min-w-[9.5rem] sm:flex-1 sm:gap-3 sm:px-3.5 sm:py-2.5">
-      <span className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-lg sm:h-9 sm:w-9", tone)}>
-        <Icon className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
+    <div className="glass-card flex min-w-0 items-center gap-1.5 px-2.5 py-1.5 sm:min-w-[9.5rem] sm:flex-1 sm:gap-3 sm:px-3.5 sm:py-2.5">
+      <span className={cn("flex h-6 w-6 shrink-0 items-center justify-center rounded-lg sm:h-9 sm:w-9", tone)}>
+        <Icon className="h-3.5 w-3.5 sm:h-4.5 sm:w-4.5" />
       </span>
       <div className="min-w-0 leading-tight">
-        <div className="font-display text-lg font-bold tabular-nums sm:text-xl">{value.toLocaleString("pt-BR")}</div>
-        <div className="text-[9px] font-medium leading-tight text-muted-foreground sm:text-[11px]">{label}</div>
+        <div className="font-display text-base font-bold tabular-nums sm:text-xl">{value.toLocaleString("pt-BR")}</div>
+        <div className="whitespace-nowrap text-[8px] font-medium leading-tight text-muted-foreground sm:hidden">{compactLabel}</div>
+        <div className="hidden text-[11px] font-medium leading-tight text-muted-foreground sm:block">{label}</div>
       </div>
     </div>
   );
@@ -56,25 +59,28 @@ export function StatsBar({ stats, activeCohort = null, onCohortChange, className
           <Stat
             icon={Users}
             label="Estudantes na árvore"
+            compactLabel="Alunos"
             value={stats.totalStudents}
             tone="bg-sky-500/15 text-sky-500 dark:text-sky-300"
           />
           <Stat
             icon={GitFork}
             label="Apadrinhamentos"
+            compactLabel="Vínculos"
             value={stats.totalSponsorships}
             tone="bg-violet-500/15 text-violet-600 dark:text-violet-300"
           />
           <Stat
             icon={Layers}
             label="Gerações"
+            compactLabel="Gerações"
             value={cohorts.filter((c) => (stats.byCohort[c] ?? 0) > 0).length}
             tone="bg-amber-500/15 text-amber-600 dark:text-amber-300"
           />
         </div>
 
         {/* Cohort quick filters */}
-        <div className="flex min-w-0 items-center gap-1.5 overflow-x-auto py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:flex-wrap sm:gap-2" role="group" aria-label="Filtrar por geração">
+        <div className="-mx-1 flex min-w-0 flex-nowrap items-center gap-1.5 overflow-x-auto px-1 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:flex-wrap sm:gap-2 sm:overflow-visible sm:px-0 sm:py-0" role="group" aria-label="Filtrar por geração">
           <span className="mr-0.5 shrink-0 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground sm:mr-1 sm:text-[11px]">
             Geração
           </span>

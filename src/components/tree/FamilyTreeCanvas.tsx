@@ -416,7 +416,7 @@ function FamilyTreeCanvasInner({
           {showControls && (
             <Panel
               position="top-left"
-              className="!m-3 right-3 max-w-[calc(100%-1.5rem)]"
+              className="!m-2.5 max-w-[calc(100%-1.25rem)]"
             >
               <TreeControls
                 roleFilter={activeRoleFilter}

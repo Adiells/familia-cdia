@@ -152,6 +152,11 @@
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
+  .cohort-2021-2 {
+    background: rgba(20, 184, 166, 0.15);
+    color: #0f766e;
+    border-color: rgba(20, 184, 166, 0.4);
+  }
   .cohort-2024-1 {
     background: rgba(245, 158, 11, 0.15);
     color: #b45309;
@@ -177,6 +182,11 @@
     color: #be123c;
     border-color: rgba(244, 63, 94, 0.4);
   }
+  .cohort-2026-2 {
+    background: rgba(6, 182, 212, 0.15);
+    color: #0e7490;
+    border-color: rgba(6, 182, 212, 0.4);
+  }
   .cohort-other {
     background: rgba(100, 116, 139, 0.15);
     color: #475569;
@@ -185,6 +195,10 @@
   .dark .cohort-2024-1 {
     color: #fcd34d; /* amber-300 */
     border-color: rgba(245, 158, 11, 0.3);
+  }
+  .dark .cohort-2021-2 {
+    color: #5eead4;
+    border-color: rgba(20, 184, 166, 0.35);
   }
   .dark .cohort-2024-2 {
     color: #c4b5fd; /* violet-300 */
@@ -201,6 +215,10 @@
   .dark .cohort-2026-1 {
     color: #fda4af; /* rose-300 */
     border-color: rgba(244, 63, 94, 0.3);
+  }
+  .dark .cohort-2026-2 {
+    color: #67e8f9;
+    border-color: rgba(6, 182, 212, 0.35);
   }
   .dark .cohort-other {
     color: #cbd5e1;

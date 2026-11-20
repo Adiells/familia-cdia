@@ -8,11 +8,13 @@ import type {
 } from '../data/types';
 
 export const COHORT_ORDER: readonly CohortSemester[] = [
+  '2021.2',
   '2024.1',
   '2024.2',
   '2025.1',
   '2025.2',
   '2026.1',
+  '2026.2',
 ] as const;
 
 export const NODE_WIDTH = 252;
@@ -33,6 +35,8 @@ export interface CohortTheme {
   shortLabel: string;
   generationTitle: string;
   badgeClass: string;
+  cardBgClass: string;
+  cardBorderClass: string;
   dotClass: string;
   borderGlowClass: string;
   accentColor: string;
@@ -40,70 +44,110 @@ export interface CohortTheme {
 }
 
 export const COHORT_THEMES: Record<string, CohortTheme> = {
+  '2021.2': {
+    cohort: '2021.2',
+    rank: 0,
+    label: '2021.2',
+    shortLabel: '21.2',
+    generationTitle: 'Coorte histórica',
+    badgeClass:
+      'bg-teal-500/20 text-teal-900 border-teal-500/45 dark:bg-teal-500/20 dark:text-teal-200 dark:border-teal-400/40',
+    cardBgClass: 'bg-teal-50/95 dark:bg-teal-950/40',
+    cardBorderClass: 'border-teal-400/80 dark:border-teal-500/60',
+    dotClass: 'bg-teal-500 dark:bg-teal-400',
+    borderGlowClass: 'hover:border-teal-500',
+    accentColor: '#14b8a6',
+    minimapColor: '#14b8a6',
+  },
   '2024.1': {
     cohort: '2024.1',
-    rank: 0,
+    rank: 1,
     label: '2024.1',
     shortLabel: '24.1',
     generationTitle: 'Veteranos Fundadores',
     badgeClass:
-      'bg-amber-500/15 text-amber-800 border-amber-500/35 dark:text-amber-300 dark:border-amber-500/30',
+      'bg-amber-500/20 text-amber-900 border-amber-500/45 dark:bg-amber-500/20 dark:text-amber-200 dark:border-amber-400/40',
+    cardBgClass: 'bg-amber-50/95 dark:bg-amber-950/40',
+    cardBorderClass: 'border-amber-400/80 dark:border-amber-500/60',
     dotClass: 'bg-amber-500 dark:bg-amber-400',
-    borderGlowClass: 'hover:border-amber-500/50',
+    borderGlowClass: 'hover:border-amber-500',
     accentColor: '#f59e0b',
     minimapColor: '#f59e0b',
   },
   '2024.2': {
     cohort: '2024.2',
-    rank: 1,
+    rank: 2,
     label: '2024.2',
     shortLabel: '24.2',
     generationTitle: 'Veteranos 24.2',
     badgeClass:
-      'bg-violet-500/15 text-violet-800 border-violet-500/35 dark:text-violet-300 dark:border-violet-500/30',
+      'bg-violet-500/20 text-violet-900 border-violet-500/45 dark:bg-violet-500/20 dark:text-violet-200 dark:border-violet-400/40',
+    cardBgClass: 'bg-violet-50/95 dark:bg-violet-950/40',
+    cardBorderClass: 'border-violet-400/80 dark:border-violet-500/60',
     dotClass: 'bg-violet-500 dark:bg-violet-400',
-    borderGlowClass: 'hover:border-violet-500/50',
+    borderGlowClass: 'hover:border-violet-500',
     accentColor: '#8b5cf6',
     minimapColor: '#8b5cf6',
   },
   '2025.1': {
     cohort: '2025.1',
-    rank: 2,
+    rank: 3,
     label: '2025.1',
     shortLabel: '25.1',
     generationTitle: 'Geração P2 • 25.1',
     badgeClass:
-      'bg-emerald-500/15 text-emerald-800 border-emerald-500/35 dark:text-emerald-300 dark:border-emerald-500/30',
+      'bg-emerald-500/20 text-emerald-900 border-emerald-500/45 dark:bg-emerald-500/20 dark:text-emerald-200 dark:border-emerald-400/40',
+    cardBgClass: 'bg-emerald-50/95 dark:bg-emerald-950/40',
+    cardBorderClass: 'border-emerald-400/80 dark:border-emerald-500/60',
     dotClass: 'bg-emerald-500 dark:bg-emerald-400',
-    borderGlowClass: 'hover:border-emerald-500/50',
+    borderGlowClass: 'hover:border-emerald-500',
     accentColor: '#10b981',
     minimapColor: '#10b981',
   },
   '2025.2': {
     cohort: '2025.2',
-    rank: 3,
+    rank: 4,
     label: '2025.2',
     shortLabel: '25.2',
     generationTitle: 'Geração P2 • 25.2',
     badgeClass:
-      'bg-sky-500/15 text-sky-800 border-sky-500/35 dark:text-sky-300 dark:border-sky-500/30',
+      'bg-sky-500/20 text-sky-900 border-sky-500/45 dark:bg-sky-500/20 dark:text-sky-200 dark:border-sky-400/40',
+    cardBgClass: 'bg-sky-50/95 dark:bg-sky-950/40',
+    cardBorderClass: 'border-sky-400/80 dark:border-sky-500/60',
     dotClass: 'bg-sky-500 dark:bg-sky-400',
-    borderGlowClass: 'hover:border-sky-500/50',
+    borderGlowClass: 'hover:border-sky-500',
     accentColor: '#0ea5e9',
     minimapColor: '#0ea5e9',
   },
   '2026.1': {
     cohort: '2026.1',
-    rank: 4,
+    rank: 5,
     label: '2026.1',
     shortLabel: '26.1',
     generationTitle: 'Calouros 26.1',
     badgeClass:
-      'bg-rose-500/15 text-rose-800 border-rose-500/35 dark:text-rose-300 dark:border-rose-500/30',
+      'bg-rose-500/20 text-rose-900 border-rose-500/45 dark:bg-rose-500/20 dark:text-rose-200 dark:border-rose-400/40',
+    cardBgClass: 'bg-rose-50/95 dark:bg-rose-950/40',
+    cardBorderClass: 'border-rose-400/80 dark:border-rose-500/60',
     dotClass: 'bg-rose-500 dark:bg-rose-400',
-    borderGlowClass: 'hover:border-rose-500/50',
+    borderGlowClass: 'hover:border-rose-500',
     accentColor: '#f43f5e',
     minimapColor: '#f43f5e',
+  },
+  '2026.2': {
+    cohort: '2026.2',
+    rank: 6,
+    label: '2026.2',
+    shortLabel: '26.2',
+    generationTitle: 'Calouros 26.2',
+    badgeClass:
+      'bg-cyan-500/20 text-cyan-900 border-cyan-500/45 dark:bg-cyan-500/20 dark:text-cyan-200 dark:border-cyan-400/40',
+    cardBgClass: 'bg-cyan-50/95 dark:bg-cyan-950/40',
+    cardBorderClass: 'border-cyan-400/80 dark:border-cyan-500/60',
+    dotClass: 'bg-cyan-500 dark:bg-cyan-400',
+    borderGlowClass: 'hover:border-cyan-500',
+    accentColor: '#06b6d4',
+    minimapColor: '#06b6d4',
   },
 };
 
@@ -115,6 +159,8 @@ const FALLBACK_COHORT_THEME: CohortTheme = {
   generationTitle: 'Comunidade CDIA',
   badgeClass:
     'bg-slate-500/15 text-slate-700 border-slate-500/35 dark:text-slate-300 dark:border-slate-500/30',
+  cardBgClass: 'bg-white dark:bg-slate-900',
+  cardBorderClass: 'border-slate-300 dark:border-slate-800',
   dotClass: 'bg-slate-500 dark:bg-slate-400',
   borderGlowClass: 'hover:border-sky-500/50',
   accentColor: '#64748b',
@@ -122,8 +168,7 @@ const FALLBACK_COHORT_THEME: CohortTheme = {
 };
 
 /**
- * Returns the numeric rank index (0..4) for a cohort semester so generations
- * are strictly ordered from founders ('2024.1' = 0) down to freshmen ('2026.1' = 4).
+ * Returns the numeric rank index for a known cohort, including earlier historical cohorts.
  */
 export function getCohortRank(cohort: CohortSemester): number {
   const knownIndex = COHORT_ORDER.indexOf(cohort);
@@ -955,7 +1000,10 @@ export function buildStratifiedGraphLayout(
         ? dagreNode.y
         : dagreNode.x
       : 0;
-    secondaryCoord.set(node.id, Number.isFinite(initialSecondary) ? initialSecondary : 0);
+    secondaryCoord.set(
+      node.id,
+      Number.isFinite(initialSecondary) ? initialSecondary : 0
+    );
   }
 
   const secondarySpan = isHorizontal ? nodeHeight + nodeSep : nodeWidth + nodeSep;
@@ -1078,7 +1126,12 @@ export function buildStratifiedGraphLayout(
 
       const isSearchMatch =
         normalizedQuery.length > 0
-          ? [student.displayName, student.canonicalName, student.matricula ?? '', ...student.aliases]
+          ? [
+              student.displayName,
+              student.canonicalName,
+              student.matricula ?? '',
+              ...student.aliases,
+            ]
               .join(' ')
               .toLowerCase()
               .normalize('NFD')

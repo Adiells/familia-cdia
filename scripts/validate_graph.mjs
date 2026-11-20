@@ -43,12 +43,12 @@ while (queue.length) {
 }
 if (visited !== students.length) fail(`Graph contains a cycle (${students.length - visited} nodes remain)`);
 
-const expectedBySemester = ['2025.1', '2025.2', '2026.1'].map((semester) => raw[`sponsorships_${semester.replace('.', '_')}`]?.length ?? 0);
-if (expectedBySemester.some((count, index) => count !== [23, 25, 27][index])) {
-  fail(`Expected 23, 25, and 27 pairings by semester; found ${expectedBySemester.join(', ')}`);
+const expectedBySemester = ['2025.1', '2025.2', '2026.1', '2026.2'].map((semester) => raw[`sponsorships_${semester.replace('.', '_')}`]?.length ?? 0);
+if (expectedBySemester.some((count, index) => count !== [23, 25, 27, 19][index])) {
+  fail(`Expected 23, 25, 27, and 19 pairings by semester; found ${expectedBySemester.join(', ')}`);
 }
 const expected = expectedBySemester.reduce((sum, count) => sum + count, 0);
-if (expected !== 75) fail(`Expected 75 total pairings, found ${expected}`);
+if (expected !== 94) fail(`Expected 94 total pairings, found ${expected}`);
 if (edges.length !== expected * 2) fail(`Expected ${expected * 2} edges, found ${edges.length}`);
 const requiredPairs = [
   ['Adiel', 'Adiel Emilson'], ['Pedro Borraz Souto', 'Pedro Borrás Souto'],
@@ -64,6 +64,11 @@ for (const [a, b] of requiredPairs) {
 }
 const sophia = students.find(({ aliases }) => aliases.some((alias) => normalized(alias) === normalized('sophia de carvalho beltrão')));
 if (!sophia || sophia.canonicalName !== 'Sophia de Carvalho Beltrão') fail('Sophia name casing was not normalized');
+const joaoHenrique = students.filter(({ aliases }) => aliases.some((alias) =>
+  normalized(alias.replace(/\s*\([^)]*\)/g, '')) === normalized('João Henrique de Araújo Pereira')));
+if (joaoHenrique.length !== 1 || joaoHenrique[0].cohort !== '2021.2') {
+  fail('João Henrique de Araújo Pereira was not assigned to cohort 2021.2');
+}
 
 const expectedSigaaMatches = [
   ['20250019035', 'Davidys Cavalcante de Pontes'],
@@ -73,12 +78,32 @@ const expectedSigaaMatches = [
   ['20240011300', 'Thiago Mateus Marques Ribeiro'],
   ['20240011427', 'Yosef Joseph Goncalves do Nascimento'],
   ['20250018619', 'Artur Amorim Barbosa'],
+  ['20260011881', 'Sarah Ariel Bazante Alexandre'],
+  ['20240011060', 'Ana Beatriz Mota da Cruz'],
+  ['20250018637', 'Artur Rodrigues Nunes de Almeida'],
+  ['20260011765', 'Helio Jose Barbosa Junior'],
 ];
 for (const [matricula, name] of expectedSigaaMatches) {
   const matches = students.filter((student) => student.matricula === matricula);
   if (matches.length !== 1 || normalized(matches[0].canonicalName) !== normalized(name) || !matches[0].sigaaVerified) {
     fail(`Expected ${name} to resolve uniquely to SIGAA matrícula ${matricula}`);
   }
+}
+
+const source2026_2 = raw.sponsorships_2026_2_source;
+const ferinhas2026_2 = raw.sponsorships_2026_2;
+const matchedFerinhas = new Set();
+for (const row of ferinhas2026_2) {
+  const records = audit.filter((entry) => entry.sourceDoc === source2026_2 && entry.rawName === row.godchild);
+  if (records.length !== 1) fail(`Expected one audit match for 2026.2 ferinha ${row.godchild}`);
+  const student = students.find(({ id }) => id === records[0].resolvedStudentId);
+  if (!student?.sigaaVerified || !student.matricula || student.cohort !== '2026.2') {
+    fail(`2026.2 ferinha did not resolve to an active SIGAA student: ${row.godchild}`);
+  }
+  matchedFerinhas.add(student.id);
+}
+if (ferinhas2026_2.length !== 19 || matchedFerinhas.size !== 19) {
+  fail(`Expected 19 unique SIGAA-matched 2026.2 ferinhas; found ${matchedFerinhas.size}`);
 }
 
 const pdfOnlyNames = [
@@ -102,4 +127,4 @@ for (const alias of ['Samuel do Bem', 'Samuel Vicente']) {
   }
 }
 
-console.log(`Validation passed: ${students.length} unique students, ${edges.length} edges (${expected} pairings × 2), ${audit.length} audit entries, 7 required SIGAA matches plus confirmed Samuel identity, 3 unresolved PDF-only identities preserved, 100% edge integrity, acyclic graph.`);
+console.log(`Validation passed: ${students.length} unique students, ${edges.length} edges (${expected} pairings × 2), ${audit.length} audit entries, 11 required SIGAA matches plus confirmed Samuel identity, 19 SIGAA-matched 2026.2 ferinhas, 3 unresolved PDF-only identities preserved, 100% edge integrity, acyclic graph.`);
