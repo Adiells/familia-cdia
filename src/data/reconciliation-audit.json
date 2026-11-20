@@ -1,5 +1,626 @@
 [
   {
+    "rawName": "Maria Eloísa Silva de Sousa (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "maria-eloisa-silva-sousa",
+    "canonicalName": "Maria Eloisa Silva de Sousa",
+    "matricula": "20250018978",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Sofia Pontes (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "sofia-pontes-leitao-lima",
+    "canonicalName": "Sofia Pontes Leitao de Lima",
+    "matricula": "20240011285",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Costa (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "joao-vitor-pereira-costa",
+    "canonicalName": "Joao Vitor Pereira da Costa",
+    "matricula": "20240010680",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Maria Clara Caldas Fernandes (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "maria-clara-caldas-fernandes",
+    "canonicalName": "Maria Clara Caldas Fernandes",
+    "matricula": "20250018870",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Ana Beatriz (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "ana-beatriz-mota-cruz",
+    "canonicalName": "Ana Beatriz Mota da Cruz",
+    "matricula": "20240011060",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Samuel do Bem (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "samuel-bem",
+    "canonicalName": "Samuel do Bem",
+    "matricula": null,
+    "matchConfidence": "PDF_ONLY",
+    "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"
+  },
+  {
+    "rawName": "Luana Cazé (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "luana-caze",
+    "canonicalName": "Luana Cazé",
+    "matricula": null,
+    "matchConfidence": "PDF_ONLY",
+    "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"
+  },
+  {
+    "rawName": "Sarah Calixto (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "sarah-fernanda-calixto-araujo",
+    "canonicalName": "Sarah Fernanda Calixto de Araujo",
+    "matricula": "20240011267",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Pedro Kruta (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "pedro-henrique-kruta-araujo-bispo",
+    "canonicalName": "Pedro Henrique Kruta de Araujo Bispo",
+    "matricula": "20240011187",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Nicole Costa e Silva (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "nicole-costa-silva",
+    "canonicalName": "Nicole Costa e Silva",
+    "matricula": "20250018913",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Ana Beatriz (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "ana-beatriz-mota-cruz",
+    "canonicalName": "Ana Beatriz Mota da Cruz",
+    "matricula": "20240011060",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Matheus Nunes (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "matheus-silva-nunes",
+    "canonicalName": "Matheus da Silva Nunes",
+    "matricula": "20240011024",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Élia Dutra Sena (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "elia-dutra-sena",
+    "canonicalName": "Elia Dutra Sena",
+    "matricula": "20250018717",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Sofia Pontes (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "sofia-pontes-leitao-lima",
+    "canonicalName": "Sofia Pontes Leitao de Lima",
+    "matricula": "20240011285",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Thiago Bezerra (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "thiago-henrique-meneses-bezerra",
+    "canonicalName": "Thiago Henrique Menêses Bezerra",
+    "matricula": "20240010742",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Liliana (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "liliana",
+    "canonicalName": "Liliana",
+    "matricula": null,
+    "matchConfidence": "PDF_ONLY",
+    "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"
+  },
+  {
+    "rawName": "Sarah Calixto (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "sarah-fernanda-calixto-araujo",
+    "canonicalName": "Sarah Fernanda Calixto de Araujo",
+    "matricula": "20240011267",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Erick Batista (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "erick-batista-silva",
+    "canonicalName": "Erick Batista da Silva",
+    "matricula": "20240010967",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Brenda Letícia (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "brenda-leticia-nascimento-dias",
+    "canonicalName": "Brenda Leticia do Nascimento Dias",
+    "matricula": "20250105008",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Thiago Bezerra (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "thiago-henrique-meneses-bezerra",
+    "canonicalName": "Thiago Henrique Menêses Bezerra",
+    "matricula": "20240010742",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Nathan David Figueiredo Barros (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "nathan-david-figueiredo-barros",
+    "canonicalName": "Nathan David Figueiredo Barros",
+    "matricula": "20240011507",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Artur Amorim Barbosa (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "artur-amorim-barbosa",
+    "canonicalName": "Artur Amorim Barbosa",
+    "matricula": "20250018619",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Luiz Carlos (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "luiz-carlos-veloso-araujo-lima-neto",
+    "canonicalName": "Luiz Carlos Veloso de Araujo Lima Neto",
+    "matricula": "20240102334",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Anne Fernandes (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "anne-fernandes-costa-oliveira",
+    "canonicalName": "Anne Fernandes da Costa Oliveira",
+    "matricula": "20240010789",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Carlos Adauto de Sá Batista (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "carlos-adauto-sa-batista",
+    "canonicalName": "Carlos Adauto de Sá Batista",
+    "matricula": "20250018655",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Thiago Mateus Marques Ribeiro (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "thiago-mateus-marques-ribeiro",
+    "canonicalName": "Thiago Mateus Marques Ribeiro",
+    "matricula": "20240011300",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Igor Pessoa (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "igor-melo-pessoa",
+    "canonicalName": "Igor de Melo Pessoa",
+    "matricula": "20240010920",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Alonso da Costa Sousa Araújo (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "alonso-costa-sousa-araujo",
+    "canonicalName": "Alonso da Costa Sousa Araujo",
+    "matricula": "20250018996",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Diego de Sousa Maciel (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "diego-sousa-maciel",
+    "canonicalName": "Diego de Sousa Maciel",
+    "matricula": "20240095365",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Samuel do Bem (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "samuel-bem",
+    "canonicalName": "Samuel do Bem",
+    "matricula": null,
+    "matchConfidence": "PDF_ONLY",
+    "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"
+  },
+  {
+    "rawName": "Lucas Aprigio Santos de Oliveira (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "lucas-aprigio-santos-oliveira",
+    "canonicalName": "Lucas Aprigio Santos de Oliveira",
+    "matricula": "20250019231",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Yosef Joseph Goncalves do Nascimento (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "yosef-joseph-goncalves-nascimento",
+    "canonicalName": "Yosef Joseph Goncalves do Nascimento",
+    "matricula": "20240011427",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Samuel do Bem (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "samuel-bem",
+    "canonicalName": "Samuel do Bem",
+    "matricula": null,
+    "matchConfidence": "PDF_ONLY",
+    "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"
+  },
+  {
+    "rawName": "Adiel Emilson (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "adiel-emilson-silva",
+    "canonicalName": "Adiel Emilson da Silva",
+    "matricula": "20250019830",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Meireles (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "joao-victor-souza-lucena-meireles",
+    "canonicalName": "Joao Victor de Souza Lucena Meireles",
+    "matricula": "20240102290",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Igor Pessoa (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "igor-melo-pessoa",
+    "canonicalName": "Igor de Melo Pessoa",
+    "matricula": "20240010920",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Eduardo de Oliveira Silva (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "eduardo-oliveira-silva",
+    "canonicalName": "Eduardo de Oliveira Silva",
+    "matricula": "20250018691",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Jonatas Miguel (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "jonatas-miguel-sousa-soares",
+    "canonicalName": "Jonatas Miguel de Sousa Soares",
+    "matricula": "20240102316",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Pedro Kruta (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "pedro-henrique-kruta-araujo-bispo",
+    "canonicalName": "Pedro Henrique Kruta de Araujo Bispo",
+    "matricula": "20240011187",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Davi Cavalcante Pereira (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "davi-cavalcante-pereira",
+    "canonicalName": "Davi Cavalcante Pereira",
+    "matricula": "20250018673",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Cauã Lacerda (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "caua-henrique-formiga-lacerda",
+    "canonicalName": "Caua Henrique Formiga de Lacerda",
+    "matricula": "20240011089",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Anne Fernandes (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "anne-fernandes-costa-oliveira",
+    "canonicalName": "Anne Fernandes da Costa Oliveira",
+    "matricula": "20240010789",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Arthur Medeiros do Nascimento (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "arthur-medeiros-nascimento",
+    "canonicalName": "Arthur Medeiros do Nascimento",
+    "matricula": "20250019017",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Nathan David Figueiredo Barros (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "nathan-david-figueiredo-barros",
+    "canonicalName": "Nathan David Figueiredo Barros",
+    "matricula": "20240011507",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Thiago Bezerra (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "thiago-henrique-meneses-bezerra",
+    "canonicalName": "Thiago Henrique Menêses Bezerra",
+    "matricula": "20240010742",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Davidys Cavalcante de Pontes (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "davidys-cavalcante-pontes",
+    "canonicalName": "Davidys Cavalcante de Pontes",
+    "matricula": "20250019035",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Thiago Mateus Marques Ribeiro (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "thiago-mateus-marques-ribeiro",
+    "canonicalName": "Thiago Mateus Marques Ribeiro",
+    "matricula": "20240011300",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Costa (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "joao-vitor-pereira-costa",
+    "canonicalName": "Joao Vitor Pereira da Costa",
+    "matricula": "20240010680",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Ilay Gonçalves Vieira Alves (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "ilay-goncalves-vieira-alves",
+    "canonicalName": "Ilay Gonçalves Vieira Alves",
+    "matricula": "20250019170",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Meireles (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "joao-victor-souza-lucena-meireles",
+    "canonicalName": "Joao Victor de Souza Lucena Meireles",
+    "matricula": "20240102290",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Ana Beatriz (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "ana-beatriz-mota-cruz",
+    "canonicalName": "Ana Beatriz Mota da Cruz",
+    "matricula": "20240011060",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Kaio Vitor Santos de Lima (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "kaio-vitor-santos-lima",
+    "canonicalName": "Kaio Vitor Santos de Lima",
+    "matricula": "20250019634",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Yosef Joseph Goncalves do Nascimento (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "yosef-joseph-goncalves-nascimento",
+    "canonicalName": "Yosef Joseph Goncalves do Nascimento",
+    "matricula": "20240011427",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Matheus Nunes (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "matheus-silva-nunes",
+    "canonicalName": "Matheus da Silva Nunes",
+    "matricula": "20240011024",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Elton de Assis Guedes Neto (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "elton-assis-guedes-neto",
+    "canonicalName": "Elton de Assis Guedes Neto",
+    "matricula": "20250019198",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Jonatas Miguel (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "jonatas-miguel-sousa-soares",
+    "canonicalName": "Jonatas Miguel de Sousa Soares",
+    "matricula": "20240102316",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Bia Barreto (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "bia-barreto",
+    "canonicalName": "Bia Barreto",
+    "matricula": null,
+    "matchConfidence": "PDF_ONLY",
+    "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"
+  },
+  {
+    "rawName": "Luis Fernando de Araújo Oliveira (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "luis-fernando-araujo-oliveira",
+    "canonicalName": "Luis Fernando de Araujo Oliveira",
+    "matricula": "20250019090",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Cauã Lacerda (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "caua-henrique-formiga-lacerda",
+    "canonicalName": "Caua Henrique Formiga de Lacerda",
+    "matricula": "20240011089",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Igor Pessoa (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "igor-melo-pessoa",
+    "canonicalName": "Igor de Melo Pessoa",
+    "matricula": "20240010920",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Ricardo Morais Pistori Nascimento (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "ricardo-morais-pistori-nascimento",
+    "canonicalName": "Ricardo Morais Pistori Nascimento",
+    "matricula": "20250018950",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Luiz Carlos (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "luiz-carlos-veloso-araujo-lima-neto",
+    "canonicalName": "Luiz Carlos Veloso de Araujo Lima Neto",
+    "matricula": "20240102334",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Erick Batista (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "erick-batista-silva",
+    "canonicalName": "Erick Batista da Silva",
+    "matricula": "20240010967",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Pedro Lucas Moreira Rolim (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "pedro-lucas-moreira-rolim",
+    "canonicalName": "Pedro Lucas Moreira Rolim",
+    "matricula": "20250019895",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Diego de Sousa Maciel (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "diego-sousa-maciel",
+    "canonicalName": "Diego de Sousa Maciel",
+    "matricula": "20240095365",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Pedro Kruta (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "pedro-henrique-kruta-araujo-bispo",
+    "canonicalName": "Pedro Henrique Kruta de Araujo Bispo",
+    "matricula": "20240011187",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Rafael Gadelha de Araújo (2025.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "joao-rafael-gadelha-araujo",
+    "canonicalName": "Joao Rafael Gadelha de Araujo",
+    "matricula": "20250019213",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Ana Beatriz (2024.2)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "ana-beatriz-mota-cruz",
+    "canonicalName": "Ana Beatriz Mota da Cruz",
+    "matricula": "20240011060",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Anne Fernandes (2024.1)",
+    "sourceDoc": "user-provided-2025-1-list",
+    "resolvedStudentId": "anne-fernandes-costa-oliveira",
+    "canonicalName": "Anne Fernandes da Costa Oliveira",
+    "matricula": "20240010789",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
     "rawName": "Ana Luiza (2025.2)",
     "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
     "resolvedStudentId": "ana-luiza-gomes-araujo",

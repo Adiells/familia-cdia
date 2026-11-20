@@ -144,17 +144,18 @@ def main():
             person["notes"] = "; ".join(dict.fromkeys(filter(None, [person.get("notes"), *notes])))
         return person, name, confidence, official
 
-    sources = [("sponsorships_2025_2", "2025.2", "pdf_2025_2_source"),
+    sources = [("sponsorships_2025_1", "2025.1", "sponsorships_2025_1_source"),
+               ("sponsorships_2025_2", "2025.2", "pdf_2025_2_source"),
                ("sponsorships_2026_1", "2026.1", "pdf_2026_1_source")]
     for key, semester, source_key in sources:
         source = raw[source_key]
         for row in raw[key]:
-            # Semester tags on 2025.2 source rows are authoritative. The 2026.1
-            # roster roles identify the incoming cohort and its previous P2 class.
+            # Semester tags are authoritative. The incoming cohort and role
+            # determine fallbacks when a raw row omits a semester tag.
             child, child_name, child_conf, child_official = resolve(row["godchild"], semester)
-            p2_fallback = "2025.1" if semester == "2025.2" else "2025.2"
+            p2_fallback = {"2025.1": "2024.2", "2025.2": "2025.1", "2026.1": "2025.2"}[semester]
             p2, p2_name, p2_conf, p2_official = resolve(row["p2"], p2_fallback)
-            veteran_fallback = "2024.1" if semester == "2025.2" else "2025.1"
+            veteran_fallback = {"2025.1": "2024.1", "2025.2": "2024.1", "2026.1": "2025.1"}[semester]
             veteran, veteran_name, veteran_conf, veteran_official = resolve(row["veterano"], veteran_fallback)
             for raw_name, person, resolved_name, confidence, official in [
                 (row["godchild"], child, child_name, child_conf, child_official),

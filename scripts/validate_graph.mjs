@@ -43,7 +43,12 @@ while (queue.length) {
 }
 if (visited !== students.length) fail(`Graph contains a cycle (${students.length - visited} nodes remain)`);
 
-const expected = raw.sponsorships_2025_2.length + raw.sponsorships_2026_1.length;
+const expectedBySemester = ['2025.1', '2025.2', '2026.1'].map((semester) => raw[`sponsorships_${semester.replace('.', '_')}`]?.length ?? 0);
+if (expectedBySemester.some((count, index) => count !== [23, 25, 27][index])) {
+  fail(`Expected 23, 25, and 27 pairings by semester; found ${expectedBySemester.join(', ')}`);
+}
+const expected = expectedBySemester.reduce((sum, count) => sum + count, 0);
+if (expected !== 75) fail(`Expected 75 total pairings, found ${expected}`);
 if (edges.length !== expected * 2) fail(`Expected ${expected * 2} edges, found ${edges.length}`);
 const requiredPairs = [
   ['Adiel', 'Adiel Emilson'], ['Pedro Borraz Souto', 'Pedro Borrás Souto'],
@@ -60,4 +65,32 @@ for (const [a, b] of requiredPairs) {
 const sophia = students.find(({ aliases }) => aliases.some((alias) => normalized(alias) === normalized('sophia de carvalho beltrão')));
 if (!sophia || sophia.canonicalName !== 'Sophia de Carvalho Beltrão') fail('Sophia name casing was not normalized');
 
-console.log(`Validation passed: ${students.length} unique students, ${edges.length} edges (${expected} pairings × 2), ${audit.length} audit entries, 100% edge integrity, acyclic graph.`);
+const expectedSigaaMatches = [
+  ['20250019035', 'Davidys Cavalcante de Pontes'],
+  ['20250019231', 'Lucas Aprigio Santos de Oliveira'],
+  ['20240095365', 'Diego de Sousa Maciel'],
+  ['20240011507', 'Nathan David Figueiredo Barros'],
+  ['20240011300', 'Thiago Mateus Marques Ribeiro'],
+  ['20240011427', 'Yosef Joseph Goncalves do Nascimento'],
+  ['20250018619', 'Artur Amorim Barbosa'],
+];
+for (const [matricula, name] of expectedSigaaMatches) {
+  const matches = students.filter((student) => student.matricula === matricula);
+  if (matches.length !== 1 || normalized(matches[0].canonicalName) !== normalized(name) || !matches[0].sigaaVerified) {
+    fail(`Expected ${name} to resolve uniquely to SIGAA matrícula ${matricula}`);
+  }
+}
+
+const pdfOnlyNames = [
+  ['Bia Barreto', '2024.1'], ['Luana Cazé', '2025.1'],
+  ['Liliana', '2025.1'], ['Samuel do Bem', '2024.1'],
+];
+for (const [name, cohort] of pdfOnlyNames) {
+  const matches = students.filter((student) => student.aliases.some((alias) =>
+    normalized(alias.replace(/\s*\([^)]*\)/g, '')) === normalized(name)));
+  if (matches.length !== 1 || matches[0].cohort !== cohort || matches[0].sigaaVerified || matches[0].matricula !== null) {
+    fail(`Expected ${name} (${cohort}) to remain a single unresolved PDF-only student`);
+  }
+}
+
+console.log(`Validation passed: ${students.length} unique students, ${edges.length} edges (${expected} pairings × 2), ${audit.length} audit entries, 7 required SIGAA matches, 4 unresolved PDF-only identities preserved, 100% edge integrity, acyclic graph.`);
