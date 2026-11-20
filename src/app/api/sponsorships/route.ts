@@ -11,7 +11,7 @@ const dataDirectory = path.join(process.cwd(), 'src', 'data');
 const studentsPath = path.join(dataDirectory, 'students.json');
 const sponsorshipsPath = path.join(dataDirectory, 'sponsorships.json');
 const sigaaPath = path.join(dataDirectory, 'sigaa-students.json');
-const allowedSemesters = new Set(['2024.1', '2024.2', '2025.1', '2025.2', '2026.1']);
+const semesterPattern = /^20\d{2}\.[12]$/;
 let writeQueue: Promise<unknown> = Promise.resolve();
 
 type TrioInput = {
@@ -125,11 +125,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Cada apadrinhamento precisa conter calouro(a), padrinhos/madrinhas e semestre.' }, { status: 400 });
     }
     const cleanCalouroMatricula = calouroMatricula.trim();
-    if (!allowedSemesters.has(semester)) return NextResponse.json({ error: `Semestre inválido: ${semester}.` }, { status: 400 });
+    const cleanSemester = semester.trim();
+    if (!semesterPattern.test(cleanSemester)) return NextResponse.json({ error: `Semestre inválido: ${semester}. Use o formato AAAA.1 ou AAAA.2 (ex: 2026.2).` }, { status: 400 });
     if (new Set([cleanCalouroMatricula, ...godparentMatriculas]).size !== godparentMatriculas.length + 1) {
       return NextResponse.json({ error: 'Calouro(a) e padrinhos/madrinhas precisam ser pessoas distintas.' }, { status: 400 });
     }
-    parsed.push({ calouroMatricula: cleanCalouroMatricula, godparentMatriculas, semester });
+    parsed.push({ calouroMatricula: cleanCalouroMatricula, godparentMatriculas, semester: cleanSemester });
   }
 
   try {
@@ -156,12 +157,13 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: `Nome SIGAA ambíguo para matrícula ${matricula}.` }, { status: 409 });
           }
           if (!student) {
+            const isCalouro = matricula === trio.calouroMatricula;
             student = {
               id: `sigaa-${matricula}`,
               canonicalName: official.name,
               displayName: official.name,
               matricula,
-              cohort: `${official.inferredCohort ?? matricula.slice(0, 4)}.1`,
+              cohort: isCalouro ? trio.semester : `${official.inferredCohort ?? matricula.slice(0, 4)}.1`,
               aliases: [],
               sigaaVerified: true,
               matchConfidence: 'EXACT',

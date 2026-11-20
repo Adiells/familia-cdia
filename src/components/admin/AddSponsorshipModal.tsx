@@ -16,7 +16,7 @@ const STORAGE_KEY = 'familia-cdia:user-additions:v1';
 type StudentAddition = Pick<StudentNodeData, 'id' | 'canonicalName' | 'displayName' | 'matricula' | 'cohort' | 'aliases' | 'sigaaVerified' | 'matchConfidence'>;
 type StoredAdditions = { students: StudentAddition[]; sponsorships: SponsorshipEdgeData[] };
 type Draft = { calouro: string; godparents: string[]; semester: string };
-const emptyDraft = (): Draft => ({ calouro: '', godparents: [''], semester: '2026.1' });
+const emptyDraft = (): Draft => ({ calouro: '', godparents: [''], semester: '2026.2' });
 
 export interface AddSponsorshipModalProps {
   open: boolean;
@@ -189,7 +189,7 @@ export function AddSponsorshipModal({ open, onOpenChange, students = defaultStud
         const resolved = records.filter((record): record is SigaaStudentRecord => Boolean(record));
         const uniqueMatriculas = new Set(resolved.map((record) => record.matricula));
         if (!childName || godparentNames.length < 1 || resolved.length !== names.length || uniqueMatriculas.size !== resolved.length) errors.push(`Linha ${index + 2}: informe calouro(a) e ao menos um padrinho/madrinha SIGAA único.`);
-        else resolvedRows.push({ child: resolved[0], godparents: resolved.slice(1), semester: get('semester', 'semestre') || '2026.1' });
+        else resolvedRows.push({ child: resolved[0], godparents: resolved.slice(1), semester: get('semester', 'semestre') || '2026.2' });
       });
       if (resolvedRows.length) {
         const count = await addRows(resolvedRows);
