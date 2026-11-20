@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:pages": "STATIC_EXPORT=true node scripts/build-pages.mjs",
     "start": "next start",
+    "dev:backend": "node backend/server.mjs",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit"
   },

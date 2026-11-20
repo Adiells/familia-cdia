@@ -1,0 +1,8 @@
+{
+  "name": "familia-cdia-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}

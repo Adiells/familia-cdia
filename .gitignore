@@ -6,6 +6,9 @@
 # next.js
 /.next/
 /.maestri/
+/STATUS.md
+/src/data/sigaa-raw-table.json
+src/app/api/sponsorships/route.ts.static-export-*
 /out/
 
 # production

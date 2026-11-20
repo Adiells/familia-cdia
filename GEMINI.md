@@ -1,6 +1,6 @@
 # Workspace Rules
 
-Follow the architectural rules, data contracts, and multi-agent file ownership boundaries defined in @[AGENTS.md](./AGENTS.md).
+Follow the architectural rules, data contracts, and verification workflows defined in @[AGENTS.md](./AGENTS.md).
 
 ## Domain Skills
 

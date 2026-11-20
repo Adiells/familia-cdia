@@ -4,37 +4,36 @@ Academic genealogy and sponsorship tree platform for the Data Science and Artifi
 
 ## Architecture and Stack
 
-- **Framework**: Next.js (App Router), TypeScript (`strict: true`), React.
-- **Styling**: Tailwind CSS, `lucide-react`, `clsx`, `tailwind-merge`. Visual language modeled after [Aquario UFPB](https://github.com/aquario-ufpb/aquario).
-- **Graph Engine**: `@xyflow/react` and `@dagrejs/dagre` for stratified Directed Acyclic Graph (DAG) rendering across cohorts (`2024.1`, `2024.2`, `2025.1`, `2025.2`, `2026.1`).
-- **Data Pipeline**: Python scripts in `scripts/` reconcile raw PDF sponsorship pairings against official active student records from SIGAA UFPB (`id=14289031`).
+- **Frontend**: Next.js (App Router, static export support for GitHub Pages), TypeScript (`strict: true`), React.
+- **Styling**: Tailwind CSS v4, `lucide-react`, `clsx`, `tailwind-merge`. Visual language modeled after [Aquario UFPB](https://github.com/aquario-ufpb/aquario), with light mode default and dark mode support.
+- **Graph Engine**: `@xyflow/react` and `@dagrejs/dagre` for cohort-layered Directed Acyclic Graph (DAG) rendering with cubic Bezier edge fan-out.
+- **Backend API**: Zero-dependency Node.js HTTP service in `backend/server.mjs` containerized via `backend/Dockerfile` for Google Cloud Run (`GET /health`, `GET /api/sponsorships`, `POST /api/sponsorships`).
+- **Data Pipeline**: Python scripts in `scripts/` reconcile sponsorship records against official active student records from SIGAA UFPB (`id=14289031`).
 
 ## Repository Layout
 
-- `AGENTS.md` / `GEMINI.md`: Workspace rules and multi-agent ownership boundaries.
-- `.agents/skills/`: Domain-specific procedural skills (`sigaa-entity-resolution`, `aquario-ui-design`, `cdia-tree-engine`).
-- `scripts/`: Data scraping (`scrape_sigaa.py`), entity resolution (`reconcile_data.py`), and graph validation (`validate_graph.mjs`).
-- `src/data/`: Shared TypeScript interfaces (`types.ts`), raw PDF transcriptions (`raw-pdf-sponsorships.json`), and canonical JSON outputs (`sigaa-students.json`, `students.json`, `sponsorships.json`, `reconciliation-audit.json`).
-- `src/lib/`: Graph layout and lineage traversal (`graph-layout.ts`), fuzzy accent-insensitive search (`search.ts`).
-- `src/components/layout/`: Aquario-style header, stats bar, and theme shell.
-- `src/components/tree/`: React Flow canvas, custom student nodes, P2/Veterano edges, and filter controls.
-- `src/components/student/`: Student profile drawer showing lineage, godparents, godchildren, and SIGAA status.
+- `AGENTS.md` / `GEMINI.md`: Repository architecture, coding conventions, and data contracts.
+- `.agents/skills/`: Domain skills (`sigaa-entity-resolution`, `aquario-ui-design`, `cdia-tree-engine`).
+- `backend/`: Standalone Google Cloud Run API service (`server.mjs`, `Dockerfile`, `package.json`).
+- `scripts/`: SIGAA data parser (`scrape_sigaa.py`), entity resolution (`reconcile_data.py`), graph validator (`validate_graph.mjs`), and GitHub Pages build helper (`build-pages.mjs`).
+- `src/data/`: Shared TypeScript interfaces (`types.ts`), raw sponsorship inputs (`raw-pdf-sponsorships.json`), and canonical JSON datasets (`sigaa-students.json`, `students.json`, `sponsorships.json`, `reconciliation-audit.json`).
+- `src/lib/`: Stratified DAG layout and lineage traversal (`graph-layout.ts`), accent-insensitive fuzzy search (`search.ts`), and API client configuration (`api.ts`).
+- `src/components/layout/`: Header, stats bar, and theme toggle.
+- `src/components/tree/`: React Flow canvas, student node cards, Bezier sponsorship edges, and toolbar controls.
+- `src/components/student/`: Student profile drawer and semantic cohort badges.
 - `src/components/search/`: Command palette (`Cmd+K` / `Ctrl+K`) search modal.
-- `src/components/admin/`: Sponsorship ingestion modal with SIGAA autocomplete and reconciliation audit table.
+- `src/components/admin/`: Sponsorship ingestion modal supporting `1+` godparents via SIGAA autocomplete or CSV/JSON batch import.
 
 ## Shared Data Contract
 
-All components and scripts must conform to the types exported in `src/data/types.ts`:
+All components, scripts, and API endpoints must conform to `src/data/types.ts`:
 - `StudentNodeData`: Canonical student entity (`id`, `canonicalName`, `displayName`, `matricula`, `cohort`, `aliases`, `sigaaVerified`, `matchConfidence`).
-- `SponsorshipEdgeData`: Directed sponsorship edge (`id`, `godparentId`, `godchildId`, `role`: `'P2' | 'VETERANO'`, `semester`, `sourceDoc`).
-- `ReconciliationAuditEntry`: Audit record mapping raw PDF names to canonical student IDs.
+- `SponsorshipEdgeData`: Directed sponsorship edge (`id`, `godparentId`, `godchildId`, `role`, `semester`, `sourceDoc`).
 
-## Maestri Multi-Agent Ownership Rules
+## Verification Commands
 
-1. Run `maestri list` before delegating or reading shared resources (`familia-cdia-spec`, `SIGAA Portal`).
-2. Respect file ownership boundaries to prevent merge and write conflicts:
-   - **Khipu** (`Codex` - Data & SIGAA Engineer): `scripts/*` and `src/data/*.json`.
-   - **Coral** (`Antigravity` - Aquario UI Architect): Project config, `src/app/*`, `src/components/layout/*`, `src/components/student/*`.
-   - **Yggdrasil** (`Antigravity` - Tree & Graph Specialist): `src/lib/graph-layout.ts`, `src/components/tree/*`.
-   - **Aegis** (`Codex` - Search Admin & QA Engineer): `src/lib/search.ts`, `src/components/search/*`, `src/components/admin/*`.
-3. Report task completion back to the orchestrator with `maestri ask "Antigravity" "<concise summary>"`.
+- `npm run typecheck`: Run TypeScript compiler validation.
+- `npm run lint`: Run ESLint across `src/`.
+- `node scripts/validate_graph.mjs`: Validate zero duplicate student IDs, 100% edge referential integrity, and DAG acyclicity.
+- `npm run build`: Build static frontend bundle.
+- `npm run build:pages`: Build GitHub Pages static export into `out/`.

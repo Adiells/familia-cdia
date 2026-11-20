@@ -10,27 +10,29 @@ Design tokens and layout specifications modeled after [Aquario UFPB](https://www
 
 ## 1. Visual Tokens
 
-- **Primary Surface (Dark Default)**: `bg-slate-950` (`#020617`) with subtle top radial highlight (`from-sky-500/10 via-cyan-500/5 to-transparent`).
-- **Cards and Panels**: `bg-slate-900/75 backdrop-blur-md border border-slate-800/80 hover:border-sky-500/40 transition-colors`.
-- **Primary Accent**: Sky/Cyan (`sky-400`, `cyan-400`, `blue-500`) used for active states and `P2` sponsorship links.
-- **Secondary Accent**: Violet/Amber (`violet-400`, `amber-400`) used for `VETERANO` sponsorship links and founding cohorts.
+- **Primary Surface (Light Default)**: `bg-slate-50` (`#f8fafc`) with white cards (`bg-white border-slate-200`) and subtle sky/cyan top glow.
+- **Dark Mode Surface**: `bg-slate-950` (`#020617`) with `bg-slate-900` cards and `border-slate-800`.
+- **Primary Accent**: Sky/Cyan (`sky-600` in light mode, `sky-400` in dark mode) and Emerald (`emerald-500`) for active lineage paths.
 
 ## 2. Cohort Badge Palette
 
 Use consistent semantic styling for each entry semester across tree nodes, search results, and profile drawers:
-- `2024.1`: `bg-amber-500/15 text-amber-300 border-amber-500/30`
-- `2024.2`: `bg-violet-500/15 text-violet-300 border-violet-500/30`
-- `2025.1`: `bg-emerald-500/15 text-emerald-300 border-emerald-500/30`
-- `2025.2`: `bg-sky-500/15 text-sky-300 border-sky-500/30`
-- `2026.1`: `bg-rose-500/15 text-rose-300 border-rose-500/30`
+- `2021.2`: Teal (`cohort-2021-2`)
+- `2022.1`: Fuchsia (`cohort-2022-1`)
+- `2024.1`: Amber (`cohort-2024-1`)
+- `2024.2`: Violet (`cohort-2024-2`)
+- `2025.1`: Emerald (`cohort-2025-1`)
+- `2025.2`: Sky (`cohort-2025-2`)
+- `2026.1`: Rose (`cohort-2026-1`)
+- `2026.2`: Indigo (`cohort-2026-2`)
 
 ## 3. Core Shell Components
 
 1. **Sticky Header (`src/components/layout/Header.tsx`)**:
    - Brand title `Família CDIA` with `CI • UFPB` badge.
-   - Navigation tabs: Interactive Tree, Lineage Explorer, SIGAA Directory & Audit.
-   - Global search trigger (`Cmd+K` / `Ctrl+K`) and `+ Novo Apadrinhamento` action button.
+   - Navigation tabs: Interactive Tree, Lineage Explorer, Student Directory.
+   - Global search trigger (`Cmd+K` / `Ctrl+K`), theme toggle, and `+ Novo Apadrinhamento` button.
 2. **Stats Bar (`src/components/layout/StatsBar.tsx`)**:
-   - Displays total students, SIGAA verification rate, total P2 and Veterano links, and active cohorts.
+   - Responsive metric cards and horizontally scrollable cohort filter pills.
 3. **Student Profile Drawer (`src/components/student/StudentDrawer.tsx`)**:
-   - Displays canonical SIGAA name, `matricula`, verification badge, entry cohort, P2 godparent, Veterano godparent, direct godchildren, total lineage descendants, unified PDF aliases, and a button to isolate the student's lineage on the tree.
+   - Displays student name, `matricula`, entry cohort badge, unified godparents list, direct godchildren, total lineage descendants, and a button to isolate the student's lineage on the tree.

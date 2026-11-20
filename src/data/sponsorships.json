@@ -1502,5 +1502,45 @@
     "role": "VETERANO",
     "semester": "2026.2",
     "sourceDoc": "user-uploaded-2026-2-image"
+  },
+  {
+    "godparentId": "adiel-emilson-silva",
+    "godchildId": "sigaa-20260151819",
+    "role": "P2",
+    "id": "2026.2-p2-adiel-emilson-silva-sigaa-20260151819-1e08b955",
+    "semester": "2026.2",
+    "sourceDoc": "user-added"
+  },
+  {
+    "godparentId": "matheus-fernandes-santos",
+    "godchildId": "sigaa-20260011845",
+    "role": "P2",
+    "id": "2026.2-p2-matheus-fernandes-santos-sigaa-20260011845-02161484",
+    "semester": "2026.2",
+    "sourceDoc": "user-added"
+  },
+  {
+    "godparentId": "paulo-henrique-nunes-fernandes-silva",
+    "godchildId": "sigaa-20260011845",
+    "role": "VETERANO",
+    "id": "2026.2-veterano-paulo-henrique-nunes-fernandes-silva-sigaa-20260011845-076d2f02",
+    "semester": "2026.2",
+    "sourceDoc": "user-added"
+  },
+  {
+    "godparentId": "matheus-fernandes-santos",
+    "godchildId": "sigaa-20260011700",
+    "role": "P2",
+    "id": "2026.2-p2-matheus-fernandes-santos-sigaa-20260011700-a4cb66c2",
+    "semester": "2026.2",
+    "sourceDoc": "user-added"
+  },
+  {
+    "godparentId": "paulo-henrique-nunes-fernandes-silva",
+    "godchildId": "sigaa-20260011700",
+    "role": "VETERANO",
+    "id": "2026.2-veterano-paulo-henrique-nunes-fernandes-silva-sigaa-20260011700-b7ce4244",
+    "semester": "2026.2",
+    "sourceDoc": "user-added"
   }
 ]
