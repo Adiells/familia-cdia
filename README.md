@@ -1,6 +1,6 @@
 # Família CDIA — Árvore de Apadrinhamento (CI/UFPB)
 
-Plataforma open-source de genealogia acadêmica e árvore interativa de apadrinhamento do curso de **Ciência de Dados e Inteligência Artificial (CDIA)** do Centro de Informática (CI) da **Universidade Federal da Paraíba (UFPB)**, com identidade visual inspirada no projeto [Aquário UFPB](https://github.com/aquario-ufpb/aquario).
+Plataforma open-source de genealogia acadêmica e visualização interativa da árvore de apadrinhamento do curso de **Ciência de Dados e Inteligência Artificial (CDIA)** do Centro de Informática (CI) da **Universidade Federal da Paraíba (UFPB)**.
 
 ---
 
@@ -8,7 +8,7 @@ Plataforma open-source de genealogia acadêmica e árvore interativa de apadrinh
 
 - **Árvore Genealógica Estratificada por Período (`@xyflow/react` + `@dagrejs/dagre`)**:
   - Visualização interativa em camadas por semestre de ingresso (`2021.2` a `2026.2`) com minimização automática de cruzamentos e roteamento em curvas Bezier em leque.
-  - **Destaque e Isolamento de Linhagem**: Ao clicar em qualquer estudante, o grafo destaca instantaneamente toda a sua árvore de ancestrais (padrinhos, avós acadêmicos) em **verde esmeralda** e seus descendentes (afilhados, netos acadêmicos) em **azul céu**, permitindo também isolar apenas a sub-árvore da família.
+  - **Destaque e Isolamento de Linhagem**: Ao clicar em qualquer estudante, o grafo destaca toda a sua árvore de ancestrais (padrinhos, avós acadêmicos) em **verde esmeralda** e seus descendentes (afilhados, netos acadêmicos) em **azul céu**, permitindo também isolar apenas a sub-árvore da família.
 - **Explorador de Linhagens & Ranking Genealógico**:
   - Painel comparativo das maiores famílias acadêmicas do curso, contabilizando descendentes totais, afilhados diretos e ancestrais.
 - **Busca Global Instantânea (`⌘K` / `Ctrl+K`)**:
@@ -33,18 +33,51 @@ Plataforma open-source de genealogia acadêmica e árvore interativa de apadrinh
 
 ---
 
+## Estrutura do Projeto
+
+```text
+familiacdia/
+├── .github/workflows/       # Pipelines CI/CD (GitHub Pages & Google Cloud Run)
+├── backend/                 # Microsserviço Node.js standalone para Google Cloud Run
+│   ├── Dockerfile
+│   ├── package.json
+│   └── server.mjs
+├── scripts/                 # Scripts de extração SIGAA, reconciliação e validação do DAG
+│   ├── build-pages.mjs
+│   ├── reconcile_data.py
+│   ├── scrape_sigaa.py
+│   └── validate_graph.mjs
+└── src/
+    ├── app/                 # Páginas e estilos globais Next.js (App Router)
+    ├── components/
+    │   ├── admin/           # Modal de adição e importação CSV/JSON de apadrinhamentos
+    │   ├── layout/          # Header, StatsBar e ThemeToggle
+    │   ├── search/          # Busca global por comando (Cmd+K / Ctrl+K)
+    │   ├── student/         # StudentDrawer (perfil e genealogia) e CohortBadge
+    │   └── tree/            # FamilyTreeCanvas, StudentNode, SponsorshipEdge e TreeControls
+    ├── data/                # Contratos TypeScript e datasets canônicos em JSON
+    └── lib/                 # Motor de layout estratificado do grafo, busca fuzzy e cliente API
+```
+
+---
+
 ## Como Executar Localmente
 
 ### Pré-requisitos
 - **Node.js** `>= 20` e **npm**
-- **Python** `>= 3.10` (apenas para rodar os scripts de reconciliação de dados em `scripts/`)
+- **Python** `>= 3.10` (necessário apenas para rodar os scripts de reconciliação em `scripts/`)
 
 ### 1. Instalar dependências
 ```bash
 npm install
 ```
 
-### 2. Iniciar o servidor de desenvolvimento (Frontend + Backend API)
+### 2. Configurar variáveis de ambiente (opcional)
+```bash
+cp .env.example .env.local
+```
+
+### 3. Iniciar os servidores de desenvolvimento
 Em um terminal, inicie o microsserviço da API (porta `8080`):
 ```bash
 npm run dev:backend
@@ -72,7 +105,7 @@ Acesse `http://localhost:3000`.
 
 ## Deploy (GitHub Pages + Google Cloud Run)
 
-Consulte o guia completo passo a passo em **[DEPLOY.md](./DEPLOY.md)**:
+Consulte o guia detalhado em **[DEPLOY.md](./DEPLOY.md)**:
 1. **Frontend no GitHub Pages**: Automatizado via GitHub Actions (`.github/workflows/deploy-pages.yml`).
 2. **Backend no Google Cloud Run**: Automatizado via `.github/workflows/deploy-cloud-run.yml` ou via CLI com `gcloud run deploy` a partir da pasta `backend/`.
 
@@ -80,7 +113,7 @@ Consulte o guia completo passo a passo em **[DEPLOY.md](./DEPLOY.md)**:
 
 ## Como Contribuir
 
-Contribuições da comunidade de CDIA e do Centro de Informática da UFPB são muito bem-vindas! Leia o nosso **[Guia de Contribuição (CONTRIBUTING.md)](./CONTRIBUTING.md)** para saber como adicionar novos apadrinhamentos, corrigir registros ou propor melhorias na plataforma.
+Contribuições da comunidade acadêmica de CDIA e do Centro de Informática da UFPB são muito bem-vindas! Leia o nosso **[Guia de Contribuição (CONTRIBUTING.md)](./CONTRIBUTING.md)** para conferir o fluxo de branches, padrão de commits, estrutura de Pull Requests e instruções para atualização de dados.
 
 ---
 

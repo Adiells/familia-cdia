@@ -5,7 +5,7 @@ Academic genealogy and sponsorship tree platform for the Data Science and Artifi
 ## Architecture and Stack
 
 - **Frontend**: Next.js (App Router, static export support for GitHub Pages), TypeScript (`strict: true`), React.
-- **Styling**: Tailwind CSS v4, `lucide-react`, `clsx`, `tailwind-merge`. Visual language modeled after [Aquario UFPB](https://github.com/aquario-ufpb/aquario), with light mode default and dark mode support.
+- **Styling**: Tailwind CSS v4, `lucide-react`, `clsx`, `tailwind-merge`, with light mode default and dark mode support.
 - **Graph Engine**: `@xyflow/react` and `@dagrejs/dagre` for cohort-layered Directed Acyclic Graph (DAG) rendering with cubic Bezier edge fan-out.
 - **Backend API**: Zero-dependency Node.js HTTP service in `backend/server.mjs` containerized via `backend/Dockerfile` for Google Cloud Run (`GET /health`, `GET /api/sponsorships`, `POST /api/sponsorships`).
 - **Data Pipeline**: Python scripts in `scripts/` reconcile sponsorship records against official active student records from SIGAA UFPB (`id=14289031`).
