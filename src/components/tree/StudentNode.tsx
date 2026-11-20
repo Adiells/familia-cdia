@@ -94,7 +94,7 @@ export const StudentNode = memo(function StudentNode({
       <div className="flex items-center justify-between gap-1.5 mb-1.5">
         <span
           className={`inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[10px] font-semibold tracking-wide ${theme.badgeClass}`}
-          title={`${theme.generationTitle} (${data.cohort})`}
+          title={theme.generationTitle}
         >
           <span className={`h-1.5 w-1.5 rounded-full ${theme.dotClass}`} />
           {data.cohort}

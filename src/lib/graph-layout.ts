@@ -50,7 +50,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     rank: 0,
     label: '2021.2',
     shortLabel: '21.2',
-    generationTitle: 'Coorte histórica',
+    generationTitle: 'Turma 2021.2',
     badgeClass:
       'bg-teal-500/20 text-teal-900 border-teal-500/45 dark:bg-teal-500/20 dark:text-teal-200 dark:border-teal-400/40',
     cardBgClass: 'bg-teal-50/95 dark:bg-teal-950/40',
@@ -65,7 +65,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     rank: 1,
     label: '2022.1',
     shortLabel: '22.1',
-    generationTitle: 'Coorte histórica 22.1',
+    generationTitle: 'Turma 2022.1',
     badgeClass:
       'bg-fuchsia-500/20 text-fuchsia-900 border-fuchsia-500/45 dark:bg-fuchsia-500/20 dark:text-fuchsia-200 dark:border-fuchsia-400/40',
     cardBgClass: 'bg-fuchsia-50/95 dark:bg-fuchsia-950/40',
@@ -80,7 +80,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     rank: 2,
     label: '2024.1',
     shortLabel: '24.1',
-    generationTitle: 'Veteranos Fundadores',
+    generationTitle: 'Turma 2024.1',
     badgeClass:
       'bg-amber-500/20 text-amber-900 border-amber-500/45 dark:bg-amber-500/20 dark:text-amber-200 dark:border-amber-400/40',
     cardBgClass: 'bg-amber-50/95 dark:bg-amber-950/40',
@@ -95,7 +95,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     rank: 3,
     label: '2024.2',
     shortLabel: '24.2',
-    generationTitle: 'Veteranos 24.2',
+    generationTitle: 'Turma 2024.2',
     badgeClass:
       'bg-violet-500/20 text-violet-900 border-violet-500/45 dark:bg-violet-500/20 dark:text-violet-200 dark:border-violet-400/40',
     cardBgClass: 'bg-violet-50/95 dark:bg-violet-950/40',
@@ -110,7 +110,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     rank: 4,
     label: '2025.1',
     shortLabel: '25.1',
-    generationTitle: 'Geração P2 • 25.1',
+    generationTitle: 'Turma 2025.1',
     badgeClass:
       'bg-emerald-500/20 text-emerald-900 border-emerald-500/45 dark:bg-emerald-500/20 dark:text-emerald-200 dark:border-emerald-400/40',
     cardBgClass: 'bg-emerald-50/95 dark:bg-emerald-950/40',
@@ -125,7 +125,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     rank: 5,
     label: '2025.2',
     shortLabel: '25.2',
-    generationTitle: 'Geração P2 • 25.2',
+    generationTitle: 'Turma 2025.2',
     badgeClass:
       'bg-sky-500/20 text-sky-900 border-sky-500/45 dark:bg-sky-500/20 dark:text-sky-200 dark:border-sky-400/40',
     cardBgClass: 'bg-sky-50/95 dark:bg-sky-950/40',
@@ -140,7 +140,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     rank: 6,
     label: '2026.1',
     shortLabel: '26.1',
-    generationTitle: 'Calouros 26.1',
+    generationTitle: 'Turma 2026.1',
     badgeClass:
       'bg-rose-500/20 text-rose-900 border-rose-500/45 dark:bg-rose-500/20 dark:text-rose-200 dark:border-rose-400/40',
     cardBgClass: 'bg-rose-50/95 dark:bg-rose-950/40',
@@ -155,7 +155,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     rank: 7,
     label: '2026.2',
     shortLabel: '26.2',
-    generationTitle: 'Calouros 26.2',
+    generationTitle: 'Turma 2026.2',
     badgeClass:
       'bg-cyan-500/20 text-cyan-900 border-cyan-500/45 dark:bg-cyan-500/20 dark:text-cyan-200 dark:border-cyan-400/40',
     cardBgClass: 'bg-cyan-50/95 dark:bg-cyan-950/40',
@@ -212,6 +212,7 @@ export function getCohortTheme(cohort: CohortSemester): CohortTheme {
     rank: getCohortRank(cohort),
     label: cohort || 'Outro',
     shortLabel: cohort ? cohort.replace(/^20/, '') : '--',
+    generationTitle: cohort ? `Turma ${cohort}` : 'Comunidade CDIA',
   };
 }
 
