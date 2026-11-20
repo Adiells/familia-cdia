@@ -8,6 +8,8 @@
 /.maestri/
 /STATUS.md
 /src/data/sigaa-raw-table.json
+/scripts/*.local.sh
+/backend/data/
 src/app/api/sponsorships/route.ts.static-export-*
 /out/
 
