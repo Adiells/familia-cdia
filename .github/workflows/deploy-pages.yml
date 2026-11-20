@@ -18,13 +18,14 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || secrets.NEXT_PUBLIC_API_URL }}
+      NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || secrets.NEXT_PUBLIC_API_URL || 'https://familia-cdia-api-el3dwgsjma-uc.a.run.app' }}
       PAGES_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
       - name: Configure GitHub Pages
+        id: pages
         uses: actions/configure-pages@v5
 
       - name: Set up Node.js
@@ -39,16 +40,14 @@ jobs:
       - name: Set base path
         shell: bash
         run: |
-          repo_name="${GITHUB_REPOSITORY#*/}"
           if [[ "$PAGES_BASE_PATH" == "." ]]; then
             base_path=""
           elif [[ -n "$PAGES_BASE_PATH" ]]; then
             base_path="$PAGES_BASE_PATH"
-          elif [[ "$repo_name" == "${GITHUB_REPOSITORY_OWNER}.github.io" ]]; then
-            base_path=""
           else
-            base_path="/$repo_name"
+            base_path="${{ steps.pages.outputs.base_path }}"
           fi
+          echo "Resolved GitHub Pages base_path: '$base_path'"
           echo "NEXT_PUBLIC_BASE_PATH=$base_path" >> "$GITHUB_ENV"
 
       - name: Build static export
