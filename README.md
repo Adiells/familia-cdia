@@ -37,7 +37,7 @@ Plataforma open-source de genealogia acadêmica e visualização interativa da �
 
 ```text
 familiacdia/
-├── .github/workflows/       # Pipelines CI/CD (GitHub Pages & Google Cloud Run)
+├── .github/workflows/       # Pipeline CI/CD (GitHub Pages)
 ├── backend/                 # Microsserviço Node.js standalone para Google Cloud Run
 │   ├── Dockerfile
 │   ├── package.json
@@ -107,7 +107,7 @@ Acesse `http://localhost:3000`.
 
 Consulte o guia detalhado em **[DEPLOY.md](./DEPLOY.md)**:
 1. **Frontend no GitHub Pages**: Automatizado via GitHub Actions (`.github/workflows/deploy-pages.yml`).
-2. **Backend no Google Cloud Run**: Automatizado via `.github/workflows/deploy-cloud-run.yml` ou via CLI com `gcloud run deploy` a partir da pasta `backend/`.
+2. **Backend no Google Cloud Run**: Deploy via CLI com `gcloud run deploy` a partir da pasta `backend/` (com bucket Cloud Storage montado em `/app/data`).
 
 ---
 
