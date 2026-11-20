@@ -14,6 +14,9 @@ CANONICAL_SPELLING = {
     "pedro borras souto": "Pedro Borrás Souto",
     "maria eloisa": "Maria Eloísa",
 }
+PDF_CANONICAL_NAMES = {
+    "bia barreto": "Beatriz Barreto Cavalcanti",
+}
 # Confirmed identity aliases that differ too much for name-based matching.
 CONFIRMED_MATRICULAS = {
     "samuel bem": "20240011249",
@@ -136,8 +139,10 @@ def main():
         else:
             key = "pdf:" + " ".join(tokens)
         if key not in by_id:
-            canonical = (CANONICAL_SPELLING.get(" ".join(normalize(official["name"])), official["name"])
-                         if official else title_name(name))
+            canonical = (
+                CANONICAL_SPELLING.get(" ".join(normalize(official["name"])), official["name"])
+                if official else PDF_CANONICAL_NAMES.get(" ".join(tokens), title_name(name))
+            )
             ident = slug(canonical)
             if ident in {p["id"] for p in people}:
                 ident += "-" + (official["matricula"][-4:] if official else str(len(people) + 1))

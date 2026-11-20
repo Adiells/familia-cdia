@@ -9,6 +9,7 @@ import type {
 
 export const COHORT_ORDER: readonly CohortSemester[] = [
   '2021.2',
+  '2022.1',
   '2024.1',
   '2024.2',
   '2025.1',
@@ -59,9 +60,24 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     accentColor: '#14b8a6',
     minimapColor: '#14b8a6',
   },
+  '2022.1': {
+    cohort: '2022.1',
+    rank: 1,
+    label: '2022.1',
+    shortLabel: '22.1',
+    generationTitle: 'Coorte histórica 22.1',
+    badgeClass:
+      'bg-fuchsia-500/20 text-fuchsia-900 border-fuchsia-500/45 dark:bg-fuchsia-500/20 dark:text-fuchsia-200 dark:border-fuchsia-400/40',
+    cardBgClass: 'bg-fuchsia-50/95 dark:bg-fuchsia-950/40',
+    cardBorderClass: 'border-fuchsia-400/80 dark:border-fuchsia-500/60',
+    dotClass: 'bg-fuchsia-500 dark:bg-fuchsia-400',
+    borderGlowClass: 'hover:border-fuchsia-500',
+    accentColor: '#d946ef',
+    minimapColor: '#d946ef',
+  },
   '2024.1': {
     cohort: '2024.1',
-    rank: 1,
+    rank: 2,
     label: '2024.1',
     shortLabel: '24.1',
     generationTitle: 'Veteranos Fundadores',
@@ -76,7 +92,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
   },
   '2024.2': {
     cohort: '2024.2',
-    rank: 2,
+    rank: 3,
     label: '2024.2',
     shortLabel: '24.2',
     generationTitle: 'Veteranos 24.2',
@@ -91,7 +107,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
   },
   '2025.1': {
     cohort: '2025.1',
-    rank: 3,
+    rank: 4,
     label: '2025.1',
     shortLabel: '25.1',
     generationTitle: 'Geração P2 • 25.1',
@@ -106,7 +122,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
   },
   '2025.2': {
     cohort: '2025.2',
-    rank: 4,
+    rank: 5,
     label: '2025.2',
     shortLabel: '25.2',
     generationTitle: 'Geração P2 • 25.2',
@@ -121,7 +137,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
   },
   '2026.1': {
     cohort: '2026.1',
-    rank: 5,
+    rank: 6,
     label: '2026.1',
     shortLabel: '26.1',
     generationTitle: 'Calouros 26.1',
@@ -136,7 +152,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
   },
   '2026.2': {
     cohort: '2026.2',
-    rank: 6,
+    rank: 7,
     label: '2026.2',
     shortLabel: '26.2',
     generationTitle: 'Calouros 26.2',
@@ -153,7 +169,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
 
 const FALLBACK_COHORT_THEME: CohortTheme = {
   cohort: 'N/A',
-  rank: 5,
+  rank: 8,
   label: 'Outro',
   shortLabel: '--',
   generationTitle: 'Comunidade CDIA',

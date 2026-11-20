@@ -157,6 +157,11 @@
     color: #0f766e;
     border-color: rgba(20, 184, 166, 0.4);
   }
+  .cohort-2022-1 {
+    background: rgba(217, 70, 239, 0.15);
+    color: #a21caf;
+    border-color: rgba(217, 70, 239, 0.4);
+  }
   .cohort-2024-1 {
     background: rgba(245, 158, 11, 0.15);
     color: #b45309;
@@ -199,6 +204,10 @@
   .dark .cohort-2021-2 {
     color: #5eead4;
     border-color: rgba(20, 184, 166, 0.35);
+  }
+  .dark .cohort-2022-1 {
+    color: #f0abfc;
+    border-color: rgba(217, 70, 239, 0.35);
   }
   .dark .cohort-2024-2 {
     color: #c4b5fd; /* violet-300 */

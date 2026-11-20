@@ -107,8 +107,7 @@ if (ferinhas2026_2.length !== 19 || matchedFerinhas.size !== 19) {
 }
 
 const pdfOnlyNames = [
-  ['Bia Barreto', '2024.1'], ['Luana Cazé', '2025.1'],
-  ['Liliana', '2025.1'],
+  ['Luana Cazé', '2025.1'], ['Liliana', '2025.1'],
 ];
 for (const [name, cohort] of pdfOnlyNames) {
   const matches = students.filter((student) => student.aliases.some((alias) =>
@@ -116,6 +115,12 @@ for (const [name, cohort] of pdfOnlyNames) {
   if (matches.length !== 1 || matches[0].cohort !== cohort || matches[0].sigaaVerified || matches[0].matricula !== null) {
     fail(`Expected ${name} (${cohort}) to remain a single unresolved PDF-only student`);
   }
+}
+const biaMatches = students.filter((student) => student.aliases.some((alias) =>
+  normalized(alias.replace(/\s*\([^)]*\)/g, '')) === normalized('Bia Barreto')));
+if (biaMatches.length !== 1 || biaMatches[0].canonicalName !== 'Beatriz Barreto Cavalcanti' ||
+    biaMatches[0].cohort !== '2022.1' || biaMatches[0].sigaaVerified || biaMatches[0].matricula !== null) {
+  fail('Bia Barreto did not resolve to the confirmed 2022.1 PDF-only identity Beatriz Barreto Cavalcanti');
 }
 const samuelMatches = students.filter((student) => student.matricula === '20240011249');
 if (samuelMatches.length !== 1 || samuelMatches[0].canonicalName !== 'Samuel Victor Fernandes Dantas Vicente') {
@@ -127,4 +132,4 @@ for (const alias of ['Samuel do Bem', 'Samuel Vicente']) {
   }
 }
 
-console.log(`Validation passed: ${students.length} unique students, ${edges.length} edges (${expected} pairings × 2), ${audit.length} audit entries, 11 required SIGAA matches plus confirmed Samuel identity, 19 SIGAA-matched 2026.2 ferinhas, 3 unresolved PDF-only identities preserved, 100% edge integrity, acyclic graph.`);
+console.log(`Validation passed: ${students.length} unique students, ${edges.length} edges (${expected} pairings × 2), ${audit.length} audit entries, 11 required SIGAA matches plus confirmed Samuel identity, 19 SIGAA-matched 2026.2 ferinhas, Beatriz Barreto Cavalcanti assigned to 2022.1, 2 unresolved PDF-only identities preserved, 100% edge integrity, acyclic graph.`);

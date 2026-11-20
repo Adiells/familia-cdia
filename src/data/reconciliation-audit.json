@@ -504,10 +504,10 @@
     "explanation": "Matched official SIGAA record"
   },
   {
-    "rawName": "Bia Barreto (2024.1)",
+    "rawName": "Bia Barreto (2022.1)",
     "sourceDoc": "user-provided-2025-1-list",
-    "resolvedStudentId": "bia-barreto",
-    "canonicalName": "Bia Barreto",
+    "resolvedStudentId": "beatriz-barreto-cavalcanti",
+    "canonicalName": "Beatriz Barreto Cavalcanti",
     "matricula": null,
     "matchConfidence": "PDF_ONLY",
     "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"

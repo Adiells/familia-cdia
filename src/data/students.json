@@ -469,13 +469,13 @@
     "matchConfidence": "EXACT"
   },
   {
-    "id": "bia-barreto",
-    "canonicalName": "Bia Barreto",
-    "displayName": "Bia Barreto",
+    "id": "beatriz-barreto-cavalcanti",
+    "canonicalName": "Beatriz Barreto Cavalcanti",
+    "displayName": "Beatriz Barreto Cavalcanti",
     "matricula": null,
-    "cohort": "2024.1",
+    "cohort": "2022.1",
     "aliases": [
-      "Bia Barreto (2024.1)"
+      "Bia Barreto (2022.1)"
     ],
     "sigaaVerified": false,
     "matchConfidence": "PDF_ONLY"
