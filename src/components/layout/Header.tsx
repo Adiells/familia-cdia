@@ -1,7 +1,10 @@
 "use client";
 
-import { Network, Plus, Search, GitBranch, Database, Waves } from "lucide-react";
+import { Network, Plus, Search, GitBranch, Database } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect } from "react";
+import brandLogo from "@/assets/brand-logo.webp";
 import { cn } from "./cn";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -46,15 +49,15 @@ export function Header({
     <header className={cn("glass-header sticky top-0 z-40 w-full", className)}>
       <div className="mx-auto flex h-14 max-w-[1800px] items-center gap-2 px-3 sm:h-16 sm:gap-3 sm:px-6">
         {/* Brand */}
-        <a href="/" className="group flex shrink-0 items-center gap-2.5" aria-label="Família CDIA — início">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 via-cyan-400 to-indigo-500 text-white shadow-lg shadow-sky-500/25 transition-transform group-hover:scale-105">
-            <Waves className="h-5 w-5" strokeWidth={2.25} />
+        <Link href="/" className="group flex shrink-0 items-center gap-2.5" aria-label="Família CDIA — início">
+          <span className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-[10px] shadow-md shadow-sky-950/20 ring-1 ring-slate-900/10 transition-transform group-hover:scale-105 dark:shadow-sky-500/15 dark:ring-sky-400/20">
+            <Image src={brandLogo} alt="" width={36} height={36} priority unoptimized className="h-full w-full object-cover" />
           </span>
           <span className="flex flex-col leading-tight">
             <span className="font-display text-[15px] font-bold tracking-tight">Família CDIA</span>
             <span className="text-[11px] font-medium text-muted-foreground">CI • UFPB</span>
           </span>
-        </a>
+        </Link>
 
         {/* Navigation */}
         <nav aria-label="Modos de visualização" className="ml-4 hidden items-center gap-1 lg:flex">
