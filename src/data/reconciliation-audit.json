@@ -1,0 +1,1406 @@
+[
+  {
+    "rawName": "Ana Luiza (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "ana-luiza-gomes-araujo",
+    "canonicalName": "Ana Luiza Gomes de Araujo",
+    "matricula": "20250114508",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Brenda Letícia (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "brenda-leticia-nascimento-dias",
+    "canonicalName": "Brenda Leticia do Nascimento Dias",
+    "matricula": "20250105008",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Samuel Vicente (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "samuel-victor-fernandes-dantas-vicente",
+    "canonicalName": "Samuel Victor Fernandes Dantas Vicente",
+    "matricula": "20240011249",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Antonio Duarte (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "antonio-sergio-duarte-lacerda",
+    "canonicalName": "Antonio Sergio Duarte de Lacerda",
+    "matricula": "20250114446",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Arthur Medeiros (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "arthur-medeiros-nascimento",
+    "canonicalName": "Arthur Medeiros do Nascimento",
+    "matricula": "20250019017",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Ana Beatriz (2024.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "ana-beatriz-mota-cruz",
+    "canonicalName": "Ana Beatriz Mota da Cruz",
+    "matricula": "20240011060",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Caio Paiva (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "caio-cezar-monteiro-paiva",
+    "canonicalName": "Caio Cezar Monteiro Paiva",
+    "matricula": "20250019296",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Pedro Lucas (Cajazeiras) (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "pedro-lucas-moreira-rolim",
+    "canonicalName": "Pedro Lucas Moreira Rolim",
+    "matricula": "20250019895",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Matheus Nunes (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "matheus-silva-nunes",
+    "canonicalName": "Matheus da Silva Nunes",
+    "matricula": "20240011024",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Eduardo Antônio Leitão de Oliveira Lima e Moura Filho (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "eduardo-antonio-leitao-oliveira-lima-moura-filho",
+    "canonicalName": "Eduardo Antonio Leitao de Oliveira Lima de Moura Filho",
+    "matricula": "20250019311",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Eduardo de Oliveira Silva (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "eduardo-oliveira-silva",
+    "canonicalName": "Eduardo de Oliveira Silva",
+    "matricula": "20250018691",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Pedro Kruta (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "pedro-henrique-kruta-araujo-bispo",
+    "canonicalName": "Pedro Henrique Kruta de Araujo Bispo",
+    "matricula": "20240011187",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Gabriel Costa Morais (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "gabriel-costa-morais",
+    "canonicalName": "Gabriel Costa Morais",
+    "matricula": "20250114526",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Gabriel Oliveira de Arruda (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "joao-gabriel-oliveira-arruda",
+    "canonicalName": "João Gabriel Oliveira de Arruda",
+    "matricula": null,
+    "matchConfidence": "PDF_ONLY",
+    "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"
+  },
+  {
+    "rawName": "Cauã Lacerda (2024.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "caua-henrique-formiga-lacerda",
+    "canonicalName": "Caua Henrique Formiga de Lacerda",
+    "matricula": "20240011089",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Gabriel Lopes dos Santos da Silva (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "gabriel-lopes-santos-silva",
+    "canonicalName": "Gabriel Lopes dos Santos da Silva",
+    "matricula": "20250138297",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Brenda Letícia (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "brenda-leticia-nascimento-dias",
+    "canonicalName": "Brenda Leticia do Nascimento Dias",
+    "matricula": "20250105008",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Meireles (2024.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "joao-victor-souza-lucena-meireles",
+    "canonicalName": "Joao Victor de Souza Lucena Meireles",
+    "matricula": "20240102290",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Guilherme Ribeiro (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "guilherme-souza-ribeiro",
+    "canonicalName": "Guilherme de Souza Ribeiro",
+    "matricula": "20250114482",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Davidys Cavalcante de Pontes (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "davidys-cavalcante-pontes",
+    "canonicalName": "Davidys Cavalcante de Pontes",
+    "matricula": "20250019035",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Erick Batista (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "erick-batista-silva",
+    "canonicalName": "Erick Batista da Silva",
+    "matricula": "20240010967",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Gustavo Borges (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "gustavo-ramos-melo-borges",
+    "canonicalName": "Gustavo Ramos de Melo Borges",
+    "matricula": "20250019330",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Pedro Lucas (Cajazeiras) (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "pedro-lucas-moreira-rolim",
+    "canonicalName": "Pedro Lucas Moreira Rolim",
+    "matricula": "20250019895",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Matheus Nunes (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "matheus-silva-nunes",
+    "canonicalName": "Matheus da Silva Nunes",
+    "matricula": "20240011024",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Helena Couto dos Santos (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "helena-couto-santos",
+    "canonicalName": "Helena Couto dos Santos",
+    "matricula": "20250019358",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Nicole Costa e Silva (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "nicole-costa-silva",
+    "canonicalName": "Nicole Costa e Silva",
+    "matricula": "20250018913",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Thiago Bezerra (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "thiago-henrique-meneses-bezerra",
+    "canonicalName": "Thiago Henrique Menêses Bezerra",
+    "matricula": "20240010742",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Henrique Jales Teixeira (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "henrique-jales-teixeira",
+    "canonicalName": "Henrique Jales Teixeira",
+    "matricula": "20250019376",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Rafael Gadelha de Araújo (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "joao-rafael-gadelha-araujo",
+    "canonicalName": "Joao Rafael Gadelha de Araujo",
+    "matricula": "20250019213",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Costa (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "joao-vitor-pereira-costa",
+    "canonicalName": "Joao Vitor Pereira da Costa",
+    "matricula": "20240010680",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Igor Mendonça de Souza (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "igor-mendonca-souza",
+    "canonicalName": "Igor Mendonca de Souza",
+    "matricula": "20250019438",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Elton de Assis Guedes Neto (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "elton-assis-guedes-neto",
+    "canonicalName": "Elton de Assis Guedes Neto",
+    "matricula": "20250019198",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Pedro Kruta (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "pedro-henrique-kruta-araujo-bispo",
+    "canonicalName": "Pedro Henrique Kruta de Araujo Bispo",
+    "matricula": "20240011187",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João André de Medeiros Arnaud (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "joao-andre-medeiros-arnaud",
+    "canonicalName": "Joao Andre de Medeiros Arnaud",
+    "matricula": "20250019456",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Adiel Emilson (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "adiel-emilson-silva",
+    "canonicalName": "Adiel Emilson da Silva",
+    "matricula": "20250019830",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Luiz Carlos (2024.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "luiz-carlos-veloso-araujo-lima-neto",
+    "canonicalName": "Luiz Carlos Veloso de Araujo Lima Neto",
+    "matricula": "20240102334",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Gabriel Lima de Lucena (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "joao-gabriel-lima-lucena",
+    "canonicalName": "Joao Gabriel Lima de Lucena",
+    "matricula": "20250019797",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Maria Eloisa (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "maria-eloisa-silva-sousa",
+    "canonicalName": "Maria Eloisa Silva de Sousa",
+    "matricula": "20250018978",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Costa (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "joao-vitor-pereira-costa",
+    "canonicalName": "Joao Vitor Pereira da Costa",
+    "matricula": "20240010680",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Pedro da Silva Araújo (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "joao-pedro-silva-araujo",
+    "canonicalName": "Joao Pedro da Silva Araujo",
+    "matricula": "20250019859",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Carlos Adauto (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "carlos-adauto-sa-batista",
+    "canonicalName": "Carlos Adauto de Sá Batista",
+    "matricula": "20250018655",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Anne Fernandes (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "anne-fernandes-costa-oliveira",
+    "canonicalName": "Anne Fernandes da Costa Oliveira",
+    "matricula": "20240010789",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Maria Rita dos Santos Silva (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "maria-rita-santos-silva",
+    "canonicalName": "Maria Rita dos Santos Silva",
+    "matricula": "20250019877",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Élia Dutra Sena (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "elia-dutra-sena",
+    "canonicalName": "Elia Dutra Sena",
+    "matricula": "20250018717",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Sarah Calixto (2024.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "sarah-fernanda-calixto-araujo",
+    "canonicalName": "Sarah Fernanda Calixto de Araujo",
+    "matricula": "20240011267",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Mariana Esthefany Xavier dos Santos (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "mariana-esthefany-xavier-santos",
+    "canonicalName": "Mariana Esthefany Xavier dos Santos",
+    "matricula": "20250019518",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Élia Dutra Sena (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "elia-dutra-sena",
+    "canonicalName": "Elia Dutra Sena",
+    "matricula": "20250018717",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Sofia Pontes (2024.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "sofia-pontes-leitao-lima",
+    "canonicalName": "Sofia Pontes Leitao de Lima",
+    "matricula": "20240011285",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Mikael Rodrigues (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "mikael-rodrigues-santos",
+    "canonicalName": "Mikael Rodrigues dos Santos",
+    "matricula": "20250019699",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Davi Cavalcante Pereira (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "davi-cavalcante-pereira",
+    "canonicalName": "Davi Cavalcante Pereira",
+    "matricula": "20250018673",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Samuel Vicente (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "samuel-victor-fernandes-dantas-vicente",
+    "canonicalName": "Samuel Victor Fernandes Dantas Vicente",
+    "matricula": "20240011249",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Paulo Henrique Nunes Fernandes e Silva (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "paulo-henrique-nunes-fernandes-silva",
+    "canonicalName": "Paulo Henrique Nunes Fernandes e Silva",
+    "matricula": "20250019714",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Davi Cavalcante Pereira (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "davi-cavalcante-pereira",
+    "canonicalName": "Davi Cavalcante Pereira",
+    "matricula": "20250018673",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Cauã Lacerda (2024.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "caua-henrique-formiga-lacerda",
+    "canonicalName": "Caua Henrique Formiga de Lacerda",
+    "matricula": "20240011089",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Pedro Borrás Souto (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "pedro-borras-souto",
+    "canonicalName": "Pedro Borrás Souto",
+    "matricula": "20250019554",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Henrique de Araújo Pereira (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "joao-henrique-araujo-pereira",
+    "canonicalName": "João Henrique de Araújo Pereira",
+    "matricula": null,
+    "matchConfidence": "PDF_ONLY",
+    "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"
+  },
+  {
+    "rawName": "Anne Fernandes (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "anne-fernandes-costa-oliveira",
+    "canonicalName": "Anne Fernandes da Costa Oliveira",
+    "matricula": "20240010789",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Ricardo Bezerra Borges (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "ricardo-bezerra-borges",
+    "canonicalName": "Ricardo Bezerra Borges",
+    "matricula": "20250114562",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Nicole Costa e Silva (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "nicole-costa-silva",
+    "canonicalName": "Nicole Costa e Silva",
+    "matricula": "20250018913",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Igor Pessoa (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "igor-melo-pessoa",
+    "canonicalName": "Igor de Melo Pessoa",
+    "matricula": "20240010920",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Samuel Chaves (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "samuel-chaves-morais-lima",
+    "canonicalName": "Samuel Chaves Morais de Lima",
+    "matricula": "20250019590",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Artur Rodrigues Nunes de Almeida (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "artur-rodrigues-nunes-almeida",
+    "canonicalName": "Artur Rodrigues Nunes de Almeida",
+    "matricula": "20250018637",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Igor Pessoa (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "igor-melo-pessoa",
+    "canonicalName": "Igor de Melo Pessoa",
+    "matricula": "20240010920",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Társis Lima (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "tarsis-lima-gomes-silva",
+    "canonicalName": "Tarsis Lima Gomes da Silva",
+    "matricula": "20250019910",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Victor Meireles (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "joao-victor-souza-lucena-meireles",
+    "canonicalName": "Joao Victor de Souza Lucena Meireles",
+    "matricula": "20240102290",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Erick Batista (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "erick-batista-silva",
+    "canonicalName": "Erick Batista da Silva",
+    "matricula": "20240010967",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Thiago Santos de Lacerda (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "thiago-santos-lacerda",
+    "canonicalName": "Thiago Santos de Lacerda",
+    "matricula": "20250019616",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Rafael Gadelha de Araújo (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "joao-rafael-gadelha-araujo",
+    "canonicalName": "Joao Rafael Gadelha de Araujo",
+    "matricula": "20250019213",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Jonatas Miguel (2024.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "jonatas-miguel-sousa-soares",
+    "canonicalName": "Jonatas Miguel de Sousa Soares",
+    "matricula": "20240102316",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Vitória Maria da Silva (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "vitoria-maria-silva",
+    "canonicalName": "Vitoria Maria da Silva",
+    "matricula": "20250138330",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Maria Clara Caldas Fernandes (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "maria-clara-caldas-fernandes",
+    "canonicalName": "Maria Clara Caldas Fernandes",
+    "matricula": "20250018870",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Sofia Pontes (2024.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "sofia-pontes-leitao-lima",
+    "canonicalName": "Sofia Pontes Leitao de Lima",
+    "matricula": "20240011285",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Yasmin Sousa Batista (2025.2)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "yasmin-sousa-batista",
+    "canonicalName": "Yasmin Sousa Batista",
+    "matricula": "20250019779",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Maria Eloisa (2025.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "maria-eloisa-silva-sousa",
+    "canonicalName": "Maria Eloisa Silva de Sousa",
+    "matricula": "20250018978",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Thiago Bezerra (2024.1)",
+    "sourceDoc": "/home/adiel/Downloads/apadrinhamento-2025-11-08 (3).pdf",
+    "resolvedStudentId": "thiago-henrique-meneses-bezerra",
+    "canonicalName": "Thiago Henrique Menêses Bezerra",
+    "matricula": "20240010742",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Arthur de Lima Alves",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "arthur-lima-alves",
+    "canonicalName": "Arthur de Lima Alves",
+    "matricula": "20260012065",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João André de Medeiros Arnaud",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "joao-andre-medeiros-arnaud",
+    "canonicalName": "Joao Andre de Medeiros Arnaud",
+    "matricula": "20250019456",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Samuel Chaves",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "samuel-chaves-morais-lima",
+    "canonicalName": "Samuel Chaves Morais de Lima",
+    "matricula": "20250019590",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Gabriela Francisca Alves da Silva",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "gabriela-francisca-alves-silva",
+    "canonicalName": "Gabriela Francisca Alves da Silva",
+    "matricula": "20260011925",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Mariana Esthefany Xavier dos Santos",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "mariana-esthefany-xavier-santos",
+    "canonicalName": "Mariana Esthefany Xavier dos Santos",
+    "matricula": "20250019518",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Brenda Letícia",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "brenda-leticia-nascimento-dias",
+    "canonicalName": "Brenda Leticia do Nascimento Dias",
+    "matricula": "20250105008",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Matheus Meira Cintra Filho",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "matheus-meira-cintra-filho",
+    "canonicalName": "Matheus Meira Cintra Filho",
+    "matricula": "20260011166",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Vitória Maria da Silva",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "vitoria-maria-silva",
+    "canonicalName": "Vitoria Maria da Silva",
+    "matricula": "20250138330",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Eduardo de Oliveira Silva",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "eduardo-oliveira-silva",
+    "canonicalName": "Eduardo de Oliveira Silva",
+    "matricula": "20250018691",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Ítalo Mateus Santos da Silva",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "italo-mateus-santos-silva",
+    "canonicalName": "Italo Mateus Santos da Silva",
+    "matricula": "20260011460",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Igor Mendonça",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "igor-mendonca-souza",
+    "canonicalName": "Igor Mendonca de Souza",
+    "matricula": "20250019438",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Elton de Assis",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "elton-assis-guedes-neto",
+    "canonicalName": "Elton de Assis Guedes Neto",
+    "matricula": "20250019198",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Thiago Dias de Figueiredo",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "thiago-dias-figueiredo",
+    "canonicalName": "Thiago Dias de Figueiredo",
+    "matricula": "20260011282",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Igor Mendonça",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "igor-mendonca-souza",
+    "canonicalName": "Igor Mendonca de Souza",
+    "matricula": "20250019438",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Cauã Henrique F. de Lacerda",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "caua-henrique-formiga-lacerda",
+    "canonicalName": "Caua Henrique Formiga de Lacerda",
+    "matricula": "20240011089",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Paulo Cezar da Silva Rocha",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "paulo-cezar-silva-rocha",
+    "canonicalName": "Paulo Cezar da Silva Rocha",
+    "matricula": "20260011943",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Mikael Rodrigues dos Santos",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "mikael-rodrigues-santos",
+    "canonicalName": "Mikael Rodrigues dos Santos",
+    "matricula": "20250019699",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Samuel Chaves",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "samuel-chaves-morais-lima",
+    "canonicalName": "Samuel Chaves Morais de Lima",
+    "matricula": "20250019590",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Pedro Henrique de Macedo Alves",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "pedro-henrique-macedo-alves",
+    "canonicalName": "Pedro Henrique de Macedo Alves",
+    "matricula": "20260011362",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Ana Luiza",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "ana-luiza-gomes-araujo",
+    "canonicalName": "Ana Luiza Gomes de Araujo",
+    "matricula": "20250114508",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Lucas Oliveira",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "lucas-aprigio-santos-oliveira",
+    "canonicalName": "Lucas Aprigio Santos de Oliveira",
+    "matricula": "20250019231",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Raphael José Tavares Brito",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "raphael-jose-tavares-brito",
+    "canonicalName": "Raphael Jose Tavares Brito",
+    "matricula": "20260011228",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Maria Rita",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "maria-rita-santos-silva",
+    "canonicalName": "Maria Rita dos Santos Silva",
+    "matricula": "20250019877",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Lucas Oliveira",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "lucas-aprigio-santos-oliveira",
+    "canonicalName": "Lucas Aprigio Santos de Oliveira",
+    "matricula": "20250019231",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Kaleb Dantas Rocha Feitosa",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "kaleb-dantas-rocha-feitosa",
+    "canonicalName": "Kaleb Dantas Rocha Feitosa",
+    "matricula": "20260012127",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Pedro Borraz Souto",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "pedro-borras-souto",
+    "canonicalName": "Pedro Borrás Souto",
+    "matricula": "20250019554",
+    "matchConfidence": "FUZZY",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Elton de Assis",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "elton-assis-guedes-neto",
+    "canonicalName": "Elton de Assis Guedes Neto",
+    "matricula": "20250019198",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Pedro Egydio Amorim Madruga",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "pedro-egydio-amorim-madruga",
+    "canonicalName": "Pedro Egydio Amorim Madruga",
+    "matricula": "20260011184",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João André de Medeiros Arnaud",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "joao-andre-medeiros-arnaud",
+    "canonicalName": "Joao Andre de Medeiros Arnaud",
+    "matricula": "20250019456",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Rafael Gadelha de Araújo",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "joao-rafael-gadelha-araujo",
+    "canonicalName": "Joao Rafael Gadelha de Araujo",
+    "matricula": "20250019213",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Joana Trindade dos Santos",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "joana-trindade-santos",
+    "canonicalName": "Joana Trindade dos Santos",
+    "matricula": "20260011406",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Antonio Duarte",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "antonio-sergio-duarte-lacerda",
+    "canonicalName": "Antonio Sergio Duarte de Lacerda",
+    "matricula": "20250114446",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Maria Eloísa",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "maria-eloisa-silva-sousa",
+    "canonicalName": "Maria Eloisa Silva de Sousa",
+    "matricula": "20250018978",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "sophia de carvalho beltrão",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "sophia-carvalho-beltrao",
+    "canonicalName": "Sophia de Carvalho Beltrão",
+    "matricula": "20260011264",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Mariana Esthefany Xavier dos Santos",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "mariana-esthefany-xavier-santos",
+    "canonicalName": "Mariana Esthefany Xavier dos Santos",
+    "matricula": "20250019518",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Thiago Bezerra",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "thiago-henrique-meneses-bezerra",
+    "canonicalName": "Thiago Henrique Menêses Bezerra",
+    "matricula": "20240010742",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Jonas Alexandre Santana Capucci",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "jonas-alexandre-santana-capucci",
+    "canonicalName": "Jonas Alexandre Santana Capucci",
+    "matricula": "20260012109",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Vitória Maria da Silva",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "vitoria-maria-silva",
+    "canonicalName": "Vitoria Maria da Silva",
+    "matricula": "20250138330",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Paulo Henrique Fernandes",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "paulo-henrique-nunes-fernandes-silva",
+    "canonicalName": "Paulo Henrique Nunes Fernandes e Silva",
+    "matricula": "20250019714",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Matheus Rodrigues Henrique da Silva",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "matheus-rodrigues-henrique-silva",
+    "canonicalName": "Matheus Rodrigues Henrique da Silva",
+    "matricula": null,
+    "matchConfidence": "PDF_ONLY",
+    "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"
+  },
+  {
+    "rawName": "Guilherme Ribeiro",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "guilherme-souza-ribeiro",
+    "canonicalName": "Guilherme de Souza Ribeiro",
+    "matricula": "20250114482",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Adiel",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "adiel-emilson-silva",
+    "canonicalName": "Adiel Emilson da Silva",
+    "matricula": "20250019830",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Guilherme Trindade de Oliveira",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "guilherme-trindade-oliveira",
+    "canonicalName": "Guilherme Trindade de Oliveira",
+    "matricula": "20260011729",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Yasmin Sousa Batista",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "yasmin-sousa-batista",
+    "canonicalName": "Yasmin Sousa Batista",
+    "matricula": "20250019779",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Cauã Henrique F. de Lacerda",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "caua-henrique-formiga-lacerda",
+    "canonicalName": "Caua Henrique Formiga de Lacerda",
+    "matricula": "20240011089",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Caio Rodrigues Silva",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "caio-rodrigues-silva",
+    "canonicalName": "Caio Rodrigues Silva",
+    "matricula": "20260011602",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Mikael Rodrigues dos Santos",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "mikael-rodrigues-santos",
+    "canonicalName": "Mikael Rodrigues dos Santos",
+    "matricula": "20250019699",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Artur Rodrigues Nunes de Almeida",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "artur-rodrigues-nunes-almeida",
+    "canonicalName": "Artur Rodrigues Nunes de Almeida",
+    "matricula": "20250018637",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Gabriel Antunes Lima",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "gabriel-antunes-lima",
+    "canonicalName": "Gabriel Antunes Lima",
+    "matricula": "20260011667",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Gabriel Lima de Lucena",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "joao-gabriel-lima-lucena",
+    "canonicalName": "Joao Gabriel Lima de Lucena",
+    "matricula": "20250019797",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Paulo Henrique Fernandes",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "paulo-henrique-nunes-fernandes-silva",
+    "canonicalName": "Paulo Henrique Nunes Fernandes e Silva",
+    "matricula": "20250019714",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Cecília Candeia Lyra",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "cecilia-candeia-lyra",
+    "canonicalName": "Cecilia Candeia Lyra",
+    "matricula": "20260011442",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Maria Rita",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "maria-rita-santos-silva",
+    "canonicalName": "Maria Rita dos Santos Silva",
+    "matricula": "20250019877",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Matheus da Silva Nunes",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "matheus-silva-nunes",
+    "canonicalName": "Matheus da Silva Nunes",
+    "matricula": "20240011024",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Guilherme de Andrade Bronzeado",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "guilherme-andrade-bronzeado",
+    "canonicalName": "Guilherme de Andrade Bronzeado",
+    "matricula": "20260011068",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Pedro Borraz Souto",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "pedro-borras-souto",
+    "canonicalName": "Pedro Borrás Souto",
+    "matricula": "20250019554",
+    "matchConfidence": "FUZZY",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Rafael Gadelha de Araújo",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "joao-rafael-gadelha-araujo",
+    "canonicalName": "Joao Rafael Gadelha de Araujo",
+    "matricula": "20250019213",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Dayanna Hevellyn Ferreira Xavier",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "dayanna-hevellyn-ferreira-xavier",
+    "canonicalName": "Dayanna Hevellyn Ferreira Xavier",
+    "matricula": "20260012083",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Mariana Esthefany Xavier dos Santos",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "mariana-esthefany-xavier-santos",
+    "canonicalName": "Mariana Esthefany Xavier dos Santos",
+    "matricula": "20250019518",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Artur Rodrigues Nunes de Almeida",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "artur-rodrigues-nunes-almeida",
+    "canonicalName": "Artur Rodrigues Nunes de Almeida",
+    "matricula": "20250018637",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Matheus Fernandes dos Santos",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "matheus-fernandes-santos",
+    "canonicalName": "Matheus Fernandes dos Santos",
+    "matricula": "20260011148",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Antonio Duarte",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "antonio-sergio-duarte-lacerda",
+    "canonicalName": "Antonio Sergio Duarte de Lacerda",
+    "matricula": "20250114446",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Thiago Bezerra",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "thiago-henrique-meneses-bezerra",
+    "canonicalName": "Thiago Henrique Menêses Bezerra",
+    "matricula": "20240010742",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Josué Mykael Henrique Santos da Silva",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "josue-mykael-henrique-santos-silva",
+    "canonicalName": "Josue Mykael Henrique Santos da Silva",
+    "matricula": "20260142604",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Mikael Rodrigues dos Santos",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "mikael-rodrigues-santos",
+    "canonicalName": "Mikael Rodrigues dos Santos",
+    "matricula": "20250019699",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Samuel Chaves",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "samuel-chaves-morais-lima",
+    "canonicalName": "Samuel Chaves Morais de Lima",
+    "matricula": "20250019590",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Heloísa Stella Azevedo Reis",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "heloisa-stella-azevedo-reis",
+    "canonicalName": "Heloisa Stella Azevedo Reis",
+    "matricula": "20260089436",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Vitória Maria da Silva",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "vitoria-maria-silva",
+    "canonicalName": "Vitoria Maria da Silva",
+    "matricula": "20250138330",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Matheus da Silva Nunes",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "matheus-silva-nunes",
+    "canonicalName": "Matheus da Silva Nunes",
+    "matricula": "20240011024",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Paula Gabriela Fernandes Agostinho",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "paula-gabriela-fernandes-agostinho",
+    "canonicalName": "Paula Gabriela Fernandes Agostinho",
+    "matricula": null,
+    "matchConfidence": "PDF_ONLY",
+    "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"
+  },
+  {
+    "rawName": "Ana Luiza",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "ana-luiza-gomes-araujo",
+    "canonicalName": "Ana Luiza Gomes de Araujo",
+    "matricula": "20250114508",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Maria Eloísa",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "maria-eloisa-silva-sousa",
+    "canonicalName": "Maria Eloisa Silva de Sousa",
+    "matricula": "20250018978",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Júlio César Araújo Silva",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "julio-cesar-araujo-silva",
+    "canonicalName": "Julio Cesar Araujo Silva",
+    "matricula": "20260011344",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Guilherme Ribeiro",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "guilherme-souza-ribeiro",
+    "canonicalName": "Guilherme de Souza Ribeiro",
+    "matricula": "20250114482",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Adiel",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "adiel-emilson-silva",
+    "canonicalName": "Adiel Emilson da Silva",
+    "matricula": "20250019830",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Yuri Augusto Cardoso De Melo",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "yuri-augusto-cardoso-melo",
+    "canonicalName": "Yuri Augusto Cardoso de Melo",
+    "matricula": "20260011326",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "João Gabriel Lima de Lucena",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "joao-gabriel-lima-lucena",
+    "canonicalName": "Joao Gabriel Lima de Lucena",
+    "matricula": "20250019797",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Eduardo de Oliveira Silva",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "eduardo-oliveira-silva",
+    "canonicalName": "Eduardo de Oliveira Silva",
+    "matricula": "20250018691",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Joana Victoria Alves da Silva",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "joana-victoria-alves-silva",
+    "canonicalName": "Joana Victoria Alves da Silva",
+    "matricula": null,
+    "matchConfidence": "PDF_ONLY",
+    "explanation": "Resolved from sponsorship PDFs; absent from active SIGAA roster"
+  },
+  {
+    "rawName": "Yasmin Sousa Batista",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "yasmin-sousa-batista",
+    "canonicalName": "Yasmin Sousa Batista",
+    "matricula": "20250019779",
+    "matchConfidence": "EXACT",
+    "explanation": "Matched official SIGAA record"
+  },
+  {
+    "rawName": "Brenda Letícia",
+    "sourceDoc": "/home/adiel/Downloads/Resultado Apadrinhamento - Página1-1.pdf",
+    "resolvedStudentId": "brenda-leticia-nascimento-dias",
+    "canonicalName": "Brenda Leticia do Nascimento Dias",
+    "matricula": "20250105008",
+    "matchConfidence": "TOKEN_SUBSET",
+    "explanation": "Matched official SIGAA record"
+  }
+]

@@ -1,0 +1,253 @@
+@import "tailwindcss";
+
+/* Dark mode is class-based: <html class="dark"> (default) / <html class="light"> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------ */
+/* Aquário UFPB-inspired design tokens                                 */
+/* ------------------------------------------------------------------ */
+@theme inline {
+  --font-sans: var(--font-inter), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-border-subtle: var(--border-subtle);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-p2: var(--p2);
+  --color-veterano: var(--veterano);
+}
+
+/* Light mode (slate-50 / sky-600 / blue-700) */
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --surface: rgba(255, 255, 255, 0.78);
+  --surface-strong: #ffffff;
+  --border-subtle: rgba(148, 163, 184, 0.45);
+  --muted: #e2e8f0;
+  --muted-foreground: #475569;
+  --primary: #0284c7; /* sky-600 */
+  --primary-foreground: #ffffff;
+  --accent: #1d4ed8; /* blue-700 */
+  --p2: #0284c7;
+  --veterano: #7c3aed;
+  --hero-glow: radial-gradient(
+    ellipse 80% 50% at 50% -10%,
+    rgba(14, 165, 233, 0.16),
+    rgba(6, 182, 212, 0.06) 50%,
+    transparent 75%
+  );
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px -12px rgba(2, 132, 199, 0.18);
+  color-scheme: light;
+}
+
+/* Dark mode — deep oceanic (slate-950 / sky-500 / cyan-400 / indigo-500) */
+.dark {
+  --background: #020617; /* slate-950 */
+  --foreground: #e2e8f0;
+  --surface: rgba(15, 23, 42, 0.75); /* slate-900/75 */
+  --surface-strong: #0f172a;
+  --border-subtle: rgba(30, 41, 59, 0.8); /* slate-800/80 */
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --primary: #0ea5e9; /* sky-500 */
+  --primary-foreground: #020617;
+  --accent: #22d3ee; /* cyan-400 */
+  --p2: #38bdf8; /* sky-400 */
+  --veterano: #a78bfa; /* violet-400 */
+  --hero-glow: radial-gradient(
+    ellipse 80% 50% at 50% -10%,
+    rgba(14, 165, 233, 0.16),
+    rgba(6, 182, 212, 0.06) 50%,
+    transparent 75%
+  );
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -16px rgba(14, 165, 233, 0.25);
+  color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--background);
+    background-image: var(--hero-glow);
+    background-repeat: no-repeat;
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: rgba(14, 165, 233, 0.35);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* Thin oceanic scrollbars */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100, 116, 139, 0.45) transparent;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Components (reusable design-system primitives)                      */
+/* ------------------------------------------------------------------ */
+@layer components {
+  /* Glassmorphic card */
+  .glass-card {
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-card);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-radius: 0.875rem;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+  .glass-card-interactive:hover {
+    border-color: rgba(14, 165, 233, 0.45);
+  }
+
+  /* Sticky header surface */
+  .glass-header {
+    background: color-mix(in srgb, var(--background) 80%, transparent);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  /* Cohort badges — consistent across tree nodes, search, drawer and filters */
+  .cohort-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 9999px;
+    border-width: 1px;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .cohort-2024-1 {
+    background: rgba(245, 158, 11, 0.15);
+    color: #b45309;
+    border-color: rgba(245, 158, 11, 0.4);
+  }
+  .cohort-2024-2 {
+    background: rgba(139, 92, 246, 0.15);
+    color: #6d28d9;
+    border-color: rgba(139, 92, 246, 0.4);
+  }
+  .cohort-2025-1 {
+    background: rgba(16, 185, 129, 0.15);
+    color: #047857;
+    border-color: rgba(16, 185, 129, 0.4);
+  }
+  .cohort-2025-2 {
+    background: rgba(14, 165, 233, 0.15);
+    color: #0369a1;
+    border-color: rgba(14, 165, 233, 0.4);
+  }
+  .cohort-2026-1 {
+    background: rgba(244, 63, 94, 0.15);
+    color: #be123c;
+    border-color: rgba(244, 63, 94, 0.4);
+  }
+  .cohort-other {
+    background: rgba(100, 116, 139, 0.15);
+    color: #475569;
+    border-color: rgba(100, 116, 139, 0.4);
+  }
+  .dark .cohort-2024-1 {
+    color: #fcd34d; /* amber-300 */
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+  .dark .cohort-2024-2 {
+    color: #c4b5fd; /* violet-300 */
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+  .dark .cohort-2025-1 {
+    color: #6ee7b7; /* emerald-300 */
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+  .dark .cohort-2025-2 {
+    color: #7dd3fc; /* sky-300 */
+    border-color: rgba(14, 165, 233, 0.3);
+  }
+  .dark .cohort-2026-1 {
+    color: #fda4af; /* rose-300 */
+    border-color: rgba(244, 63, 94, 0.3);
+  }
+  .dark .cohort-other {
+    color: #cbd5e1;
+    border-color: rgba(100, 116, 139, 0.3);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Animations                                                          */
+/* ------------------------------------------------------------------ */
+@keyframes drawer-in {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-drawer-in {
+  animation: drawer-in 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-fade-in {
+  animation: fade-in 0.18s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-drawer-in,
+  .animate-fade-in {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* React Flow theming hook (consumed by Yggdrasil's tree components) */
+.react-flow {
+  --xy-background-color: transparent;
+  --xy-edge-stroke-default: var(--muted-foreground);
+}

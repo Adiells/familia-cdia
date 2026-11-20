@@ -1,0 +1,148 @@
+"use client";
+
+import { Network, Plus, Search, GitBranch, Database, Waves } from "lucide-react";
+import { useEffect } from "react";
+import { cn } from "./cn";
+import { ThemeToggle } from "./ThemeToggle";
+
+export type AppTab = "tree" | "lineages" | "directory";
+
+export const APP_TABS: { id: AppTab; label: string; icon: typeof Network }[] = [
+  { id: "tree", label: "Árvore Interativa", icon: Network },
+  { id: "lineages", label: "Explorador de Linhagens", icon: GitBranch },
+  { id: "directory", label: "Diretório de Alunos", icon: Database },
+];
+
+interface HeaderProps {
+  activeTab?: AppTab;
+  onTabChange?: (tab: AppTab) => void;
+  /** Opens the global command search (Aegis' CommandSearch). Also bound to ⌘K / Ctrl+K. */
+  onOpenSearch?: () => void;
+  /** Opens the "Novo Apadrinhamento" modal (Aegis' AddSponsorshipModal). */
+  onNewSponsorship?: () => void;
+  className?: string;
+}
+
+export function Header({
+  activeTab = "tree",
+  onTabChange,
+  onOpenSearch,
+  onNewSponsorship,
+  className,
+}: HeaderProps) {
+  useEffect(() => {
+    if (!onOpenSearch) return;
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        onOpenSearch();
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [onOpenSearch]);
+
+  return (
+    <header className={cn("glass-header sticky top-0 z-40 w-full", className)}>
+      <div className="mx-auto flex h-16 max-w-[1800px] items-center gap-3 px-4 sm:px-6">
+        {/* Brand */}
+        <a href="/" className="group flex shrink-0 items-center gap-2.5" aria-label="Família CDIA — início">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 via-cyan-400 to-indigo-500 text-white shadow-lg shadow-sky-500/25 transition-transform group-hover:scale-105">
+            <Waves className="h-5 w-5" strokeWidth={2.25} />
+          </span>
+          <span className="flex flex-col leading-tight">
+            <span className="font-display text-[15px] font-bold tracking-tight">Família CDIA</span>
+            <span className="text-[11px] font-medium text-muted-foreground">CI • UFPB</span>
+          </span>
+        </a>
+
+        {/* Navigation */}
+        <nav aria-label="Modos de visualização" className="ml-4 hidden items-center gap-1 lg:flex">
+          {APP_TABS.map(({ id, label, icon: Icon }) => {
+            const active = id === activeTab;
+            return (
+              <button
+                key={id}
+                type="button"
+                onClick={() => onTabChange?.(id)}
+                aria-current={active ? "page" : undefined}
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors",
+                  active
+                    ? "bg-sky-500/15 text-sky-600 dark:text-sky-300"
+                    : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
+                )}
+              >
+                <Icon className="h-3.5 w-3.5" />
+                {label}
+              </button>
+            );
+          })}
+        </nav>
+
+        <div className="ml-auto flex items-center gap-2">
+          {/* Command search trigger */}
+          <button
+            type="button"
+            onClick={onOpenSearch}
+            className="hidden h-9 w-64 items-center gap-2 rounded-lg border border-border-subtle bg-surface px-3 text-left text-[13px] text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground md:flex xl:w-80"
+            aria-label="Buscar aluno ou matrícula"
+          >
+            <Search className="h-4 w-4 shrink-0" />
+            <span className="flex-1 truncate">Buscar aluno ou matrícula...</span>
+            <kbd className="rounded border border-border-subtle bg-muted/50 px-1.5 py-0.5 font-sans text-[10px] font-semibold">
+              ⌘K
+            </kbd>
+          </button>
+          <button
+            type="button"
+            onClick={onOpenSearch}
+            aria-label="Buscar"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border-subtle bg-surface text-muted-foreground hover:text-foreground md:hidden"
+          >
+            <Search className="h-4 w-4" />
+          </button>
+
+          <ThemeToggle />
+
+          <button
+            type="button"
+            onClick={onNewSponsorship}
+            className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-gradient-to-r from-sky-500 to-cyan-500 px-3.5 text-[13px] font-semibold text-white shadow-md shadow-sky-500/25 transition hover:brightness-110 active:scale-[0.98]"
+          >
+            <Plus className="h-4 w-4" />
+            <span className="hidden sm:inline">Novo Apadrinhamento</span>
+            <span className="sm:hidden">Novo</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile / tablet tab strip */}
+      <nav
+        aria-label="Modos de visualização"
+        className="flex gap-1 overflow-x-auto border-t border-border-subtle px-3 py-1.5 lg:hidden"
+      >
+        {APP_TABS.map(({ id, label, icon: Icon }) => {
+          const active = id === activeTab;
+          return (
+            <button
+              key={id}
+              type="button"
+              onClick={() => onTabChange?.(id)}
+              aria-current={active ? "page" : undefined}
+              className={cn(
+                "inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
+                active
+                  ? "bg-sky-500/15 text-sky-600 dark:text-sky-300"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              <Icon className="h-3.5 w-3.5" />
+              {label}
+            </button>
+          );
+        })}
+      </nav>
+    </header>
+  );
+}
