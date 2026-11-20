@@ -29,18 +29,18 @@ export const viewport: Viewport = {
 
 /**
  * Runs before hydration to avoid a theme flash.
- * Dark oceanic is the default; users can opt into light via the ThemeToggle.
+ * Light is the default; users can opt into dark via the ThemeToggle.
  */
 const themeInitScript = `
 (function () {
   try {
-    var stored = localStorage.getItem('cdia-theme');
-    var theme = stored === 'light' ? 'light' : 'dark';
+    var stored = localStorage.getItem('cdia-theme-v2');
+    var theme = stored === 'dark' ? 'dark' : 'light';
     var root = document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
   } catch (e) {
-    document.documentElement.classList.add('dark');
+    document.documentElement.classList.add('light');
   }
 })();
 `;
@@ -51,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`dark ${inter.variable} ${jakarta.variable}`}
+      className={`light ${inter.variable} ${jakarta.variable}`}
       suppressHydrationWarning
     >
       <head>

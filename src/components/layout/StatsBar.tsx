@@ -31,13 +31,13 @@ function Stat({
   tone: string;
 }) {
   return (
-    <div className="glass-card flex min-w-[9.5rem] flex-1 items-center gap-3 px-3.5 py-2.5">
-      <span className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-lg", tone)}>
-        <Icon className="h-4.5 w-4.5" />
+    <div className="glass-card flex min-w-0 items-center gap-2 px-2 py-2 sm:min-w-[9.5rem] sm:flex-1 sm:gap-3 sm:px-3.5 sm:py-2.5">
+      <span className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-lg sm:h-9 sm:w-9", tone)}>
+        <Icon className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
       </span>
-      <div className="leading-tight">
-        <div className="font-display text-xl font-bold tabular-nums">{value.toLocaleString("pt-BR")}</div>
-        <div className="text-[11px] font-medium text-muted-foreground">{label}</div>
+      <div className="min-w-0 leading-tight">
+        <div className="font-display text-lg font-bold tabular-nums sm:text-xl">{value.toLocaleString("pt-BR")}</div>
+        <div className="text-[9px] font-medium leading-tight text-muted-foreground sm:text-[11px]">{label}</div>
       </div>
     </div>
   );
@@ -51,8 +51,8 @@ export function StatsBar({ stats, activeCohort = null, onCohortChange, className
 
   return (
     <section aria-label="Estatísticas e filtros por geração" className={cn("w-full", className)}>
-      <div className="mx-auto flex max-w-[1800px] flex-col gap-3 px-4 py-3 sm:px-6">
-        <div className="flex flex-wrap gap-3">
+      <div className="mx-auto flex max-w-[1800px] flex-col gap-2 px-3 py-2 sm:gap-3 sm:px-6 sm:py-3">
+        <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-3">
           <Stat
             icon={Users}
             label="Estudantes na árvore"
@@ -74,8 +74,8 @@ export function StatsBar({ stats, activeCohort = null, onCohortChange, className
         </div>
 
         {/* Cohort quick filters */}
-        <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Filtrar por geração">
-          <span className="mr-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <div className="flex min-w-0 items-center gap-1.5 overflow-x-auto py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:flex-wrap sm:gap-2" role="group" aria-label="Filtrar por geração">
+          <span className="mr-0.5 shrink-0 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground sm:mr-1 sm:text-[11px]">
             Geração
           </span>
           <button
@@ -83,7 +83,7 @@ export function StatsBar({ stats, activeCohort = null, onCohortChange, className
             onClick={() => onCohortChange?.(null)}
             aria-pressed={activeCohort === null}
             className={cn(
-              "cohort-badge cursor-pointer transition",
+              "cohort-badge min-h-8 shrink-0 cursor-pointer px-2 py-1 text-[10px] transition sm:text-xs",
               activeCohort === null
                 ? "border-sky-500/50 bg-sky-500/20 text-sky-700 dark:text-sky-200"
                 : "border-border-subtle text-muted-foreground hover:text-foreground",
@@ -101,7 +101,7 @@ export function StatsBar({ stats, activeCohort = null, onCohortChange, className
                 onClick={() => onCohortChange?.(active ? null : c)}
                 aria-pressed={active}
                 className={cn(
-                  "cohort-badge cursor-pointer transition",
+                  "cohort-badge min-h-8 shrink-0 cursor-pointer px-2 py-1 text-[10px] transition sm:text-xs",
                   cohortClass(c),
                   dimmed && "opacity-40 hover:opacity-80",
                   active && "ring-2 ring-current/40",

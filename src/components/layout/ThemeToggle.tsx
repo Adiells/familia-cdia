@@ -20,7 +20,7 @@ function subscribe(cb: () => void) {
 }
 
 export function ThemeToggle({ className }: { className?: string }) {
-  const theme = useSyncExternalStore<Theme>(subscribe, getTheme, () => "dark");
+  const theme = useSyncExternalStore<Theme>(subscribe, getTheme, () => "light");
 
   const toggle = () => {
     const next: Theme = theme === "dark" ? "light" : "dark";
@@ -28,7 +28,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     root.classList.remove("light", "dark");
     root.classList.add(next);
     try {
-      localStorage.setItem("cdia-theme", next);
+      localStorage.setItem("cdia-theme-v2", next);
     } catch {
       /* ignore storage errors */
     }

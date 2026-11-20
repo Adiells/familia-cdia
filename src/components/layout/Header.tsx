@@ -44,7 +44,7 @@ export function Header({
 
   return (
     <header className={cn("glass-header sticky top-0 z-40 w-full", className)}>
-      <div className="mx-auto flex h-16 max-w-[1800px] items-center gap-3 px-4 sm:px-6">
+      <div className="mx-auto flex h-14 max-w-[1800px] items-center gap-2 px-3 sm:h-16 sm:gap-3 sm:px-6">
         {/* Brand */}
         <a href="/" className="group flex shrink-0 items-center gap-2.5" aria-label="Família CDIA — início">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 via-cyan-400 to-indigo-500 text-white shadow-lg shadow-sky-500/25 transition-transform group-hover:scale-105">
@@ -98,17 +98,17 @@ export function Header({
             type="button"
             onClick={onOpenSearch}
             aria-label="Buscar"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border-subtle bg-surface text-muted-foreground hover:text-foreground md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border-subtle bg-surface text-muted-foreground hover:text-foreground md:hidden"
           >
             <Search className="h-4 w-4" />
           </button>
 
-          <ThemeToggle />
+          <ThemeToggle className="h-10 w-10" />
 
           <button
             type="button"
             onClick={onNewSponsorship}
-            className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-gradient-to-r from-sky-500 to-cyan-500 px-3.5 text-[13px] font-semibold text-white shadow-md shadow-sky-500/25 transition hover:brightness-110 active:scale-[0.98]"
+            className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-gradient-to-r from-sky-500 to-cyan-500 px-3 text-[13px] font-semibold text-white shadow-md shadow-sky-500/25 transition hover:brightness-110 active:scale-[0.98] sm:px-3.5"
           >
             <Plus className="h-4 w-4" />
             <span className="hidden sm:inline">Novo Apadrinhamento</span>
@@ -120,7 +120,7 @@ export function Header({
       {/* Mobile / tablet tab strip */}
       <nav
         aria-label="Modos de visualização"
-        className="flex gap-1 overflow-x-auto border-t border-border-subtle px-3 py-1.5 lg:hidden"
+        className="flex gap-1 overflow-x-auto overscroll-x-contain border-t border-border-subtle px-2 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:hidden"
       >
         {APP_TABS.map(({ id, label, icon: Icon }) => {
           const active = id === activeTab;
@@ -131,7 +131,7 @@ export function Header({
               onClick={() => onTabChange?.(id)}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
+                "inline-flex min-h-10 shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors sm:px-3",
                 active
                   ? "bg-sky-500/15 text-sky-600 dark:text-sky-300"
                   : "text-muted-foreground hover:text-foreground",

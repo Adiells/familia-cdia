@@ -202,7 +202,7 @@ export default function Home() {
 
       <main className="mx-auto flex w-full max-w-[1800px] flex-1 flex-col px-4 pb-6 sm:px-6">
         {activeTab === "tree" && (
-          <div className="relative flex h-[calc(100vh-13.5rem)] min-h-[600px] w-full flex-1">
+          <div className="relative flex h-[calc(100dvh-11.5rem)] min-h-[480px] w-full flex-1 sm:h-[calc(100vh-13.5rem)] sm:min-h-[600px]">
             <FamilyTreeCanvas
               students={students}
               sponsorships={sponsorships}
@@ -339,7 +339,7 @@ export default function Home() {
 
         {activeTab === "directory" && (
           <div className="glass-card flex flex-1 flex-col overflow-hidden">
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border-subtle p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border-subtle p-3 sm:p-5">
               <div>
                 <h2 className="font-display text-lg font-bold">
                   Diretório de Alunos ({filteredDirectory.length})
@@ -359,7 +359,36 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="overflow-x-auto">
+            <ul className="divide-y divide-border-subtle overflow-y-auto sm:hidden" aria-label="Lista de alunos">
+              {filteredDirectory.map((student) => (
+                <li key={student.id} className="p-3">
+                  <div className="font-semibold leading-snug">{student.canonicalName}</div>
+                  {student.notes && <div className="mt-0.5 text-[11px] text-amber-400">Nota: {student.notes}</div>}
+                  <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                    <span className="font-mono">{student.matricula ?? "Sem matrícula"}</span>
+                    <CohortBadge cohort={student.cohort} />
+                  </div>
+                  <div className="mt-2 grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handleSelectStudent(student)}
+                      className="min-h-11 rounded-lg border border-border-subtle px-3 text-xs font-medium hover:border-sky-500/40"
+                    >
+                      Perfil
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleFocusLineage(student.id)}
+                      className="min-h-11 rounded-lg bg-sky-500/15 px-3 text-xs font-semibold text-sky-400 hover:bg-sky-500/25"
+                    >
+                      Ver na Árvore
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            <div className="hidden overflow-x-auto sm:block">
               <table className="w-full min-w-[780px] text-left text-sm">
                 <thead className="border-b border-border-subtle bg-muted/40 text-[11px] uppercase tracking-wider text-muted-foreground">
                   <tr>

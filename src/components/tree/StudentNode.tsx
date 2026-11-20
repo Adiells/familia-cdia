@@ -41,25 +41,23 @@ export const StudentNode = memo(function StudentNode({
   );
 
   let containerStateClass =
-    'bg-slate-900/85 border-slate-800/85 hover:border-sky-500/50 shadow-lg shadow-slate-950/60';
+    'bg-white border-slate-200/90 text-slate-900 shadow-sm hover:border-sky-500/60 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-100 dark:hover:border-sky-500/50';
 
   if (isSelected) {
     containerStateClass =
-      'bg-slate-900/95 border-sky-400 ring-2 ring-sky-400/70 shadow-[0_0_28px_-4px_rgba(56,189,248,0.55)] scale-[1.02]';
+      'bg-white border-sky-500 ring-2 ring-sky-500/60 shadow-md dark:bg-slate-900 dark:border-sky-400 dark:ring-sky-400/70';
   } else if (isSearchMatch) {
     containerStateClass =
-      'bg-slate-900/95 border-cyan-400 ring-2 ring-cyan-400/50 shadow-[0_0_22px_-4px_rgba(34,211,238,0.45)]';
+      'bg-white border-cyan-500 ring-2 ring-cyan-500/50 shadow-md dark:bg-slate-900 dark:border-cyan-400 dark:ring-cyan-400/50';
   } else if (isAncestor) {
     containerStateClass =
-      'bg-slate-900/92 border-sky-400/75 ring-1 ring-sky-400/35 shadow-[0_0_20px_-5px_rgba(56,189,248,0.35)]';
+      'bg-white border-sky-500/80 ring-1 ring-sky-500/35 shadow-sm dark:bg-slate-900 dark:border-sky-400/75 dark:ring-sky-400/35';
   } else if (isDescendant) {
     containerStateClass =
-      'bg-slate-900/92 border-cyan-400/75 ring-1 ring-cyan-400/35 shadow-[0_0_20px_-5px_rgba(34,211,238,0.35)]';
+      'bg-white border-cyan-500/80 ring-1 ring-cyan-500/35 shadow-sm dark:bg-slate-900 dark:border-cyan-400/75 dark:ring-cyan-400/35';
   }
 
-  const opacityClass = isDimmed
-    ? 'opacity-20 saturate-50 hover:opacity-60'
-    : 'opacity-100';
+  const opacityClass = isDimmed ? 'opacity-20' : 'opacity-100';
 
   const depthLabel =
     typeof data.lineageDepth === 'number' && data.lineageDepth !== 0
@@ -77,11 +75,11 @@ export const StudentNode = memo(function StudentNode({
       data-testid={`student-node-${data.id}`}
       data-cohort={data.cohort}
       data-lineage-relation={data.lineageRelation}
-      className={`group relative w-[252px] min-h-[126px] rounded-xl border backdrop-blur-md px-3.5 py-2.5 text-left transition-all duration-200 select-none cursor-pointer ${containerStateClass} ${opacityClass}`}
+      className={`group relative w-[252px] min-h-[126px] rounded-xl border px-3.5 py-2.5 text-left transition-colors select-none cursor-pointer ${containerStateClass} ${opacityClass}`}
     >
       {/* Top accent bar colored by generation cohort */}
       <div
-        className="absolute inset-x-3 top-0 h-[2px] rounded-full opacity-75 transition-opacity group-hover:opacity-100"
+        className="absolute inset-x-3 top-0 h-[2px] rounded-full opacity-80"
         style={{ backgroundColor: theme.accentColor }}
       />
 
@@ -89,7 +87,7 @@ export const StudentNode = memo(function StudentNode({
       <Handle
         type="target"
         position={isHorizontal ? Position.Left : Position.Top}
-        className="!h-2.5 !w-2.5 !rounded-full !border-2 !border-slate-950 !bg-sky-400 transition-transform group-hover:scale-125"
+        className="!h-2.5 !w-2.5 !rounded-full !border-2 !border-white !bg-sky-500 dark:!border-slate-950 dark:!bg-sky-400"
       />
 
       {/* Header Row: Cohort Badge + Lineage Relation Pill */}
@@ -103,14 +101,14 @@ export const StudentNode = memo(function StudentNode({
         </span>
 
         {isSelected && (
-          <span className="inline-flex items-center gap-0.5 rounded-md bg-sky-500/20 border border-sky-400/40 px-1.5 py-0.5 text-[9px] font-semibold text-sky-300">
+          <span className="inline-flex items-center gap-0.5 rounded-md bg-sky-500/15 border border-sky-500/40 px-1.5 py-0.5 text-[9px] font-semibold text-sky-700 dark:bg-sky-500/20 dark:border-sky-400/40 dark:text-sky-300">
             <Sparkles className="h-2.5 w-2.5" />
             Foco
           </span>
         )}
 
         {!isSelected && depthLabel && (
-          <span className="truncate rounded-md border bg-sky-500/15 border-sky-400/35 px-1.5 py-0.5 text-[9px] font-medium text-sky-300">
+          <span className="truncate rounded-md border bg-sky-500/10 border-sky-500/30 px-1.5 py-0.5 text-[9px] font-medium text-sky-700 dark:bg-sky-500/15 dark:border-sky-400/35 dark:text-sky-300">
             {depthLabel}
           </span>
         )}
@@ -119,13 +117,13 @@ export const StudentNode = memo(function StudentNode({
       {/* Student Display Name & Full Canonical Name */}
       <div className="mb-2">
         <h3
-          className="text-xs font-bold leading-snug text-slate-100 group-hover:text-sky-300 transition-colors line-clamp-1"
+          className="text-xs font-bold leading-snug text-slate-900 group-hover:text-sky-600 dark:text-slate-100 dark:group-hover:text-sky-300 transition-colors line-clamp-1"
           title={data.canonicalName}
         >
           {data.displayName}
         </h3>
         <p
-          className="text-[10px] text-slate-400 truncate leading-tight mt-0.5"
+          className="text-[10px] text-slate-500 dark:text-slate-400 truncate leading-tight mt-0.5"
           title={data.canonicalName}
         >
           {data.canonicalName}
@@ -136,31 +134,31 @@ export const StudentNode = memo(function StudentNode({
       <div className="mb-2">
         {uniqueGodparentNames.length > 0 ? (
           <div
-            className="inline-flex items-center gap-1.5 max-w-full truncate rounded-md bg-sky-500/10 border border-sky-500/25 px-2 py-0.5 text-[9px] font-medium text-sky-300"
+            className="inline-flex items-center gap-1.5 max-w-full truncate rounded-md bg-sky-500/10 border border-sky-500/25 px-2 py-0.5 text-[9px] font-medium text-sky-700 dark:text-sky-300"
             title={`Padrinhos: ${allGodparents.map((g) => g.displayName).join(', ')}`}
           >
-            <UserCheck className="h-2.5 w-2.5 text-sky-400 shrink-0" />
+            <UserCheck className="h-2.5 w-2.5 text-sky-600 dark:text-sky-400 shrink-0" />
             <span className="truncate">
               {uniqueGodparentNames.join(' • ')}
             </span>
           </div>
         ) : (
-          <div className="inline-flex items-center gap-1 text-[9px] text-amber-300/80">
-            <Crown className="h-2.5 w-2.5 text-amber-400 shrink-0" />
+          <div className="inline-flex items-center gap-1 text-[9px] text-amber-700 dark:text-amber-300/80">
+            <Crown className="h-2.5 w-2.5 text-amber-500 dark:text-amber-400 shrink-0" />
             <span>Raiz de Linhagem</span>
           </div>
         )}
       </div>
 
       {/* Footer Row: Unified Padrinhos Count & Afilhados Count */}
-      <div className="flex items-center justify-between border-t border-slate-800/80 pt-1.5 text-[10px] text-slate-400">
+      <div className="flex items-center justify-between border-t border-slate-200/80 dark:border-slate-800/80 pt-1.5 text-[10px] text-slate-500 dark:text-slate-400">
         <div className="flex items-center gap-3">
           <div
             className="inline-flex items-center gap-1"
             title={`${data.godparentsCount} padrinho(s) registrado(s)`}
           >
-            <UserCheck className="h-3 w-3 text-sky-400/80" />
-            <span className="font-medium text-slate-300">
+            <UserCheck className="h-3 w-3 text-sky-600/80 dark:text-sky-400/80" />
+            <span className="font-semibold text-slate-800 dark:text-slate-200">
               {data.godparentsCount}
             </span>
             <span>
@@ -172,8 +170,8 @@ export const StudentNode = memo(function StudentNode({
             className="inline-flex items-center gap-1"
             title={`${data.godchildrenCount} afilhado(s) direto(s)`}
           >
-            <Users className="h-3 w-3 text-sky-400/80" />
-            <span className="font-medium text-slate-300">
+            <Users className="h-3 w-3 text-sky-600/80 dark:text-sky-400/80" />
+            <span className="font-semibold text-slate-800 dark:text-slate-200">
               {data.godchildrenCount}
             </span>
             <span>
@@ -184,10 +182,10 @@ export const StudentNode = memo(function StudentNode({
 
         {data.descendantsCount > data.godchildrenCount && (
           <div
-            className="inline-flex items-center gap-0.5 text-[9px] font-medium text-cyan-300/90"
+            className="inline-flex items-center gap-0.5 text-[9px] font-semibold text-cyan-700 dark:text-cyan-300/90"
             title={`Total de ${data.descendantsCount} descendentes na linhagem acadêmica`}
           >
-            <GitFork className="h-2.5 w-2.5 text-cyan-400" />
+            <GitFork className="h-2.5 w-2.5 text-cyan-600 dark:text-cyan-400" />
             <span>+{data.descendantsCount}</span>
           </div>
         )}
@@ -197,7 +195,7 @@ export const StudentNode = memo(function StudentNode({
       <Handle
         type="source"
         position={isHorizontal ? Position.Right : Position.Bottom}
-        className="!h-2.5 !w-2.5 !rounded-full !border-2 !border-slate-950 !bg-cyan-400 transition-transform group-hover:scale-125"
+        className="!h-2.5 !w-2.5 !rounded-full !border-2 !border-white !bg-cyan-500 dark:!border-slate-950 dark:!bg-cyan-400"
       />
     </div>
   );

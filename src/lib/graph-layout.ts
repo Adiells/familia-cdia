@@ -45,10 +45,11 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     label: '2024.1',
     shortLabel: '24.1',
     generationTitle: 'Veteranos Fundadores',
-    badgeClass: 'bg-amber-500/15 text-amber-300 border-amber-500/30',
-    dotClass: 'bg-amber-400',
-    borderGlowClass: 'hover:border-amber-400/50',
-    accentColor: '#fbbf24',
+    badgeClass:
+      'bg-amber-500/15 text-amber-800 border-amber-500/35 dark:text-amber-300 dark:border-amber-500/30',
+    dotClass: 'bg-amber-500 dark:bg-amber-400',
+    borderGlowClass: 'hover:border-amber-500/50',
+    accentColor: '#f59e0b',
     minimapColor: '#f59e0b',
   },
   '2024.2': {
@@ -57,10 +58,11 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     label: '2024.2',
     shortLabel: '24.2',
     generationTitle: 'Veteranos 24.2',
-    badgeClass: 'bg-violet-500/15 text-violet-300 border-violet-500/30',
-    dotClass: 'bg-violet-400',
-    borderGlowClass: 'hover:border-violet-400/50',
-    accentColor: '#a78bfa',
+    badgeClass:
+      'bg-violet-500/15 text-violet-800 border-violet-500/35 dark:text-violet-300 dark:border-violet-500/30',
+    dotClass: 'bg-violet-500 dark:bg-violet-400',
+    borderGlowClass: 'hover:border-violet-500/50',
+    accentColor: '#8b5cf6',
     minimapColor: '#8b5cf6',
   },
   '2025.1': {
@@ -69,10 +71,11 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     label: '2025.1',
     shortLabel: '25.1',
     generationTitle: 'Geração P2 • 25.1',
-    badgeClass: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
-    dotClass: 'bg-emerald-400',
-    borderGlowClass: 'hover:border-emerald-400/50',
-    accentColor: '#34d399',
+    badgeClass:
+      'bg-emerald-500/15 text-emerald-800 border-emerald-500/35 dark:text-emerald-300 dark:border-emerald-500/30',
+    dotClass: 'bg-emerald-500 dark:bg-emerald-400',
+    borderGlowClass: 'hover:border-emerald-500/50',
+    accentColor: '#10b981',
     minimapColor: '#10b981',
   },
   '2025.2': {
@@ -81,10 +84,11 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     label: '2025.2',
     shortLabel: '25.2',
     generationTitle: 'Geração P2 • 25.2',
-    badgeClass: 'bg-sky-500/15 text-sky-300 border-sky-500/30',
-    dotClass: 'bg-sky-400',
-    borderGlowClass: 'hover:border-sky-400/50',
-    accentColor: '#38bdf8',
+    badgeClass:
+      'bg-sky-500/15 text-sky-800 border-sky-500/35 dark:text-sky-300 dark:border-sky-500/30',
+    dotClass: 'bg-sky-500 dark:bg-sky-400',
+    borderGlowClass: 'hover:border-sky-500/50',
+    accentColor: '#0ea5e9',
     minimapColor: '#0ea5e9',
   },
   '2026.1': {
@@ -93,10 +97,11 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     label: '2026.1',
     shortLabel: '26.1',
     generationTitle: 'Calouros 26.1',
-    badgeClass: 'bg-rose-500/15 text-rose-300 border-rose-500/30',
-    dotClass: 'bg-rose-400',
-    borderGlowClass: 'hover:border-rose-400/50',
-    accentColor: '#fb7185',
+    badgeClass:
+      'bg-rose-500/15 text-rose-800 border-rose-500/35 dark:text-rose-300 dark:border-rose-500/30',
+    dotClass: 'bg-rose-500 dark:bg-rose-400',
+    borderGlowClass: 'hover:border-rose-500/50',
+    accentColor: '#f43f5e',
     minimapColor: '#f43f5e',
   },
 };
@@ -107,10 +112,11 @@ const FALLBACK_COHORT_THEME: CohortTheme = {
   label: 'Outro',
   shortLabel: '--',
   generationTitle: 'Comunidade CDIA',
-  badgeClass: 'bg-slate-500/15 text-slate-300 border-slate-500/30',
-  dotClass: 'bg-slate-400',
-  borderGlowClass: 'hover:border-sky-400/50',
-  accentColor: '#94a3b8',
+  badgeClass:
+    'bg-slate-500/15 text-slate-700 border-slate-500/35 dark:text-slate-300 dark:border-slate-500/30',
+  dotClass: 'bg-slate-500 dark:bg-slate-400',
+  borderGlowClass: 'hover:border-sky-500/50',
+  accentColor: '#64748b',
   minimapColor: '#64748b',
 };
 
@@ -1143,8 +1149,8 @@ export function buildStratifiedGraphLayout(
       type: 'sponsorship',
       source: edge.godparentId,
       target: edge.godchildId,
-      animated: isHighlighted && edge.role === 'P2',
-      zIndex: isHighlighted ? 30 : edge.role === 'P2' ? 15 : 10,
+      animated: false,
+      zIndex: isHighlighted ? 30 : 10,
       data: {
         ...edge,
         godparentName: godparent?.displayName ?? edge.godparentId,

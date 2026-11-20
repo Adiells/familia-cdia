@@ -24,7 +24,7 @@ import {
   type NodeTypes,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import { Crown, Info, Sparkles, Users } from 'lucide-react';
+import { Crown, Info, Map as MapIcon, Sparkles, Users } from 'lucide-react';
 import type {
   CohortSemester,
   SponsorshipEdgeData,
@@ -88,7 +88,7 @@ export interface FamilyTreeCanvasProps {
   searchQuery?: string;
   /** Whether to show the floating TreeControls bar inside the canvas (default: true) */
   showControls?: boolean;
-  /** Whether to show the MiniMap in bottom-right (default: true) */
+  /** Whether to show the MiniMap in bottom-right by default (default: false for smooth 60fps panning) */
   showMiniMap?: boolean;
   /** Additional container className */
   className?: string;
@@ -113,7 +113,7 @@ function FamilyTreeCanvasInner({
   onLineageModeChange,
   searchQuery = '',
   showControls = true,
-  showMiniMap = true,
+  showMiniMap = false,
   className = '',
 }: FamilyTreeCanvasProps) {
   const rawStudents = useMemo(
@@ -141,6 +141,7 @@ function FamilyTreeCanvasInner({
   const [internalLineageMode, setInternalLineageMode] = useState<LineageMode>(
     controlledLineageMode ?? 'HIGHLIGHT'
   );
+  const [miniMapVisible, setMiniMapVisible] = useState<boolean>(showMiniMap);
 
   const activeSelectedId =
     controlledSelectedId !== undefined ? controlledSelectedId : internalSelectedId;
@@ -256,7 +257,7 @@ function FamilyTreeCanvasInner({
         window.requestAnimationFrame(() => {
           reactFlow.fitView({
             padding: 0.22,
-            duration: 500,
+            duration: 400,
             maxZoom: 1.15,
           });
         });
@@ -266,7 +267,7 @@ function FamilyTreeCanvasInner({
         window.requestAnimationFrame(() => {
           reactFlow.setCenter(centerX, centerY, {
             zoom: Math.max(reactFlow.getZoom(), 0.85),
-            duration: 550,
+            duration: 450,
           });
         });
       }
@@ -285,7 +286,7 @@ function FamilyTreeCanvasInner({
     if (activeSelectedId && (selectionChanged || activeLineageMode === 'ISOLATE')) {
       const timer = window.setTimeout(() => {
         centerOnStudent(activeSelectedId);
-      }, 40);
+      }, 30);
       return () => window.clearTimeout(timer);
     }
 
@@ -293,10 +294,10 @@ function FamilyTreeCanvasInner({
       const timer = window.setTimeout(() => {
         reactFlow.fitView({
           padding: 0.16,
-          duration: 450,
+          duration: 380,
           maxZoom: 1.1,
         });
-      }, 40);
+      }, 30);
       return () => window.clearTimeout(timer);
     }
   }, [
@@ -338,7 +339,7 @@ function FamilyTreeCanvasInner({
   const handleFitView = useCallback(() => {
     reactFlow.fitView({
       padding: 0.16,
-      duration: 500,
+      duration: 400,
       maxZoom: 1.15,
     });
   }, [reactFlow]);
@@ -350,8 +351,8 @@ function FamilyTreeCanvasInner({
   }, [activeSelectedId, centerOnStudent]);
 
   const minimapNodeColor = useCallback((node: StudentFlowNode) => {
-    if (node.data?.isSelected) return '#38bdf8';
-    if (node.data?.isDimmed) return '#1e293b';
+    if (node.data?.isSelected) return '#0284c7';
+    if (node.data?.isDimmed) return '#94a3b8';
     return getCohortTheme(node.data?.cohort ?? '2025.2').minimapColor;
   }, []);
 
@@ -361,10 +362,10 @@ function FamilyTreeCanvasInner({
   return (
     <div
       data-testid="family-tree-canvas"
-      className={`relative h-[740px] w-full min-h-[620px] overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950 ${className}`}
+      className={`relative h-[740px] w-full min-h-[620px] overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/90 dark:border-slate-800/80 dark:bg-slate-950 ${className}`}
     >
-      {/* Aquário UFPB Deep Ocean Radial Backdrop */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-500/10 via-cyan-500/5 to-transparent" />
+      {/* Subtle Ocean Radial Backdrop (Light & Dark aware) */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-500/8 via-cyan-500/4 to-transparent dark:from-sky-500/10 dark:via-cyan-500/5" />
 
       <div className="absolute inset-0 h-full w-full">
         <ReactFlow<StudentFlowNode, SponsorshipFlowEdge>
@@ -376,6 +377,13 @@ function FamilyTreeCanvasInner({
           onPaneClick={handlePaneClick}
           nodeTypes={NODE_TYPES}
           edgeTypes={EDGE_TYPES}
+          onlyRenderVisibleElements
+          nodesDraggable={false}
+          nodesConnectable={false}
+          elementsSelectable={false}
+          nodesFocusable={false}
+          edgesFocusable={false}
+          selectNodesOnDrag={false}
           fitView
           fitViewOptions={{
             padding: 0.16,
@@ -389,135 +397,146 @@ function FamilyTreeCanvasInner({
               type: MarkerType.ArrowClosed,
               width: 14,
               height: 14,
-              color: '#38bdf8',
+              color: '#0ea5e9',
             },
           }}
           proOptions={{ hideAttribution: true }}
-          nodesConnectable={false}
-          elementsSelectable
-          selectNodesOnDrag={false}
           style={{ width: '100%', height: '100%' }}
           className="h-full w-full bg-transparent"
         >
-        <Background
-          variant={BackgroundVariant.Dots}
-          gap={24}
-          size={1.25}
-          color="#334155"
-        />
+          <Background
+            variant={BackgroundVariant.Dots}
+            gap={24}
+            size={1.25}
+            color="#94a3b8"
+            className="opacity-45 dark:opacity-25"
+          />
 
-        {/* Floating Top Filter & Lineage Controls Bar */}
-        {showControls && (
-          <Panel
-            position="top-left"
-            className="!m-3 right-3 max-w-[calc(100%-1.5rem)]"
-          >
-            <TreeControls
-              roleFilter={activeRoleFilter}
-              onRoleFilterChange={handleRoleChange}
-              cohortFilter={activeCohortFilter}
-              onCohortFilterChange={handleCohortChange}
-              direction={activeDirection}
-              onDirectionChange={handleDirectionChange}
-              lineageMode={activeLineageMode}
-              onLineageModeChange={handleLineageModeChange}
-              selectedStudent={selectedStudent}
-              ancestorsCount={ancestorsCount}
-              descendantsCount={descendantsCount}
-              onClearSelection={() => handleSelectStudent(null)}
-              onFitView={handleFitView}
-              onCenterSelected={handleCenterSelected}
-              generationCounts={familyMetrics.generationCounts}
-              visibleStudentsCount={layoutResult.visibleStudentCount}
-              visibleEdgesCount={layoutResult.visibleEdgeCount}
-              totalStudentsCount={rawStudents.length}
-            />
-          </Panel>
-        )}
+          {/* Floating Top Filter & Lineage Controls Bar */}
+          {showControls && (
+            <Panel
+              position="top-left"
+              className="!m-3 right-3 max-w-[calc(100%-1.5rem)]"
+            >
+              <TreeControls
+                roleFilter={activeRoleFilter}
+                onRoleFilterChange={handleRoleChange}
+                cohortFilter={activeCohortFilter}
+                onCohortFilterChange={handleCohortChange}
+                direction={activeDirection}
+                onDirectionChange={handleDirectionChange}
+                lineageMode={activeLineageMode}
+                onLineageModeChange={handleLineageModeChange}
+                selectedStudent={selectedStudent}
+                ancestorsCount={ancestorsCount}
+                descendantsCount={descendantsCount}
+                onClearSelection={() => handleSelectStudent(null)}
+                onFitView={handleFitView}
+                onCenterSelected={handleCenterSelected}
+                generationCounts={familyMetrics.generationCounts}
+                visibleStudentsCount={layoutResult.visibleStudentCount}
+                visibleEdgesCount={layoutResult.visibleEdgeCount}
+                totalStudentsCount={rawStudents.length}
+              />
+            </Panel>
+          )}
 
-        {/* Bottom-Left Compact Aquário Legend & Lineage Insights */}
-        <Panel position="bottom-left" className="!m-3 hidden md:block">
-          <div className="pointer-events-auto flex flex-col gap-2 rounded-xl border border-slate-800/85 bg-slate-950/85 px-3.5 py-2.5 text-[11px] text-slate-300 shadow-xl backdrop-blur-md">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1.5">
-                <span className="inline-block h-0.5 w-5 rounded-full bg-sky-400" />
-                <span className="font-medium text-sky-300">
-                  Vínculo de Apadrinhamento
-                </span>
-              </div>
-              <div className="flex items-center gap-1.5 text-slate-400">
-                <Info className="h-3.5 w-3.5 text-cyan-400" />
-                <span>Clique em um aluno para explorar sua linhagem</span>
-              </div>
-            </div>
-
-            {/* Generation Tier Quick Legend + Largest Lineage Highlight */}
-            <div className="flex flex-wrap items-center gap-2 border-t border-slate-800/75 pt-1.5 text-[10px]">
-              {COHORT_ORDER.map((cohort) => {
-                const theme = getCohortTheme(cohort);
-                return (
-                  <span
-                    key={cohort}
-                    className="inline-flex items-center gap-1 text-slate-400"
-                  >
-                    <span className={`h-2 w-2 rounded-full ${theme.dotClass}`} />
-                    <span>{cohort}</span>
+          {/* Bottom-Left Compact Aquário Legend & Lineage Insights */}
+          <Panel position="bottom-left" className="!m-3 hidden md:block">
+            <div className="pointer-events-auto flex flex-col gap-2 rounded-xl border border-slate-200 bg-white/95 px-3.5 py-2.5 text-[11px] text-slate-700 shadow-lg dark:border-slate-800 dark:bg-slate-950/90 dark:text-slate-300 dark:shadow-xl">
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-1.5">
+                  <span className="inline-block h-0.5 w-5 rounded-full bg-sky-500 dark:bg-sky-400" />
+                  <span className="font-semibold text-sky-700 dark:text-sky-300">
+                    Vínculo de Apadrinhamento
                   </span>
-                );
-              })}
-
-              {familyMetrics.largestLineage.rootStudent && (
+                </div>
+                <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+                  <Info className="h-3.5 w-3.5 text-sky-600 dark:text-cyan-400" />
+                  <span>Clique em um aluno para explorar sua linhagem</span>
+                </div>
                 <button
                   type="button"
-                  onClick={() =>
-                    handleSelectStudent(familyMetrics.largestLineage.rootStudent)
-                  }
-                  className="ml-2 inline-flex items-center gap-1 rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[10px] font-medium text-amber-300 hover:bg-amber-500/20 transition-colors"
-                  title="Focar na maior linhagem acadêmica do curso"
+                  onClick={() => setMiniMapVisible((v) => !v)}
+                  className={`ml-auto inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-[10px] font-medium transition-colors ${
+                    miniMapVisible
+                      ? 'border-sky-500/40 bg-sky-500/15 text-sky-700 dark:text-sky-300'
+                      : 'border-slate-200 bg-slate-100 text-slate-600 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
+                  }`}
+                  title="Alternar exibição do MiniMapa"
                 >
-                  <Crown className="h-3 w-3 text-amber-400" />
-                  <span>
-                    Maior Linhagem:{' '}
-                    {familyMetrics.largestLineage.rootStudent.displayName} (+
-                    {familyMetrics.largestLineage.descendantsCount})
-                  </span>
+                  <MapIcon className="h-3 w-3" />
+                  <span>MiniMapa</span>
                 </button>
-              )}
+              </div>
+
+              {/* Generation Tier Quick Legend + Largest Lineage Highlight */}
+              <div className="flex flex-wrap items-center gap-2 border-t border-slate-200/80 dark:border-slate-800/75 pt-1.5 text-[10px]">
+                {COHORT_ORDER.map((cohort) => {
+                  const theme = getCohortTheme(cohort);
+                  return (
+                    <span
+                      key={cohort}
+                      className="inline-flex items-center gap-1 text-slate-600 dark:text-slate-400"
+                    >
+                      <span className={`h-2 w-2 rounded-full ${theme.dotClass}`} />
+                      <span>{cohort}</span>
+                    </span>
+                  );
+                })}
+
+                {familyMetrics.largestLineage.rootStudent && (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleSelectStudent(familyMetrics.largestLineage.rootStudent)
+                    }
+                    className="ml-2 inline-flex items-center gap-1 rounded-md border border-amber-500/35 bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-800 hover:bg-amber-500/20 dark:border-amber-500/30 dark:text-amber-300 transition-colors"
+                    title="Focar na maior linhagem acadêmica do curso"
+                  >
+                    <Crown className="h-3 w-3 text-amber-500 dark:text-amber-400" />
+                    <span>
+                      Maior Linhagem:{' '}
+                      {familyMetrics.largestLineage.rootStudent.displayName} (+
+                      {familyMetrics.largestLineage.descendantsCount})
+                    </span>
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
-        </Panel>
+          </Panel>
 
-        <Controls
-          position="bottom-right"
-          showInteractive={false}
-          className="!mb-3 !mr-3 !overflow-hidden !rounded-xl !border !border-slate-800 !bg-slate-900/90 !shadow-xl [&>button]:!border-slate-800 [&>button]:!bg-slate-900/90 [&>button]:!fill-slate-200 [&>button:hover]:!bg-slate-800"
-        />
-
-        {showMiniMap && (
-          <MiniMap<StudentFlowNode>
+          <Controls
             position="bottom-right"
-            nodeColor={minimapNodeColor}
-            nodeStrokeWidth={2}
-            maskColor="rgba(2, 6, 23, 0.72)"
-            pannable
-            zoomable
-            className="!mb-3 !mr-14 hidden sm:block !h-32 !w-48 !overflow-hidden !rounded-xl !border !border-slate-800/90 !bg-slate-950/90 !shadow-2xl"
+            showInteractive={false}
+            className="!mb-3 !mr-3 !overflow-hidden !rounded-xl !border !border-slate-200 !bg-white/95 !shadow-lg dark:!border-slate-800 dark:!bg-slate-900/90 [&>button]:!border-slate-200 [&>button]:!bg-white [&>button]:!fill-slate-700 [&>button:hover]:!bg-slate-100 dark:[&>button]:!border-slate-800 dark:[&>button]:!bg-slate-900/90 dark:[&>button]:!fill-slate-200 dark:[&>button:hover]:!bg-slate-800"
           />
-        )}
+
+          {miniMapVisible && (
+            <MiniMap<StudentFlowNode>
+              position="bottom-right"
+              nodeColor={minimapNodeColor}
+              nodeStrokeWidth={2}
+              maskColor="rgba(15, 23, 42, 0.18)"
+              pannable
+              zoomable
+              className="!mb-3 !mr-14 hidden sm:block !h-32 !w-48 !overflow-hidden !rounded-xl !border !border-slate-200 !bg-white/95 !shadow-xl dark:!border-slate-800/90 dark:!bg-slate-950/90"
+            />
+          )}
         </ReactFlow>
       </div>
 
       {/* Empty State Overlay if filtered result has 0 nodes */}
       {layoutResult.visibleStudentCount === 0 && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center p-6">
-          <div className="pointer-events-auto flex max-w-md flex-col items-center rounded-2xl border border-slate-800 bg-slate-900/90 p-6 text-center shadow-2xl backdrop-blur-md">
-            <Users className="mb-3 h-10 w-10 text-sky-400/80" />
-            <h3 className="text-sm font-semibold text-slate-100">
+          <div className="pointer-events-auto flex max-w-md flex-col items-center rounded-2xl border border-slate-200 bg-white/95 p-6 text-center shadow-xl dark:border-slate-800 dark:bg-slate-900/95">
+            <Users className="mb-3 h-10 w-10 text-sky-600 dark:text-sky-400/80" />
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
               Nenhum estudante encontrado para os filtros atuais
             </h3>
-            <p className="mt-1 text-xs text-slate-400">
-              Experimente limpar o filtro de geração ou vínculo para visualizar toda a
-              árvore genealógica de CDIA.
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+              Experimente limpar o filtro de geração para visualizar toda a árvore
+              genealógica de CDIA.
             </p>
             <button
               type="button"
@@ -527,7 +546,7 @@ function FamilyTreeCanvasInner({
                 handleLineageModeChange('HIGHLIGHT');
                 handleSelectStudent(null);
               }}
-              className="mt-4 inline-flex items-center gap-1.5 rounded-xl bg-sky-500/20 border border-sky-400/40 px-3.5 py-1.5 text-xs font-semibold text-sky-300 hover:bg-sky-500/30 transition-all"
+              className="mt-4 inline-flex items-center gap-1.5 rounded-xl bg-sky-500/15 border border-sky-500/40 px-3.5 py-1.5 text-xs font-semibold text-sky-700 hover:bg-sky-500/25 dark:bg-sky-500/20 dark:border-sky-400/40 dark:text-sky-300 dark:hover:bg-sky-500/30 transition-colors"
             >
               <Sparkles className="h-3.5 w-3.5" />
               Restaurar Árvore Completa
