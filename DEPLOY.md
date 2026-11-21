@@ -2,32 +2,41 @@
 
 ## Local development
 
-Run the API and frontend in separate terminals:
+Run the standalone backend API and frontend in separate terminals:
 
 ```sh
 npm run dev:backend
 ```
 
 ```sh
-NEXT_PUBLIC_API_URL=http://localhost:8080 npm run dev
+npm run dev
 ```
 
-The frontend uses the local backend when `NEXT_PUBLIC_API_URL` is set. Without static-export flags, Next.js retains its normal development and server configuration.
+Per `src/lib/api.ts`, when running on `localhost` or `127.0.0.1` the frontend automatically targets `http://localhost:8080/api/sponsorships` even without `NEXT_PUBLIC_API_URL` set. Set `NEXT_PUBLIC_API_URL` (for example, `NEXT_PUBLIC_API_URL=http://localhost:8080 npm run dev` or a staging URL) to override the target API origin.
 
 ## GitHub Pages frontend
 
-The `Deploy frontend to GitHub Pages` workflow builds `out/` with `npm run build:pages` and deploys it on pushes to `main`. The export build temporarily removes the dynamic Next.js sponsorship route because static export does not support request-time `GET`/`POST` handlers, then restores the route even if the build fails. Normal `npm run dev`, `npm run build`, and `npm run start` retain the local Next.js API.
+All API endpoints live in the standalone backend (`backend/server.mjs`); the Next.js app is exported as a static frontend. The `.github/workflows/deploy-pages.yml` workflow builds `out/` with `npm run build:pages` and deploys it to GitHub Pages on pushes to `main`.
 
-Set the following repository Actions variables:
+Configure the following repository Actions variables (or secrets where noted):
 
-- `NEXT_PUBLIC_API_URL`: public base URL of the deployed backend (for example, `https://familia-cdia-api-<hash>-uc.a.run.app`). The workflow also accepts this value from a repository secret with the same name. This value is embedded in the public frontend bundle and must not contain credentials.
-- `NEXT_PUBLIC_BASE_PATH`: optional path prefix. Project Pages defaults to `/<repository-name>`, and an `<owner>.github.io` repository defaults to the root. Set it to `.` to explicitly deploy at the root, or to another slash-prefixed path when needed.
+- `NEXT_PUBLIC_API_URL`: public base URL of the deployed backend (for example, `https://familia-cdia-api-<hash>-uc.a.run.app`). The workflow checks repository variables first, then repository secrets, and falls back to its configured default URL if unset. This value is embedded in the public frontend bundle and must not contain credentials.
+- `NEXT_PUBLIC_BASE_PATH`: optional path prefix. Project Pages defaults to `/<repository-name>`, and an `<owner>.github.io` repository defaults to the root. Set it to `.` to explicitly deploy at the root (for example, with a custom domain), or to another slash-prefixed path when needed.
 
 In the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**.
 
 ## Cloud Run backend
 
-Create a regional Standard bucket in `us-central1` (Always Free tier) and seed it with `src/data/{students,sponsorships,sigaa-students}.json`, then deploy `backend/` mounting that bucket at `/app/data` with `--execution-environment=gen2` and `--max-instances=1`:
+Create a regional Standard Google Cloud Storage bucket in `us-central1` (Always Free tier) and seed it with `src/data/{students,sponsorships,sigaa-students}.json`.
+
+Because `backend/Dockerfile` runs `COPY data/*.json ./data/` and `/backend/data/` is gitignored, copy the seed JSON files into `backend/data/` before building from source (at runtime, the GCS bucket mounted at `/app/data` overlays this directory with live data):
+
+```sh
+mkdir -p backend/data
+cp src/data/students.json src/data/sponsorships.json src/data/sigaa-students.json backend/data/
+```
+
+Then deploy `backend/` mounting the bucket at `/app/data` with `--execution-environment=gen2`, `--max-instances=1`, and your frontend origin in `ALLOWED_ORIGIN`:
 
 ```sh
 gcloud run deploy familia-cdia-api \
@@ -35,9 +44,22 @@ gcloud run deploy familia-cdia-api \
   --region us-central1 \
   --execution-environment gen2 \
   --max-instances 1 \
-  --add-volume name=data,type=cloud-storage,bucket=familia-cdia-data-bot-games-511122 \
+  --set-env-vars ALLOWED_ORIGIN=https://<YOUR_DOMAIN> \
+  --add-volume name=data,type=cloud-storage,bucket=<YOUR_GCS_BUCKET> \
   --add-volume-mount volume=data,mount-path=/app/data \
   --allow-unauthenticated
 ```
 
-Use the resulting HTTPS service URL as `NEXT_PUBLIC_API_URL`. Configure the backend's CORS allowlist for the GitHub Pages origin before accepting browser requests.
+Use the resulting HTTPS service URL as `NEXT_PUBLIC_API_URL`.
+
+### Backing up and updating live GCS data
+
+Maintainers can pull a backup or push manual edits (data corrections, removals, or a refreshed `sigaa-students.json`) directly against the bucket:
+
+```sh
+# Download a local backup of live production data
+gcloud storage cp "gs://<YOUR_GCS_BUCKET>/*.json" ./backup-data/
+
+# Upload corrected datasets or an updated SIGAA directory
+gcloud storage cp src/data/students.json src/data/sponsorships.json src/data/sigaa-students.json gs://<YOUR_GCS_BUCKET>/
+```

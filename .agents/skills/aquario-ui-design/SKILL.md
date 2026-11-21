@@ -24,7 +24,7 @@ Use consistent semantic styling for each entry semester across tree nodes, searc
 - `2025.1`: Emerald (`cohort-2025-1`)
 - `2025.2`: Sky (`cohort-2025-2`)
 - `2026.1`: Rose (`cohort-2026-1`)
-- `2026.2`: Indigo (`cohort-2026-2`)
+- `2026.2`: Cyan (`cohort-2026-2`)
 
 ## 3. Core Shell Components
 

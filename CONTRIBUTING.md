@@ -35,8 +35,8 @@ Antes de abrir uma nova *Issue*, verifique se já não existe uma discussão abe
 
 1. Faça um **Fork** do repositório no GitHub e clone o seu fork:
    ```bash
-   git clone https://github.com/<seu-usuario>/familiacdia.git
-   cd familiacdia
+   git clone https://github.com/<seu-usuario>/familia-cdia.git
+   cd familia-cdia
    ```
 2. Instale as dependências Node.js:
    ```bash
@@ -55,18 +55,22 @@ Antes de abrir uma nova *Issue*, verifique se já não existe uma discussão abe
 
 ## 4. Como Adicionar ou Corrigir Apadrinhamentos
 
-### Opção A: Via Pipeline de Dados (`src/data/raw-pdf-sponsorships.json`)
-1. Adicione os novos vínculos na chave do semestre correspondente em `src/data/raw-pdf-sponsorships.json` (ou registre um apelido/abreviação confirmado em `CONFIRMED_MATRICULAS` dentro de `scripts/reconcile_data.py`).
-2. Execute o script de reconciliação e o validador do grafo:
-   ```bash
-   python3 scripts/reconcile_data.py
-   node scripts/validate_graph.mjs
-   ```
-3. Certifique-se de que `node scripts/validate_graph.mjs` passe sem erros (**zero IDs duplicados**, **100% das arestas válidas** e **grafo acíclico**).
+Em produção, os dados vivos ficam no backend do **Google Cloud Run**, persistidos em um bucket do **Google Cloud Storage** montado em `/app/data`. Os arquivos `src/data/*.json` no Git servem apenas como **snapshot estático inicial (seed)** — editar esses JSONs em um Pull Request **não** atualiza a produção automaticamente.
 
-### Opção B: Via Interface Web (`+ Novo Apadrinhamento`)
-1. Utilize o botão **`+ Novo Apadrinhamento`** para cadastrar manualmente (com autocomplete do SIGAA) ou importar via **CSV / JSON** (`1` ou mais padrinhos por estudante).
-2. Clique em **"Baixar JSON atualizado"** no rodapé do modal para exportar os dados validados e atualizar `src/data/students.json` e `src/data/sponsorships.json`.
+### A) Adicionar novos apadrinhamentos (alunos ativos no SIGAA)
+- Faça diretamente pelo site no botão **`+ Novo Apadrinhamento`** (formulário individual com autocomplete do SIGAA ou importação em lote via **CSV / JSON**, com `1+` padrinhos).
+- O envio grava imediatamente na API do Cloud Run — não é necessário abrir PR nem editar arquivos locais.
+
+### B) Corrigir/remover vínculos existentes ou incluir estudantes fora do SIGAA ativo
+- Como a API pública expõe apenas consulta (`GET`) e adição (`POST`) para matrículas ativas do SIGAA, abra uma **Issue** informando nome completo, matrícula SIGAA (se houver), turma e os vínculos corretos para que os mantenedores atualizem os dados no Cloud Run / Cloud Storage.
+
+### C) Atualizar o snapshot/seed histórico ou desenvolvimento local (manutenção)
+- Para manter o dataset seed no Git ou preparar uma nova carga do SIGAA, atualize `src/data/raw-pdf-sponsorships.json` (ou mapeamentos em `scripts/reconcile_data.py`) e execute:
+  ```bash
+  python3 scripts/reconcile_data.py
+  node scripts/validate_graph.mjs
+  ```
+- O botão **"Baixar JSON atualizado"** no modal gera um backup/snapshot do estado atual retornado pela API.
 
 ---
 
@@ -98,7 +102,7 @@ Exemplos:
 Antes de abrir o seu Pull Request, execute a suíte de validação localmente:
 
 ```bash
-node scripts/validate_graph.mjs
+node scripts/validate_graph.mjs # se houver alteração em src/data/ ou scripts/
 npm run typecheck
 npm run lint
 npm run build:pages
@@ -125,7 +129,7 @@ Descreva de forma clara e objetiva o que este PR resolve ou adiciona.
 <!-- Adicione prints antes/depois em Desktop e Mobile (390x844) -->
 
 ## Checklist de Verificação
-- [ ] `node scripts/validate_graph.mjs` passou sem duplicatas nem ciclos
+- [ ] `node scripts/validate_graph.mjs` passou sem duplicatas nem ciclos (quando houver alteração em `src/data/` ou `scripts/`)
 - [ ] `npm run typecheck` e `npm run lint` passaram sem erros
 - [ ] `npm run build:pages` gerou a exportação estática sem falhas
 - [ ] Nenhum dado sensível (telefone/e-mail) foi incluído nos arquivos JSON

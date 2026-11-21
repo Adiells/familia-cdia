@@ -16,8 +16,8 @@ Plataforma open-source de genealogia acadêmica e visualização interativa da �
 - **Adição de Novos Apadrinhamentos (`1+` Padrinhos)**:
   - Formulário com autocomplete integrado ao cadastro ativo do SIGAA UFPB (prevenindo duplicatas por erro de digitação) e suporte a importação em lote via **CSV / JSON** com quantidade flexível de padrinhos (`1`, `2` ou mais).
 - **Arquitetura Desacoplada (GitHub Pages + Google Cloud Run)**:
-  - **Frontend Estático (`output: 'export'`)**: Carregamento instantâneo a 60fps diretamente via CDN do GitHub Pages com hidratação assíncrona em background.
-  - **Microsserviço Backend (`backend/server.mjs`)**: API Node.js sem dependências externas, pronta para deploy em container no Google Cloud Run com fallback automático para `localStorage` quando offline.
+  - **Frontend Estático (`output: 'export'`)**: Renderiza o snapshot inicial (`src/data/*.json`) via CDN do GitHub Pages e hidrata os dados em tempo real em background via `GET /api/sponsorships` no Cloud Run.
+  - **Microsserviço Backend (`backend/server.mjs`)**: API Node.js sem dependências externas no Google Cloud Run; todas as escritas (`+ Novo Apadrinhamento`) persistem exclusivamente na API (bucket Google Cloud Storage montado em `/app/data`).
 
 ---
 
@@ -36,7 +36,7 @@ Plataforma open-source de genealogia acadêmica e visualização interativa da �
 ## Estrutura do Projeto
 
 ```text
-familiacdia/
+familia-cdia/
 ├── .github/workflows/       # Pipeline CI/CD (GitHub Pages)
 ├── backend/                 # Microsserviço Node.js standalone para Google Cloud Run
 │   ├── Dockerfile
@@ -99,7 +99,7 @@ Acesse `http://localhost:3000`.
 - `npm run build:pages`: Gera a exportação 100% estática na pasta `out/` para o **GitHub Pages**.
 - `npm run typecheck`: Executa a validação de tipos do TypeScript (`tsc --noEmit`).
 - `npm run lint`: Executa o ESLint em `src/`.
-- `python3 scripts/reconcile_data.py && node scripts/validate_graph.mjs`: Reconcilia os registros brutos (`src/data/raw-pdf-sponsorships.json`) com a base do SIGAA (`src/data/sigaa-students.json`) e valida a integridade do grafo (zero duplicatas e ausência de ciclos).
+- `python3 scripts/reconcile_data.py && node scripts/validate_graph.mjs`: Reconcilia o snapshot/seed histórico em `src/data/` (`raw-pdf-sponsorships.json` com `sigaa-students.json`) e valida a integridade do grafo (zero duplicatas e ausência de ciclos).
 
 ---
 
