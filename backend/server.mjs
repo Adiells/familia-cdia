@@ -1,33 +1,21 @@
 import { randomUUID, timingSafeEqual } from 'node:crypto';
-import { mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import http from 'node:http';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { createRateLimiter } from './rate-limit.mjs';
+import { dataDirectory, persistData, readCurrentData, readSigaaRecords, withWriteQueue } from './storage.mjs';
+import { fetchSupabaseData, insertSponsorshipRequest, isSupabaseConfigured } from './supabase.mjs';
+import { buildRequestSummary, normalizeName, parseParticipant, parseTrio, safeSlug } from './validation.mjs';
 
-const here = path.dirname(fileURLToPath(import.meta.url));
-const dataDirectory = path.resolve(process.env.DATA_DIR || path.join(here, '../src/data'));
-const studentsPath = path.join(dataDirectory, 'students.json');
-const sponsorshipsPath = path.join(dataDirectory, 'sponsorships.json');
-const sigaaPath = path.join(dataDirectory, 'sigaa-students.json');
 const port = Number(process.env.PORT || 8080);
 const allowedOrigin = process.env.ALLOWED_ORIGIN || '*';
-const supabaseUrl = (process.env.SUPABASE_URL || '').trim().replace(/\/+$/, '');
-const supabaseKey = (process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
-const isSupabaseConfigured = Boolean(supabaseUrl && supabaseKey);
 const syncToken = (process.env.SYNC_TOKEN || '').trim();
 const parsedSyncInterval = Number(process.env.BACKUP_SYNC_INTERVAL_MS);
 const backupSyncIntervalMs =
   Number.isFinite(parsedSyncInterval) && parsedSyncInterval > 0 ? parsedSyncInterval : 21600000;
-const supabaseTimeoutMs = 5000;
-const rateLimitWindowMs = 60 * 60 * 1000;
-const rateLimitMaxRequests = 20;
-const semesterPattern = /^20\d{2}\.[12]$/;
-const yearOnlyPattern = /^20\d{2}$/;
 const maxBodyBytes = 1024 * 1024;
-let writeQueue = Promise.resolve();
+const checkPostRateLimit = createRateLimiter({ windowMs: 60 * 60 * 1000, maxRequests: 20 });
+
 let lastBackupSyncAt = 0;
 let backupSyncInFlight = false;
-const postRateLimits = new Map();
 
 function corsHeaders(request) {
   const requestOrigin = request.headers.origin;
@@ -39,7 +27,9 @@ function corsHeaders(request) {
     'Access-Control-Max-Age': '86400',
   };
   if (origin !== '*') headers.Vary = 'Origin';
-  if (requestOrigin && allowedOrigin !== '*' && requestOrigin !== allowedOrigin) return { ...headers, 'x-cors-denied': 'true' };
+  if (requestOrigin && allowedOrigin !== '*' && requestOrigin !== allowedOrigin) {
+    return { ...headers, 'x-cors-denied': 'true' };
+  }
   return headers;
 }
 
@@ -55,41 +45,6 @@ function sendJson(request, response, status, payload, extraHeaders = {}) {
   response.end(body);
 }
 
-function getClientIp(request) {
-  const forwarded = request.headers['x-forwarded-for'];
-  if (typeof forwarded === 'string' && forwarded.trim()) {
-    return forwarded.split(',')[0].trim();
-  }
-  if (Array.isArray(forwarded) && forwarded.length > 0 && forwarded[0].trim()) {
-    return forwarded[0].split(',')[0].trim();
-  }
-  return request.socket?.remoteAddress || 'unknown';
-}
-
-function checkPostRateLimit(request) {
-  const now = Date.now();
-  const ip = getClientIp(request);
-  const cutoff = now - rateLimitWindowMs;
-
-  if (postRateLimits.size > 1000) {
-    for (const [key, timestamps] of postRateLimits.entries()) {
-      const active = timestamps.filter((ts) => ts > cutoff);
-      if (active.length === 0) postRateLimits.delete(key);
-      else postRateLimits.set(key, active);
-    }
-  }
-
-  const timestamps = (postRateLimits.get(ip) || []).filter((ts) => ts > cutoff);
-  if (timestamps.length >= rateLimitMaxRequests) {
-    postRateLimits.set(ip, timestamps);
-    const retryAfterSeconds = Math.max(1, Math.ceil((timestamps[0] + rateLimitWindowMs - now) / 1000));
-    return { allowed: false, retryAfterSeconds };
-  }
-  timestamps.push(now);
-  postRateLimits.set(ip, timestamps);
-  return { allowed: true, retryAfterSeconds: 0 };
-}
-
 function isAuthorizedSyncToken(headerValue) {
   if (!syncToken || typeof headerValue !== 'string') return false;
   const match = headerValue.match(/^Bearer\s+(.+)$/i);
@@ -98,134 +53,6 @@ function isAuthorizedSyncToken(headerValue) {
   const expected = Buffer.from(syncToken, 'utf8');
   if (provided.length !== expected.length) return false;
   return timingSafeEqual(provided, expected);
-}
-
-async function readJson(filePath) {
-  return JSON.parse(await readFile(filePath, 'utf8'));
-}
-
-async function readCurrentData() {
-  const [students, sponsorships] = await Promise.all([
-    readJson(studentsPath),
-    readJson(sponsorshipsPath),
-  ]);
-  if (!Array.isArray(students) || !Array.isArray(sponsorships)) {
-    throw new Error('Student and sponsorship data files must contain JSON arrays.');
-  }
-  return { students, sponsorships };
-}
-
-function buildSupabaseHeaders(extra = {}) {
-  const headers = {
-    apikey: supabaseKey,
-    Accept: 'application/json',
-    ...extra,
-  };
-  // New Supabase secret keys (sb_secret_...) are opaque strings and must only
-  // be sent in the apikey header; legacy service_role JWTs also need Bearer.
-  if (!supabaseKey.startsWith('sb_secret_')) {
-    headers.Authorization = `Bearer ${supabaseKey}`;
-  }
-  return headers;
-}
-
-function fromStudentRow(row) {
-  const student = {
-    id: row.id,
-    canonicalName: row.canonical_name,
-    displayName: row.display_name,
-    matricula: row.matricula ?? null,
-    cohort: row.cohort,
-    aliases: Array.isArray(row.aliases) ? row.aliases : [],
-    sigaaVerified: Boolean(row.sigaa_verified),
-    matchConfidence: row.match_confidence || 'PDF_ONLY',
-  };
-  if (typeof row.notes === 'string' && row.notes.trim()) {
-    student.notes = row.notes;
-  }
-  return student;
-}
-
-function fromSponsorshipRow(row) {
-  return {
-    id: row.id,
-    godparentId: row.godparent_id,
-    godchildId: row.godchild_id,
-    semester: row.semester,
-    sourceDoc: row.source_doc || 'user-added',
-  };
-}
-
-async function fetchSupabaseTable(table, selectColumns) {
-  const pageSize = 1000;
-  const rows = [];
-  const deadline = Date.now() + supabaseTimeoutMs;
-
-  for (let offset = 0; ; offset += pageSize) {
-    const remainingMs = deadline - Date.now();
-    if (remainingMs <= 0) {
-      throw new Error(`Supabase request timed out while reading ${table}.`);
-    }
-    const url = `${supabaseUrl}/rest/v1/${table}?select=${encodeURIComponent(selectColumns)}&order=created_at.asc,id.asc&limit=${pageSize}&offset=${offset}`;
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: buildSupabaseHeaders(),
-      signal: AbortSignal.timeout(remainingMs),
-    });
-    if (!response.ok) {
-      const details = await response.text().catch(() => '');
-      throw new Error(`Supabase GET ${table} failed (${response.status}): ${details.slice(0, 200)}`);
-    }
-    const page = await response.json();
-    if (!Array.isArray(page)) {
-      throw new Error(`Supabase GET ${table} returned a non-array response.`);
-    }
-    rows.push(...page);
-    if (page.length < pageSize) break;
-  }
-
-  return rows;
-}
-
-async function fetchGraphFromSupabase() {
-  const [studentRows, sponsorshipRows] = await Promise.all([
-    fetchSupabaseTable(
-      'students',
-      'id,canonical_name,display_name,matricula,cohort,aliases,sigaa_verified,match_confidence,notes,created_at',
-    ),
-    fetchSupabaseTable(
-      'sponsorships',
-      'id,godparent_id,godchild_id,semester,source_doc,created_at',
-    ),
-  ]);
-  return {
-    students: studentRows.map(fromStudentRow),
-    sponsorships: sponsorshipRows.map(fromSponsorshipRow),
-  };
-}
-
-async function insertSponsorshipRequest({ requestType, summary, payload }) {
-  const response = await fetch(`${supabaseUrl}/rest/v1/sponsorship_requests`, {
-    method: 'POST',
-    headers: buildSupabaseHeaders({
-      'Content-Type': 'application/json',
-      Prefer: 'return=representation',
-    }),
-    body: JSON.stringify({
-      request_type: requestType,
-      summary,
-      payload,
-      status: 'pending',
-    }),
-    signal: AbortSignal.timeout(supabaseTimeoutMs),
-  });
-  if (!response.ok) {
-    const details = await response.text().catch(() => '');
-    throw new Error(`Supabase INSERT sponsorship_requests failed (${response.status}): ${details.slice(0, 200)}`);
-  }
-  const inserted = await response.json();
-  const row = Array.isArray(inserted) ? inserted[0] : inserted;
-  return row?.id ?? null;
 }
 
 function maybeTriggerBackgroundBackupSync(students, sponsorships) {
@@ -245,53 +72,6 @@ function maybeTriggerBackgroundBackupSync(students, sponsorships) {
     });
 }
 
-function normalizeName(value) {
-  return value.normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLocaleLowerCase('pt-BR')
-    .replace(/[^\p{L}\p{N}]+/gu, ' ')
-    .trim()
-    .replace(/\s+/g, ' ');
-}
-
-function safeSlug(value) {
-  return normalizeName(value).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-}
-
-function withWriteQueue(work) {
-  const result = writeQueue.then(work, work);
-  writeQueue = result.catch(() => undefined);
-  return result;
-}
-
-async function persistData(students, sponsorships) {
-  await mkdir(dataDirectory, { recursive: true });
-  const files = [
-    { path: studentsPath, content: `${JSON.stringify(students, null, 2)}\n` },
-    { path: sponsorshipsPath, content: `${JSON.stringify(sponsorships, null, 2)}\n` },
-  ];
-  const originals = await Promise.all(files.map(({ path: filePath }) => readFile(filePath).catch(() => null)));
-  const tempPaths = files.map(({ path: filePath }) => `${filePath}.${randomUUID()}.tmp`);
-  let committed = 0;
-  try {
-    await Promise.all(files.map(({ content }, index) => writeFile(tempPaths[index], content, { encoding: 'utf8', flag: 'wx' })));
-    for (let index = 0; index < files.length; index += 1) {
-      await rename(tempPaths[index], files[index].path);
-      committed += 1;
-    }
-  } catch (error) {
-    await Promise.all(tempPaths.map((tempPath) => unlink(tempPath).catch(() => undefined)));
-    for (let index = 0; index < committed; index += 1) {
-      if (originals[index] !== null) {
-        const restorePath = `${files[index].path}.${randomUUID()}.restore`;
-        await writeFile(restorePath, originals[index]);
-        await rename(restorePath, files[index].path);
-      }
-    }
-    throw error;
-  }
-}
-
 async function readBody(request, response) {
   const chunks = [];
   let size = 0;
@@ -309,100 +89,6 @@ async function readBody(request, response) {
     sendJson(request, response, 400, { error: 'Corpo JSON inválido.' });
     return null;
   }
-}
-
-function normalizeCohort(value) {
-  if (typeof value !== 'string') return null;
-  const trimmed = value.trim();
-  if (semesterPattern.test(trimmed)) return trimmed;
-  if (yearOnlyPattern.test(trimmed)) return `${trimmed}.1`;
-  return null;
-}
-
-function parseParticipant(raw, label) {
-  if (typeof raw === 'string') {
-    const matricula = raw.trim();
-    if (!matricula) return { error: `Matrícula obrigatória para ${label}.` };
-    return { value: { kind: 'sigaa', matricula, key: `matricula:${matricula}` } };
-  }
-  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
-    return { error: `Dados inválidos para ${label}.` };
-  }
-  if (typeof raw.matricula === 'string' && raw.matricula.trim()) {
-    const matricula = raw.matricula.trim();
-    return { value: { kind: 'sigaa', matricula, key: `matricula:${matricula}` } };
-  }
-  if (raw.name !== undefined || raw.cohort !== undefined) {
-    const cleanedName = typeof raw.name === 'string' ? raw.name.trim().replace(/\s+/g, ' ') : '';
-    const normalized = normalizeName(cleanedName);
-    const words = normalized.split(' ').filter(Boolean);
-    if (cleanedName.length < 5 || words.length < 2 || !safeSlug(cleanedName)) {
-      return { error: `Informe o nome completo (nome e sobrenome, mínimo 5 caracteres) para ${label}.` };
-    }
-    const cohort = normalizeCohort(raw.cohort);
-    if (!cohort) {
-      return { error: `Período ou ano de ingresso inválido para ${label}. Use AAAA.1, AAAA.2 ou AAAA (ex.: 2020.1 ou 2020).` };
-    }
-    return {
-      value: {
-        kind: 'external',
-        name: cleanedName,
-        normalizedName: normalized,
-        cohort,
-        key: `name:${normalized}`,
-      },
-    };
-  }
-  return { error: `Informe matrícula SIGAA ou nome completo e período de ingresso para ${label}.` };
-}
-
-function parseTrio(raw) {
-  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return { error: 'Apadrinhamento inválido.' };
-  const rawChild = raw.calouro !== undefined ? raw.calouro : raw.calouroMatricula;
-  const childResult = parseParticipant(rawChild, 'o(a) afilhado(a)');
-  if (childResult.error) return { error: childResult.error };
-
-  const rawGodparents = raw.godparents !== undefined ? raw.godparents : raw.godparentMatriculas;
-  if (!Array.isArray(rawGodparents) || rawGodparents.length < 1 || rawGodparents.length > 50) {
-    return { error: 'Informe de 1 a 50 padrinhos/madrinhas.' };
-  }
-  const godparents = [];
-  for (let index = 0; index < rawGodparents.length; index += 1) {
-    const godparentResult = parseParticipant(rawGodparents[index], `${index + 1}º padrinho/madrinha`);
-    if (godparentResult.error) return { error: godparentResult.error };
-    godparents.push(godparentResult.value);
-  }
-
-  const semester = raw.semester;
-  if (typeof semester !== 'string' || !semesterPattern.test(semester.trim())) {
-    return { error: 'Semestre inválido. Use o formato AAAA.1 ou AAAA.2.' };
-  }
-
-  const keys = [childResult.value.key, ...godparents.map((participant) => participant.key)];
-  if (new Set(keys).size !== keys.length) {
-    return { error: 'Afilhado(a) e padrinhos/madrinhas precisam ser pessoas distintas.' };
-  }
-
-  return {
-    value: {
-      calouro: childResult.value,
-      godparents,
-      semester: semester.trim(),
-    },
-  };
-}
-
-function buildRequestSummary(resolvedTrios, resolvedStandalone) {
-  const parts = [];
-  for (const item of resolvedTrios) {
-    const parents = item.godparents.map((student) => `${student.canonicalName} (${student.cohort})`).join(' + ');
-    parts.push(`${parents} -> ${item.child.canonicalName} (${item.semester})`);
-  }
-  for (const student of resolvedStandalone) {
-    parts.push(`Cadastro sem afilhado: ${student.canonicalName} (${student.cohort})`);
-  }
-  const full = parts.join('; ');
-  return full.length > 500 ? `${full.slice(0, 497)}...` : full;
 }
 
 async function createSponsorships(payload) {
@@ -442,7 +128,7 @@ async function createSponsorships(payload) {
     let current;
     if (isSupabaseConfigured) {
       try {
-        current = await fetchGraphFromSupabase();
+        current = await fetchSupabaseData();
       } catch (error) {
         console.warn('Supabase read failed before moderation submission, falling back to local data for validation:', error);
         current = await readCurrentData();
@@ -451,8 +137,7 @@ async function createSponsorships(payload) {
       current = await readCurrentData();
     }
 
-    const sigaaRecords = await readJson(sigaaPath);
-    if (!Array.isArray(sigaaRecords)) throw new Error('SIGAA data file must contain a JSON array.');
+    const sigaaRecords = await readSigaaRecords();
     const officialByRegistration = new Map(sigaaRecords.map((record) => [record.matricula, record]));
     const students = current.students.map((student) => ({ ...student }));
     const sponsorships = [...current.sponsorships];
@@ -508,7 +193,6 @@ async function createSponsorships(payload) {
           addedStudentIds.add(student.id);
           studentRecordsChanged = true;
         } else if (!student.matricula || !student.sigaaVerified) {
-          // Promote an existing PDF/external node when its official SIGAA name resolves exactly.
           student.matricula = registration;
           student.sigaaVerified = true;
           student.matchConfidence = 'EXACT';
@@ -589,14 +273,13 @@ async function createSponsorships(payload) {
     if (isSupabaseConfigured) {
       const requestType = resolvedTrios.length > 0 ? 'sponsorship' : 'standalone';
       const summary = buildRequestSummary(resolvedTrios, resolvedStandalone);
-      const requestPayload = {
-        students: Array.from(touchedStudentsById.values()),
-        sponsorships: newEdges,
-      };
       const requestId = await insertSponsorshipRequest({
         requestType,
         summary,
-        payload: requestPayload,
+        payload: {
+          students: Array.from(touchedStudentsById.values()),
+          sponsorships: newEdges,
+        },
       });
       return {
         status: 202,
@@ -628,7 +311,7 @@ async function createSponsorships(payload) {
 async function handleGetSponsorships(request, response) {
   if (isSupabaseConfigured) {
     try {
-      const { students, sponsorships } = await fetchGraphFromSupabase();
+      const { students, sponsorships } = await fetchSupabaseData();
       maybeTriggerBackgroundBackupSync(students, sponsorships);
       sendJson(request, response, 200, {
         students,
@@ -675,7 +358,7 @@ async function handleSyncBackup(request, response) {
     return;
   }
   try {
-    const { students, sponsorships } = await fetchGraphFromSupabase();
+    const { students, sponsorships } = await fetchSupabaseData();
     if (students.length === 0) {
       sendJson(request, response, 502, {
         error: 'Supabase retornou 0 estudantes; backup em disco preservado sem sobrescrita.',

@@ -1,7 +1,7 @@
 FROM node:22-alpine
 
 WORKDIR /app
-COPY server.mjs package.json ./
+COPY *.mjs package.json ./
 COPY data/*.json ./data/
 
 ENV PORT=8080

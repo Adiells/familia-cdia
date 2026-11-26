@@ -1,219 +1,30 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { AlertTriangle, Download, FileUp, Plus, Search, UserPlus, X } from 'lucide-react';
+import { AlertTriangle, Download, FileUp, Plus, UserPlus, X } from 'lucide-react';
 import type { SigaaStudentRecord, SponsorshipEdgeData, StudentNodeData } from '../../data/types';
 import canonicalStudents from '../../data/students.json';
 import canonicalSponsorships from '../../data/sponsorships.json';
 import sigaaDirectory from '../../data/sigaa-students.json';
 import { getSponsorshipsApiUrl } from '../../lib/api';
 import { normalizeSearchText } from '../../lib/search';
+import {
+  emptyParticipant,
+  getExternalNameError,
+  normalizeCohortInput,
+  parseRows,
+  resolveBatchRows,
+  SEMESTER_PATTERN,
+  type ApiParticipantPayload,
+  type ModalTab,
+  type ParticipantDraft,
+  type ResolvedParticipant,
+} from './batch-parser';
+import { ParticipantInput } from './ParticipantInput';
 
 const defaultStudents = canonicalStudents as unknown as StudentNodeData[];
 const defaultSponsorships = canonicalSponsorships as unknown as SponsorshipEdgeData[];
 const defaultSigaaStudents = sigaaDirectory as unknown as SigaaStudentRecord[];
-
-const SEMESTER_PATTERN = /^20\d{2}\.[12]$/;
-const YEAR_ONLY_PATTERN = /^20\d{2}$/;
-
-type ParticipantMode = 'sigaa' | 'external';
-type ParticipantDraft = {
-  mode: ParticipantMode;
-  query: string;
-  picked: SigaaStudentRecord | null;
-  name: string;
-  cohort: string;
-};
-type ApiParticipantPayload =
-  | { matricula: string }
-  | { name: string; cohort: string };
-
-type ResolvedParticipant =
-  | { kind: 'sigaa'; record: SigaaStudentRecord; payload: { matricula: string }; matchName: string }
-  | { kind: 'external'; name: string; cohort: string; payload: { name: string; cohort: string }; matchName: string };
-
-type ModalTab = 'single' | 'standalone' | 'batch';
-
-const emptyParticipant = (mode: ParticipantMode = 'sigaa'): ParticipantDraft => ({
-  mode,
-  query: '',
-  picked: null,
-  name: '',
-  cohort: '',
-});
-
-function normalizeCohortInput(value: string): string | null {
-  const trimmed = value.trim();
-  if (SEMESTER_PATTERN.test(trimmed)) return trimmed;
-  if (YEAR_ONLY_PATTERN.test(trimmed)) return `${trimmed}.1`;
-  return null;
-}
-
-function getExternalNameError(value: string): string | null {
-  const cleaned = value.trim().replace(/\s+/g, ' ');
-  const words = normalizeSearchText(cleaned).split(' ').filter(Boolean);
-  if (cleaned.length < 5 || words.length < 2) {
-    return 'Informe nome e sobrenome (mínimo 5 caracteres).';
-  }
-  return null;
-}
-
-function getExternalCohortError(value: string): string | null {
-  if (!normalizeCohortInput(value)) {
-    return 'Use AAAA.1, AAAA.2 ou AAAA (ex.: 2020.1 ou 2020).';
-  }
-  return null;
-}
-
-interface ParticipantInputProps {
-  label: string;
-  value: ParticipantDraft;
-  onChange: (next: ParticipantDraft) => void;
-  sigaaStudents: SigaaStudentRecord[];
-  placeholder?: string;
-  onRemove?: () => void;
-  removeLabel?: string;
-}
-
-function ParticipantInput({
-  label,
-  value,
-  onChange,
-  sigaaStudents,
-  placeholder = 'Busque no SIGAA por nome ou matrícula...',
-  onRemove,
-  removeLabel,
-}: ParticipantInputProps) {
-  const suggestions = useMemo(() => {
-    if (value.mode !== 'sigaa' || !value.query.trim() || value.picked) return [];
-    const normalizedQuery = normalizeSearchText(value.query);
-    if (!normalizedQuery) return [];
-    return sigaaStudents
-      .filter((record) => normalizeSearchText(`${record.name} ${record.matricula}`).includes(normalizedQuery))
-      .slice(0, 8);
-  }, [value.mode, value.query, value.picked, sigaaStudents]);
-
-  const nameError = value.mode === 'external' && value.name.trim() ? getExternalNameError(value.name) : null;
-  const cohortError = value.mode === 'external' && value.cohort.trim() ? getExternalCohortError(value.cohort) : null;
-  const normalizedCohort = value.mode === 'external' ? normalizeCohortInput(value.cohort) : null;
-  const externalValid = value.mode === 'external' && !getExternalNameError(value.name) && Boolean(normalizedCohort);
-
-  return (
-    <div className="flex items-start gap-2">
-      <div className="min-w-0 flex-1 space-y-2 rounded-xl border border-slate-200/90 bg-slate-50/50 p-3 dark:border-slate-800 dark:bg-slate-950/35">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{label}</span>
-          <div
-            role="group"
-            aria-label={`Origem de ${label}`}
-            className="inline-flex rounded-lg border border-slate-200 bg-slate-100 p-0.5 text-xs dark:border-slate-700 dark:bg-slate-800/80"
-          >
-            <button
-              type="button"
-              onClick={() => onChange({ ...value, mode: 'sigaa' })}
-              className={`min-h-8 rounded-md px-2.5 py-1 font-medium transition ${
-                value.mode === 'sigaa'
-                  ? 'bg-white text-sky-700 shadow-xs dark:bg-slate-900 dark:text-sky-300'
-                  : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
-              }`}
-            >
-              SIGAA ativo
-            </button>
-            <button
-              type="button"
-              onClick={() => onChange({ ...value, mode: 'external' })}
-              className={`min-h-8 rounded-md px-2.5 py-1 font-medium transition ${
-                value.mode === 'external'
-                  ? 'bg-white text-sky-700 shadow-xs dark:bg-slate-900 dark:text-sky-300'
-                  : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
-              }`}
-            >
-              Formado / fora do SIGAA
-            </button>
-          </div>
-        </div>
-
-        {value.mode === 'sigaa' ? (
-          <div>
-            <div className="relative">
-              <Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-slate-500" />
-              <input
-                aria-label={label}
-                value={value.query}
-                onChange={(event) => onChange({ ...value, query: event.target.value, picked: null })}
-                placeholder={placeholder}
-                className="min-h-11 w-full rounded-lg border border-slate-300 bg-white py-2.5 pl-9 pr-3 text-base text-slate-900 outline-none focus:border-sky-500 dark:border-slate-700 dark:bg-slate-950/70 dark:text-slate-100 sm:text-sm"
-              />
-              {suggestions.length > 0 && (
-                <div className="absolute z-20 mt-1 max-h-48 w-full overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-xl dark:border-slate-700 dark:bg-slate-900">
-                  {suggestions.map((record) => (
-                    <button
-                      key={record.matricula}
-                      type="button"
-                      onClick={() => onChange({ ...value, query: record.name, picked: record })}
-                      className="block min-h-14 w-full px-3 py-2 text-left hover:bg-slate-100 dark:hover:bg-slate-800"
-                    >
-                      <span className="block text-sm text-slate-900 dark:text-slate-100">{record.name}</span>
-                      <span className="text-xs text-slate-600 dark:text-slate-400">{record.matricula}</span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-            {value.picked && (
-              <span className="mt-1.5 block text-xs text-emerald-700 dark:text-emerald-300">
-                SIGAA: {value.picked.matricula}
-              </span>
-            )}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-[1fr_11rem]">
-            <label className="block text-xs font-medium text-slate-600 dark:text-slate-400">
-              Nome completo
-              <input
-                value={value.name}
-                onChange={(event) => onChange({ ...value, name: event.target.value })}
-                placeholder="Ex.: Maria Clara Silva"
-                className="mt-1 min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 outline-none focus:border-sky-500 dark:border-slate-700 dark:bg-slate-950/70 dark:text-slate-100 sm:text-sm"
-              />
-              {nameError && (
-                <span className="mt-1 block text-xs font-normal text-rose-600 dark:text-rose-400">{nameError}</span>
-              )}
-            </label>
-            <label className="block text-xs font-medium text-slate-600 dark:text-slate-400">
-              Ano/Período de ingresso
-              <input
-                value={value.cohort}
-                onChange={(event) => onChange({ ...value, cohort: event.target.value })}
-                placeholder="Ex.: 2020.1"
-                className="mt-1 min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 outline-none focus:border-sky-500 dark:border-slate-700 dark:bg-slate-950/70 dark:text-slate-100 sm:text-sm"
-              />
-              {cohortError && (
-                <span className="mt-1 block text-xs font-normal text-rose-600 dark:text-rose-400">{cohortError}</span>
-              )}
-            </label>
-            {externalValid && (
-              <span className="text-xs text-emerald-700 dark:text-emerald-300 sm:col-span-2">
-                Fora do SIGAA · Ingresso {normalizedCohort}
-              </span>
-            )}
-          </div>
-        )}
-      </div>
-
-      {onRemove && (
-        <button
-          type="button"
-          aria-label={removeLabel ?? `Remover ${label}`}
-          onClick={onRemove}
-          className="mt-2 inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-slate-500 hover:bg-rose-50 hover:text-rose-600 dark:text-slate-400 dark:hover:bg-rose-950/40 dark:hover:text-rose-300"
-        >
-          <X className="h-4 w-4" />
-        </button>
-      )}
-    </div>
-  );
-}
 
 export interface AddSponsorshipModalProps {
   open: boolean;
@@ -222,37 +33,6 @@ export interface AddSponsorshipModalProps {
   sponsorships?: SponsorshipEdgeData[];
   sigaaStudents?: SigaaStudentRecord[];
   onDataChange?: (data: { students: StudentNodeData[]; sponsorships: SponsorshipEdgeData[]; addedChildId?: string }) => void;
-}
-
-function splitDelimitedLine(line: string, delimiter: string): string[] {
-  const cells: string[] = [];
-  let cell = '';
-  let quoted = false;
-  for (let i = 0; i < line.length; i += 1) {
-    const char = line[i];
-    if (char === '"' && line[i + 1] === '"' && quoted) { cell += '"'; i += 1; }
-    else if (char === '"') quoted = !quoted;
-    else if (char === delimiter && !quoted) { cells.push(cell.trim()); cell = ''; }
-    else cell += char;
-  }
-  cells.push(cell.trim());
-  return cells;
-}
-
-function parseRows(input: string, filename: string): Record<string, unknown>[] {
-  if (filename.toLowerCase().endsWith('.json') || input.trim().startsWith('[')) {
-    const parsed: unknown = JSON.parse(input);
-    if (!Array.isArray(parsed)) throw new Error('O JSON precisa conter uma lista de apadrinhamentos.');
-    return parsed.filter((item): item is Record<string, unknown> => Boolean(item) && typeof item === 'object');
-  }
-  const lines = input.replace(/^\uFEFF/, '').split(/\r?\n/).filter((line) => line.trim());
-  if (lines.length < 2) throw new Error('O CSV precisa de cabeçalho e ao menos uma linha.');
-  const delimiter = [',', ';', '|'].sort((a, b) => splitDelimitedLine(lines[0], b).length - splitDelimitedLine(lines[0], a).length)[0];
-  const headers = splitDelimitedLine(lines[0], delimiter).map((header) => normalizeSearchText(header));
-  return lines.slice(1).map((line) => {
-    const values = splitDelimitedLine(line, delimiter);
-    return Object.fromEntries(headers.map((header, index) => [header, values[index] ?? '']));
-  });
 }
 
 export function AddSponsorshipModal({
@@ -551,67 +331,7 @@ export function AddSponsorshipModal({
   const importBatch = async (input = batchText, filename = 'input.csv') => {
     try {
       const rows = parseRows(input, filename);
-      const resolvedRows: { child: SigaaStudentRecord; godparents: SigaaStudentRecord[]; semester: string }[] = [];
-      const errors: string[] = [];
-      rows.forEach((row, index) => {
-        const normalizedRow = Object.fromEntries(
-          Object.entries(row).map(([key, value]) => [normalizeSearchText(key), value])
-        );
-        const get = (...names: string[]) => {
-          for (const name of names) {
-            const value = normalizedRow[normalizeSearchText(name)];
-            if (typeof value === 'string' && value.trim()) return value.trim();
-          }
-          return '';
-        };
-        const childName = get('calouro', 'godchild', 'estudante');
-        const listValue = normalizedRow.godparents ?? normalizedRow.padrinhos;
-        const godparentNames: string[] = Array.isArray(listValue)
-          ? listValue
-              .filter((name): name is string => typeof name === 'string')
-              .map((name) => name.trim())
-              .filter(Boolean)
-          : typeof listValue === 'string'
-            ? listValue
-                .split(/[;|]/)
-                .map((name) => name.trim())
-                .filter(Boolean)
-            : [];
-        const numberedGodparents = Object.entries(normalizedRow)
-          .map(([key, value]) => ({ match: key.match(/^(?:padrinho|madrinha|godparent)\s*(\d+)$/), value }))
-          .filter(
-            (entry): entry is { match: RegExpMatchArray; value: string } =>
-              Boolean(entry.match) && typeof entry.value === 'string' && Boolean(entry.value.trim())
-          )
-          .sort((a, b) => Number(a.match[1]) - Number(b.match[1]))
-          .map((entry) => entry.value.trim());
-        godparentNames.push(...numberedGodparents);
-        const singularGodparent = get('padrinho', 'madrinha', 'godparent');
-        if (singularGodparent) godparentNames.push(singularGodparent);
-        const names = [childName, ...godparentNames];
-        const records = names.map((name) => {
-          if (!name) return null;
-          const known = directoryByName.get(normalizeSearchText(name));
-          if (known?.matricula) return sigaaStudents.find((record) => record.matricula === known.matricula) ?? null;
-          return sigaaStudents.find((record) => normalizeSearchText(record.name) === normalizeSearchText(name)) ?? null;
-        });
-        const resolved = records.filter((record): record is SigaaStudentRecord => Boolean(record));
-        const uniqueMatriculas = new Set(resolved.map((record) => record.matricula));
-        if (
-          !childName ||
-          godparentNames.length < 1 ||
-          resolved.length !== names.length ||
-          uniqueMatriculas.size !== resolved.length
-        ) {
-          errors.push(`Linha ${index + 2}: informe calouro(a) e ao menos um padrinho/madrinha SIGAA único.`);
-        } else {
-          resolvedRows.push({
-            child: resolved[0],
-            godparents: resolved.slice(1),
-            semester: get('semester', 'semestre') || '2026.2',
-          });
-        }
-      });
+      const { resolvedRows, errors } = resolveBatchRows(rows, sigaaStudents, directoryByName);
       if (resolvedRows.length) {
         setSubmitting(true);
         try {
