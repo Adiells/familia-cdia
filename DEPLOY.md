@@ -63,3 +63,23 @@ gcloud storage cp "gs://<YOUR_GCS_BUCKET>/*.json" ./backup-data/
 # Upload corrected datasets or an updated SIGAA directory
 gcloud storage cp src/data/students.json src/data/sponsorships.json src/data/sigaa-students.json gs://<YOUR_GCS_BUCKET>/
 ```
+
+## Supabase primary database and moderation (optional)
+
+`backend/server.mjs` can use Supabase (PostgREST over native `fetch`) as the primary database with mandatory maintainer approval, while keeping the `/app/data` GCS bucket as an automatically synced backup and read fallback:
+
+1. **Apply the SQL schema**: execute `supabase/schema.sql` in the Supabase SQL Editor (creates `public.students`, `public.sponsorships`, and `public.sponsorship_requests` with RLS and the approval trigger).
+2. **Migrate current data**: run the idempotent seed/upsert script against your Supabase project:
+   ```sh
+   SUPABASE_URL=https://<PROJECT_REF>.supabase.co \
+   SUPABASE_SECRET_KEY=<YOUR_SECRET_KEY> \
+   node scripts/migrate_to_supabase.mjs
+   ```
+3. **Configure Cloud Run environment variables** (prefer Secret Manager for `SUPABASE_SECRET_KEY` and `SYNC_TOKEN`):
+   - `SUPABASE_URL`: Supabase project URL (`https://<PROJECT_REF>.supabase.co`).
+   - `SUPABASE_SECRET_KEY` (or legacy fallback `SUPABASE_SERVICE_ROLE_KEY`): server-side secret key (never expose to the frontend).
+   - `SYNC_TOKEN`: bearer token protecting `POST /api/sync-backup`.
+   - `BACKUP_SYNC_INTERVAL_MS`: optional background sync interval from Supabase to `/app/data` (default `21600000` = 6 hours).
+4. **Enable periodic GitHub Actions sync**: set `SYNC_TOKEN` as a repository Actions secret. `.github/workflows/sync-backup.yml` runs every 3 days (`0 4 */3 * *`) to call `POST /api/sync-backup`, keeping the GCS backup fresh and preventing Supabase Free Tier inactivity pauses.
+
+When Supabase is enabled, `POST /api/sponsorships` validates inputs and queues them in `public.sponsorship_requests` (`status = 'pending'`), returning HTTP `202`. If Supabase is unreachable or times out, `GET /api/sponsorships` automatically falls back to `/app/data`.

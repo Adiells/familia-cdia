@@ -272,6 +272,7 @@ export function AddSponsorshipModal({
   const [status, setStatus] = useState('');
   const [statusError, setStatusError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [moderationEnabled, setModerationEnabled] = useState(false);
   const [serverData, setServerData] = useState<{ students: StudentNodeData[]; sponsorships: SponsorshipEdgeData[] } | null>(null);
 
   useEffect(() => {
@@ -280,10 +281,17 @@ export function AddSponsorshipModal({
     fetch(getSponsorshipsApiUrl(), { cache: 'no-store' })
       .then(async (response) => {
         if (!response.ok) throw new Error('Falha ao atualizar os dados do servidor.');
-        return response.json() as Promise<{ students: StudentNodeData[]; sponsorships: SponsorshipEdgeData[] }>;
+        return response.json() as Promise<{
+          students: StudentNodeData[];
+          sponsorships: SponsorshipEdgeData[];
+          moderationEnabled?: boolean;
+        }>;
       })
       .then((data) => {
-        if (!cancelled) setServerData(data);
+        if (!cancelled) {
+          setServerData({ students: data.students, sponsorships: data.sponsorships });
+          setModerationEnabled(Boolean(data.moderationEnabled));
+        }
       })
       .catch(() => undefined);
     return () => {
@@ -410,16 +418,43 @@ export function AddSponsorshipModal({
           : `Falha ao salvar na API (HTTP ${response.status}). Verifique se o servidor está online.`;
       throw new Error(message);
     }
-    if (
-      !result ||
-      typeof result !== 'object' ||
-      !Array.isArray((result as { students?: unknown }).students) ||
-      !Array.isArray((result as { sponsorships?: unknown }).sponsorships)
-    ) {
+    if (!result || typeof result !== 'object') {
       throw new Error('Resposta inválida do servidor.');
     }
-    const savedStudents = (result as { students: StudentNodeData[] }).students;
-    const savedSponsorships = (result as { sponsorships: SponsorshipEdgeData[] }).sponsorships;
+    const payload = result as {
+      pending?: boolean;
+      requestId?: string;
+      message?: string;
+      students?: unknown;
+      sponsorships?: unknown;
+      addedStudents?: number;
+      addedSponsorships?: number;
+    };
+    const hasCollections = Array.isArray(payload.students) && Array.isArray(payload.sponsorships);
+    if (payload.pending) {
+      if (hasCollections) {
+        setServerData({
+          students: payload.students as StudentNodeData[],
+          sponsorships: payload.sponsorships as SponsorshipEdgeData[],
+        });
+      }
+      setModerationEnabled(true);
+      return {
+        pending: true as const,
+        requestId: typeof payload.requestId === 'string' ? payload.requestId : undefined,
+        message:
+          typeof payload.message === 'string' && payload.message.trim()
+            ? payload.message
+            : 'Solicitação enviada para aprovação dos mantenedores.',
+        addedStudents: 0,
+        addedSponsorships: 0,
+      };
+    }
+    if (!hasCollections) {
+      throw new Error('Resposta inválida do servidor.');
+    }
+    const savedStudents = payload.students as StudentNodeData[];
+    const savedSponsorships = payload.sponsorships as SponsorshipEdgeData[];
     const matchedFocus = focusTarget
       ? savedStudents.find(
           (student) =>
@@ -434,8 +469,9 @@ export function AddSponsorshipModal({
       addedChildId: matchedFocus?.id,
     });
     return {
-      addedStudents: (result as { addedStudents?: number }).addedStudents ?? 0,
-      addedSponsorships: (result as { addedSponsorships?: number }).addedSponsorships ?? 0,
+      pending: false as const,
+      addedStudents: payload.addedStudents ?? 0,
+      addedSponsorships: payload.addedSponsorships ?? 0,
     };
   };
 
@@ -458,9 +494,11 @@ export function AddSponsorshipModal({
       );
       setStatusError(false);
       setStatus(
-        saved.addedSponsorships
-          ? `${validGodparents.length} padrinho(s)/madrinha(s) salvo(s) na API e exibido(s) na árvore!`
-          : 'Estes vínculos já existiam; os dados foram sincronizados.'
+        saved.pending
+          ? saved.message
+          : saved.addedSponsorships
+            ? `${validGodparents.length} padrinho(s)/madrinha(s) salvo(s) na API e exibido(s) na árvore!`
+            : 'Estes vínculos já existiam; os dados foram sincronizados.'
       );
       setChildDraft(emptyParticipant('sigaa'));
       setGodparentDrafts([emptyParticipant('sigaa')]);
@@ -483,9 +521,11 @@ export function AddSponsorshipModal({
       );
       setStatusError(false);
       setStatus(
-        saved.addedStudents
-          ? `${resolvedStandalone.matchName} cadastrado(a) na API e exibido(a) na árvore!`
-          : `${resolvedStandalone.matchName} já constava na árvore; dados sincronizados.`
+        saved.pending
+          ? saved.message
+          : saved.addedStudents
+            ? `${resolvedStandalone.matchName} cadastrado(a) na API e exibido(a) na árvore!`
+            : `${resolvedStandalone.matchName} já constava na árvore; dados sincronizados.`
       );
       setStandaloneDraft(emptyParticipant('external'));
     } catch (error) {
@@ -593,7 +633,9 @@ export function AddSponsorshipModal({
           );
           setStatusError(false);
           setStatus(
-            `${resolvedRows.length} apadrinhamento(s) processado(s); ${saved.addedSponsorships} novo(s) vínculo(s) salvo(s) na API. ${errors.slice(0, 3).join(' ')}`.trim()
+            saved.pending
+              ? `${saved.message} (${resolvedRows.length} item(ns)). ${errors.slice(0, 3).join(' ')}`.trim()
+              : `${resolvedRows.length} apadrinhamento(s) processado(s); ${saved.addedSponsorships} novo(s) vínculo(s) salvo(s) na API. ${errors.slice(0, 3).join(' ')}`.trim()
           );
         } finally {
           setSubmitting(false);
@@ -741,7 +783,13 @@ export function AddSponsorshipModal({
               className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-sky-500 dark:text-slate-950 dark:hover:bg-sky-400"
             >
               <Plus className="h-4 w-4" />
-              {submitting ? 'Salvando...' : 'Adicionar apadrinhamento'}
+              {submitting
+                ? moderationEnabled
+                  ? 'Enviando...'
+                  : 'Salvando...'
+                : moderationEnabled
+                  ? 'Solicitar apadrinhamento'
+                  : 'Adicionar apadrinhamento'}
             </button>
           </div>
         )}
@@ -774,7 +822,13 @@ export function AddSponsorshipModal({
               className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-sky-500 dark:text-slate-950 dark:hover:bg-sky-400"
             >
               <UserPlus className="h-4 w-4" />
-              {submitting ? 'Cadastrando...' : 'Cadastrar estudante'}
+              {submitting
+                ? moderationEnabled
+                  ? 'Enviando...'
+                  : 'Cadastrando...'
+                : moderationEnabled
+                  ? 'Solicitar cadastro'
+                  : 'Cadastrar estudante'}
             </button>
           </div>
         )}
@@ -801,7 +855,13 @@ export function AddSponsorshipModal({
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-sky-500 dark:text-slate-950 dark:hover:bg-sky-400"
               >
                 <FileUp className="h-4 w-4" />
-                {submitting ? 'Importando...' : 'Importar conteúdo'}
+                {submitting
+                  ? moderationEnabled
+                    ? 'Enviando...'
+                    : 'Importando...'
+                  : moderationEnabled
+                    ? 'Enviar lote para aprovação'
+                    : 'Importar conteúdo'}
               </button>
               <label className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 hover:border-sky-500/50 dark:border-slate-700 dark:text-slate-200">
                 <FileUp className="h-4 w-4" />
@@ -829,7 +889,11 @@ export function AddSponsorshipModal({
           <p
             role={statusError ? 'alert' : 'status'}
             className={`text-xs ${
-              statusError ? 'font-medium text-rose-600 dark:text-rose-400' : 'text-slate-600 dark:text-slate-400'
+              statusError
+                ? 'font-medium text-rose-600 dark:text-rose-400'
+                : status
+                  ? 'font-medium text-emerald-700 dark:text-emerald-300'
+                  : 'text-slate-600 dark:text-slate-400'
             }`}
           >
             {status || `${allStudents.length} estudantes · ${allEdges.length} vínculos`}

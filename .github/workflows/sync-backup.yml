@@ -1,0 +1,30 @@
+name: Sync Supabase backup to Cloud Storage
+
+on:
+  schedule:
+    - cron: '0 4 */3 * *'
+  workflow_dispatch:
+
+jobs:
+  sync-backup:
+    runs-on: ubuntu-latest
+    env:
+      API_URL: ${{ vars.NEXT_PUBLIC_API_URL || secrets.NEXT_PUBLIC_API_URL || 'https://familia-cdia-api-el3dwgsjma-uc.a.run.app' }}
+      SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
+    steps:
+      - name: Trigger backup sync
+        shell: bash
+        run: |
+          if [[ -z "$SYNC_TOKEN" ]]; then
+            echo "::notice::SYNC_TOKEN secret is not configured; skipping Supabase-to-GCS backup sync."
+            exit 0
+          fi
+
+          api_base="${API_URL%/}"
+          api_base="${api_base%/api/sponsorships}"
+          echo "Triggering backup sync against ${api_base}/api/sync-backup"
+
+          curl --fail-with-body -sS -X POST "${api_base}/api/sync-backup" \
+            -H "Authorization: Bearer ${SYNC_TOKEN}" \
+            -H "Content-Type: application/json"
+          echo
