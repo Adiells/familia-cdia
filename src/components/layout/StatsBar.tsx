@@ -46,11 +46,22 @@ function Stat({
   );
 }
 
+function compareCohorts(a: string, b: string): number {
+  const matchA = /^(\d{4})\.(\d+)$/.exec(a.trim());
+  const matchB = /^(\d{4})\.(\d+)$/.exec(b.trim());
+  if (matchA && matchB) {
+    const yearDiff = Number(matchA[1]) - Number(matchB[1]);
+    return yearDiff !== 0 ? yearDiff : Number(matchA[2]) - Number(matchB[2]);
+  }
+  if (matchA) return -1;
+  if (matchB) return 1;
+  return a.localeCompare(b, "pt-BR");
+}
+
 export function StatsBar({ stats, activeCohort = null, onCohortChange, className }: StatsBarProps) {
-  const cohorts = [
-    ...COHORTS,
-    ...Object.keys(stats.byCohort).filter((c) => !(COHORTS as readonly string[]).includes(c)),
-  ];
+  const cohorts = Array.from(new Set([...COHORTS, ...Object.keys(stats.byCohort)]))
+    .filter((c) => (stats.byCohort[c] ?? 0) > 0)
+    .sort(compareCohorts);
 
   return (
     <section aria-label="Estatísticas e filtros por geração" className={cn("w-full", className)}>
@@ -74,7 +85,7 @@ export function StatsBar({ stats, activeCohort = null, onCohortChange, className
             icon={Layers}
             label="Gerações"
             compactLabel="Gerações"
-            value={cohorts.filter((c) => (stats.byCohort[c] ?? 0) > 0).length}
+            value={cohorts.length}
             tone="bg-amber-500/15 text-amber-600 dark:text-amber-300"
           />
         </div>

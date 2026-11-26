@@ -255,7 +255,7 @@ function FamilyTreeCanvasInner({
   );
 
   useEffect(() => {
-    const layoutKey = `${activeDirection}:${activeCohortFilter}:${activeLineageMode}`;
+    const layoutKey = `${activeDirection}:${activeCohortFilter}:${activeLineageMode}:${layoutResult.nodes.length}:${layoutResult.edges.length}`;
     const selectionChanged = activeSelectedId !== prevSelectedIdRef.current;
     const layoutChanged = layoutKey !== prevLayoutKeyRef.current;
 
@@ -284,6 +284,8 @@ function FamilyTreeCanvasInner({
     activeDirection,
     activeCohortFilter,
     activeLineageMode,
+    layoutResult.nodes.length,
+    layoutResult.edges.length,
     centerOnStudent,
     reactFlow,
   ]);
@@ -451,7 +453,9 @@ function FamilyTreeCanvasInner({
 
               {/* Generation Tier Quick Legend + Largest Lineage Highlight */}
               <div className="flex flex-wrap items-center gap-2 border-t border-slate-200/80 dark:border-slate-800/75 pt-1.5 text-[10px]">
-                {COHORT_ORDER.map((cohort) => {
+                {COHORT_ORDER.filter(
+                  (cohort) => (familyMetrics.generationCounts[cohort] ?? 0) > 0
+                ).map((cohort) => {
                   const theme = getCohortTheme(cohort);
                   return (
                     <span

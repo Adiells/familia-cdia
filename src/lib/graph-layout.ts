@@ -7,8 +7,14 @@ import type {
 } from '../data/types';
 
 export const COHORT_ORDER: readonly CohortSemester[] = [
+  '2020.1',
+  '2020.2',
+  '2021.1',
   '2021.2',
   '2022.1',
+  '2022.2',
+  '2023.1',
+  '2023.2',
   '2024.1',
   '2024.2',
   '2025.1',
@@ -43,9 +49,54 @@ export interface CohortTheme {
 }
 
 export const COHORT_THEMES: Record<string, CohortTheme> = {
+  '2020.1': {
+    cohort: '2020.1',
+    rank: 0,
+    label: '2020.1',
+    shortLabel: '20.1',
+    generationTitle: 'Turma 2020.1',
+    badgeClass:
+      'bg-indigo-500/20 text-indigo-900 border-indigo-500/45 dark:bg-indigo-500/20 dark:text-indigo-200 dark:border-indigo-400/40',
+    cardBgClass: 'bg-indigo-50/95 dark:bg-indigo-950/40',
+    cardBorderClass: 'border-indigo-400/80 dark:border-indigo-500/60',
+    dotClass: 'bg-indigo-500 dark:bg-indigo-400',
+    borderGlowClass: 'hover:border-indigo-500',
+    accentColor: '#6366f1',
+    minimapColor: '#6366f1',
+  },
+  '2020.2': {
+    cohort: '2020.2',
+    rank: 1,
+    label: '2020.2',
+    shortLabel: '20.2',
+    generationTitle: 'Turma 2020.2',
+    badgeClass:
+      'bg-blue-500/20 text-blue-900 border-blue-500/45 dark:bg-blue-500/20 dark:text-blue-200 dark:border-blue-400/40',
+    cardBgClass: 'bg-blue-50/95 dark:bg-blue-950/40',
+    cardBorderClass: 'border-blue-400/80 dark:border-blue-500/60',
+    dotClass: 'bg-blue-500 dark:bg-blue-400',
+    borderGlowClass: 'hover:border-blue-500',
+    accentColor: '#3b82f6',
+    minimapColor: '#3b82f6',
+  },
+  '2021.1': {
+    cohort: '2021.1',
+    rank: 2,
+    label: '2021.1',
+    shortLabel: '21.1',
+    generationTitle: 'Turma 2021.1',
+    badgeClass:
+      'bg-lime-500/20 text-lime-900 border-lime-500/45 dark:bg-lime-500/20 dark:text-lime-200 dark:border-lime-400/40',
+    cardBgClass: 'bg-lime-50/95 dark:bg-lime-950/40',
+    cardBorderClass: 'border-lime-400/80 dark:border-lime-500/60',
+    dotClass: 'bg-lime-500 dark:bg-lime-400',
+    borderGlowClass: 'hover:border-lime-500',
+    accentColor: '#84cc16',
+    minimapColor: '#84cc16',
+  },
   '2021.2': {
     cohort: '2021.2',
-    rank: 0,
+    rank: 3,
     label: '2021.2',
     shortLabel: '21.2',
     generationTitle: 'Turma 2021.2',
@@ -60,7 +111,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
   },
   '2022.1': {
     cohort: '2022.1',
-    rank: 1,
+    rank: 4,
     label: '2022.1',
     shortLabel: '22.1',
     generationTitle: 'Turma 2022.1',
@@ -73,9 +124,54 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
     accentColor: '#d946ef',
     minimapColor: '#d946ef',
   },
+  '2022.2': {
+    cohort: '2022.2',
+    rank: 5,
+    label: '2022.2',
+    shortLabel: '22.2',
+    generationTitle: 'Turma 2022.2',
+    badgeClass:
+      'bg-pink-500/20 text-pink-900 border-pink-500/45 dark:bg-pink-500/20 dark:text-pink-200 dark:border-pink-400/40',
+    cardBgClass: 'bg-pink-50/95 dark:bg-pink-950/40',
+    cardBorderClass: 'border-pink-400/80 dark:border-pink-500/60',
+    dotClass: 'bg-pink-500 dark:bg-pink-400',
+    borderGlowClass: 'hover:border-pink-500',
+    accentColor: '#ec4899',
+    minimapColor: '#ec4899',
+  },
+  '2023.1': {
+    cohort: '2023.1',
+    rank: 6,
+    label: '2023.1',
+    shortLabel: '23.1',
+    generationTitle: 'Turma 2023.1',
+    badgeClass:
+      'bg-orange-500/20 text-orange-900 border-orange-500/45 dark:bg-orange-500/20 dark:text-orange-200 dark:border-orange-400/40',
+    cardBgClass: 'bg-orange-50/95 dark:bg-orange-950/40',
+    cardBorderClass: 'border-orange-400/80 dark:border-orange-500/60',
+    dotClass: 'bg-orange-500 dark:bg-orange-400',
+    borderGlowClass: 'hover:border-orange-500',
+    accentColor: '#f97316',
+    minimapColor: '#f97316',
+  },
+  '2023.2': {
+    cohort: '2023.2',
+    rank: 7,
+    label: '2023.2',
+    shortLabel: '23.2',
+    generationTitle: 'Turma 2023.2',
+    badgeClass:
+      'bg-yellow-500/20 text-yellow-900 border-yellow-500/45 dark:bg-yellow-500/20 dark:text-yellow-200 dark:border-yellow-400/40',
+    cardBgClass: 'bg-yellow-50/95 dark:bg-yellow-950/40',
+    cardBorderClass: 'border-yellow-400/80 dark:border-yellow-500/60',
+    dotClass: 'bg-yellow-500 dark:bg-yellow-400',
+    borderGlowClass: 'hover:border-yellow-500',
+    accentColor: '#eab308',
+    minimapColor: '#eab308',
+  },
   '2024.1': {
     cohort: '2024.1',
-    rank: 2,
+    rank: 8,
     label: '2024.1',
     shortLabel: '24.1',
     generationTitle: 'Turma 2024.1',
@@ -90,7 +186,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
   },
   '2024.2': {
     cohort: '2024.2',
-    rank: 3,
+    rank: 9,
     label: '2024.2',
     shortLabel: '24.2',
     generationTitle: 'Turma 2024.2',
@@ -105,7 +201,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
   },
   '2025.1': {
     cohort: '2025.1',
-    rank: 4,
+    rank: 10,
     label: '2025.1',
     shortLabel: '25.1',
     generationTitle: 'Turma 2025.1',
@@ -120,7 +216,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
   },
   '2025.2': {
     cohort: '2025.2',
-    rank: 5,
+    rank: 11,
     label: '2025.2',
     shortLabel: '25.2',
     generationTitle: 'Turma 2025.2',
@@ -135,7 +231,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
   },
   '2026.1': {
     cohort: '2026.1',
-    rank: 6,
+    rank: 12,
     label: '2026.1',
     shortLabel: '26.1',
     generationTitle: 'Turma 2026.1',
@@ -150,7 +246,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
   },
   '2026.2': {
     cohort: '2026.2',
-    rank: 7,
+    rank: 13,
     label: '2026.2',
     shortLabel: '26.2',
     generationTitle: 'Turma 2026.2',
@@ -167,7 +263,7 @@ export const COHORT_THEMES: Record<string, CohortTheme> = {
 
 const FALLBACK_COHORT_THEME: CohortTheme = {
   cohort: 'N/A',
-  rank: 8,
+  rank: 14,
   label: 'Outro',
   shortLabel: '--',
   generationTitle: 'Comunidade CDIA',
@@ -193,7 +289,7 @@ export function getCohortRank(cohort: CohortSemester): number {
   if (match) {
     const year = Number(match[1]);
     const sem = Number(match[2]);
-    return (year - 2024) * 2 + (sem - 1);
+    return (year - 2020) * 2 + (sem - 1);
   }
   return COHORT_ORDER.length;
 }
@@ -1016,13 +1112,9 @@ export function buildStratifiedGraphLayout(
     const tierNodes = nodesByRank.get(rank)!;
     if (tierNodes.length === 0) continue;
 
-    // Preserve visual cohort gap based on actual rank index when all cohorts are shown,
-    // or compact index when isolating a sparse subset
-    const effectiveTierStep =
-      (activeLineage && lineageMode === 'ISOLATE') ||
-      (cohortFilter && cohortFilter !== 'ALL')
-        ? tierIdx
-        : rank;
+    // Compact visual tiers to populated cohorts so empty intermediate semesters
+    // do not create large vertical/horizontal gaps
+    const effectiveTierStep = tierIdx;
     const primaryCoord = effectiveTierStep * primarySpan;
 
     let minSecondary = Infinity;
