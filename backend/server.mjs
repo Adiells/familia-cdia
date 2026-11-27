@@ -1,8 +1,22 @@
 import { randomUUID, timingSafeEqual } from 'node:crypto';
 import http from 'node:http';
+import {
+  checkAdminLoginRateLimit,
+  isAdminAuthConfigured,
+  issueAdminToken,
+  verifyAdminPassword,
+  verifyAdminToken,
+} from './admin-auth.mjs';
 import { createRateLimiter } from './rate-limit.mjs';
 import { dataDirectory, persistData, readCurrentData, readSigaaRecords, withWriteQueue } from './storage.mjs';
-import { fetchSupabaseData, insertSponsorshipRequest, isSupabaseConfigured } from './supabase.mjs';
+import {
+  fetchSponsorshipRequests,
+  fetchSupabaseData,
+  insertSponsorshipRequest,
+  isSupabaseConfigured,
+  isValidUuid,
+  reviewSponsorshipRequest,
+} from './supabase.mjs';
 import { buildRequestSummary, normalizeName, parseParticipant, parseTrio, safeSlug } from './validation.mjs';
 
 const port = Number(process.env.PORT || 8080);
@@ -66,6 +80,26 @@ function maybeTriggerBackgroundBackupSync(students, sponsorships) {
   })
     .catch((error) => {
       console.warn('Background backup sync to DATA_DIR failed:', error);
+    })
+    .finally(() => {
+      backupSyncInFlight = false;
+    });
+}
+
+function triggerBackgroundBackupSyncFromSupabase() {
+  if (!isSupabaseConfigured || backupSyncInFlight) return;
+
+  backupSyncInFlight = true;
+  fetchSupabaseData()
+    .then(async ({ students, sponsorships }) => {
+      if (students.length === 0) return;
+      await withWriteQueue(async () => {
+        await persistData(students, sponsorships);
+        lastBackupSyncAt = Date.now();
+      });
+    })
+    .catch((error) => {
+      console.warn('Post-approval background backup sync failed:', error);
     })
     .finally(() => {
       backupSyncInFlight = false;
@@ -381,6 +415,110 @@ async function handleSyncBackup(request, response) {
   }
 }
 
+async function handleAdminLogin(request, response) {
+  if (!isAdminAuthConfigured) {
+    sendJson(request, response, 503, { error: 'Autenticação administrativa não configurada.' });
+    return;
+  }
+  const rate = checkAdminLoginRateLimit(request);
+  if (!rate.allowed) {
+    sendJson(
+      request,
+      response,
+      429,
+      { error: 'Muitas tentativas de login. Aguarde alguns minutos e tente novamente.' },
+      { 'Retry-After': String(rate.retryAfterSeconds) },
+    );
+    return;
+  }
+  const payload = await readBody(request, response);
+  if (payload === null) return;
+  if (!payload || typeof payload !== 'object' || typeof payload.password !== 'string' || !verifyAdminPassword(payload.password)) {
+    sendJson(request, response, 401, { error: 'Senha inválida.' });
+    return;
+  }
+  sendJson(request, response, 200, issueAdminToken());
+}
+
+async function handleAdminListRequests(request, response, requestUrl) {
+  if (!isAdminAuthConfigured) {
+    sendJson(request, response, 503, { error: 'Autenticação administrativa não configurada.' });
+    return;
+  }
+  if (!verifyAdminToken(request.headers.authorization)) {
+    sendJson(request, response, 401, { error: 'Não autorizado.' });
+    return;
+  }
+  if (!isSupabaseConfigured) {
+    sendJson(request, response, 503, { error: 'Supabase não configurado para moderação.' });
+    return;
+  }
+  const rawStatus = (requestUrl.searchParams.get('status') || 'pending').trim().toLowerCase();
+  if (!['pending', 'approved', 'rejected', 'all'].includes(rawStatus)) {
+    sendJson(request, response, 400, { error: 'Status inválido. Use pending, approved, rejected ou all.' });
+    return;
+  }
+  try {
+    const requests = await fetchSponsorshipRequests(rawStatus === 'all' ? undefined : rawStatus);
+    sendJson(request, response, 200, { requests });
+  } catch (error) {
+    console.error('Unable to list sponsorship requests:', error);
+    sendJson(request, response, 502, { error: 'Não foi possível consultar as solicitações no Supabase.' });
+  }
+}
+
+async function handleAdminReviewRequest(request, response) {
+  if (!isAdminAuthConfigured) {
+    sendJson(request, response, 503, { error: 'Autenticação administrativa não configurada.' });
+    return;
+  }
+  if (!verifyAdminToken(request.headers.authorization)) {
+    sendJson(request, response, 401, { error: 'Não autorizado.' });
+    return;
+  }
+  if (!isSupabaseConfigured) {
+    sendJson(request, response, 503, { error: 'Supabase não configurado para moderação.' });
+    return;
+  }
+  const payload = await readBody(request, response);
+  if (payload === null) return;
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+    sendJson(request, response, 400, { error: 'Corpo da solicitação inválido.' });
+    return;
+  }
+  const { id, decision, reviewerNotes } = payload;
+  if (!isValidUuid(id)) {
+    sendJson(request, response, 400, { error: 'ID de solicitação inválido.' });
+    return;
+  }
+  if (decision !== 'approved' && decision !== 'rejected') {
+    sendJson(request, response, 400, { error: 'Decisão inválida. Use "approved" ou "rejected".' });
+    return;
+  }
+  if (reviewerNotes !== undefined && reviewerNotes !== null && typeof reviewerNotes !== 'string') {
+    sendJson(request, response, 400, { error: 'Observação do revisor inválida.' });
+    return;
+  }
+  if (typeof reviewerNotes === 'string' && reviewerNotes.length > 1000) {
+    sendJson(request, response, 400, { error: 'Observação do revisor excede 1000 caracteres.' });
+    return;
+  }
+  try {
+    const updated = await reviewSponsorshipRequest(id, decision, reviewerNotes);
+    if (!updated) {
+      sendJson(request, response, 409, { error: 'Solicitação não encontrada ou já revisada.' });
+      return;
+    }
+    if (decision === 'approved') {
+      triggerBackgroundBackupSyncFromSupabase();
+    }
+    sendJson(request, response, 200, { updated: true, request: updated });
+  } catch (error) {
+    console.error('Unable to review sponsorship request:', error);
+    sendJson(request, response, 502, { error: 'Não foi possível atualizar a solicitação no Supabase.' });
+  }
+}
+
 const server = http.createServer(async (request, response) => {
   const cors = corsHeaders(request);
   if (cors['x-cors-denied']) {
@@ -392,7 +530,8 @@ const server = http.createServer(async (request, response) => {
     response.end();
     return;
   }
-  const pathname = new URL(request.url || '/', 'http://localhost').pathname.replace(/\/$/, '') || '/';
+  const requestUrl = new URL(request.url || '/', 'http://localhost');
+  const pathname = requestUrl.pathname.replace(/\/$/, '') || '/';
   if (request.method === 'GET' && pathname === '/health') {
     sendJson(request, response, 200, { status: 'ok' });
     return;
@@ -434,6 +573,33 @@ const server = http.createServer(async (request, response) => {
     return;
   }
   if (pathname === '/api/sync-backup') {
+    response.setHeader('Allow', 'POST, OPTIONS');
+    sendJson(request, response, 405, { error: 'Método não permitido.' });
+    return;
+  }
+  if (request.method === 'POST' && pathname === '/api/admin/login') {
+    await handleAdminLogin(request, response);
+    return;
+  }
+  if (pathname === '/api/admin/login') {
+    response.setHeader('Allow', 'POST, OPTIONS');
+    sendJson(request, response, 405, { error: 'Método não permitido.' });
+    return;
+  }
+  if (request.method === 'GET' && pathname === '/api/admin/requests') {
+    await handleAdminListRequests(request, response, requestUrl);
+    return;
+  }
+  if (pathname === '/api/admin/requests') {
+    response.setHeader('Allow', 'GET, OPTIONS');
+    sendJson(request, response, 405, { error: 'Método não permitido.' });
+    return;
+  }
+  if (request.method === 'POST' && pathname === '/api/admin/requests/review') {
+    await handleAdminReviewRequest(request, response);
+    return;
+  }
+  if (pathname === '/api/admin/requests/review') {
     response.setHeader('Allow', 'POST, OPTIONS');
     sendJson(request, response, 405, { error: 'Método não permitido.' });
     return;

@@ -1,16 +1,22 @@
 const SPONSORSHIPS_PATH = '/api/sponsorships';
 
-/** Resolve the standalone API origin at build time, or use the local standalone backend on port 8080 when running on localhost. */
-export function getSponsorshipsApiUrl(): string {
+/** Resolve the standalone API base URL without trailing slash or `/api/sponsorships` suffix. */
+export function getApiBaseUrl(): string {
   const configuredUrl = process.env.NEXT_PUBLIC_API_URL?.trim();
   if (configuredUrl) {
-    const baseUrl = configuredUrl.replace(/\/+$/, '');
-    if (baseUrl.endsWith(SPONSORSHIPS_PATH)) return baseUrl;
-    return `${baseUrl}${SPONSORSHIPS_PATH}`;
+    const trimmed = configuredUrl.replace(/\/+$/, '');
+    if (trimmed.endsWith(SPONSORSHIPS_PATH)) {
+      return trimmed.slice(0, -SPONSORSHIPS_PATH.length);
+    }
+    return trimmed;
   }
   if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
-    return `http://${window.location.hostname}:8080${SPONSORSHIPS_PATH}`;
+    return `http://${window.location.hostname}:8080`;
   }
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH?.replace(/\/$/, '') ?? '';
-  return `${basePath}${SPONSORSHIPS_PATH}`;
+  return process.env.NEXT_PUBLIC_BASE_PATH?.replace(/\/$/, '') ?? '';
+}
+
+/** Resolve the standalone sponsorships API endpoint URL. */
+export function getSponsorshipsApiUrl(): string {
+  return `${getApiBaseUrl()}${SPONSORSHIPS_PATH}`;
 }

@@ -30,6 +30,11 @@ All components, scripts, and API endpoints must conform to `src/data/types.ts`:
 - `StudentNodeData`: Canonical student entity (`id`, `canonicalName`, `displayName`, `matricula`, `cohort`, `aliases`, `sigaaVerified`, `matchConfidence`).
 - `SponsorshipEdgeData`: Directed sponsorship edge (`id`, `godparentId`, `godchildId`, `semester`, `sourceDoc`).
 
+## Git Workflow and Security Policy
+
+- **Never commit or push directly to `main`**: Always create a descriptive feature/fix branch (e.g., `feat/...`, `fix/...`, `docs/...`, `refactor/...`), push the branch to `origin`, and open a Pull Request targeting `main`.
+- **Never commit secrets or local environment files**: Always inspect `git diff --cached` (especially `.env.example`) before committing to ensure no passwords, tokens, or API keys are ever staged. Store secrets exclusively in `.env.local` (gitignored).
+
 ## Verification Commands
 
 - `npm run typecheck`: Run TypeScript compiler validation.
