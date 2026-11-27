@@ -3,6 +3,12 @@ const supabaseKey = (process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SER
 
 export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseKey);
 export const defaultSupabaseTimeoutMs = 5000;
+const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const validRequestStatuses = new Set(['pending', 'approved', 'rejected']);
+
+export function isValidUuid(value) {
+  return typeof value === 'string' && uuidPattern.test(value.trim());
+}
 
 export function buildSupabaseHeaders(extra = {}) {
   const headers = {
@@ -117,4 +123,68 @@ export async function insertSponsorshipRequest({ requestType, summary, payload }
   const inserted = await response.json();
   const row = Array.isArray(inserted) ? inserted[0] : inserted;
   return row?.id ?? null;
+}
+
+export async function fetchSponsorshipRequests(status, timeoutMs = defaultSupabaseTimeoutMs) {
+  const selectColumns = 'id,request_type,summary,payload,status,reviewer_notes,created_at,reviewed_at';
+  const params = new URLSearchParams({
+    select: selectColumns,
+    order: 'created_at.desc',
+  });
+  if (typeof status === 'string' && validRequestStatuses.has(status)) {
+    params.set('status', `eq.${status}`);
+  }
+  const response = await fetch(`${supabaseUrl}/rest/v1/sponsorship_requests?${params.toString()}`, {
+    method: 'GET',
+    headers: buildSupabaseHeaders(),
+    signal: AbortSignal.timeout(timeoutMs),
+  });
+  if (!response.ok) {
+    const details = await response.text().catch(() => '');
+    throw new Error(`Supabase GET sponsorship_requests failed (${response.status}): ${details.slice(0, 200)}`);
+  }
+  const rows = await response.json();
+  if (!Array.isArray(rows)) {
+    throw new Error('Supabase GET sponsorship_requests returned a non-array response.');
+  }
+  return rows;
+}
+
+export async function reviewSponsorshipRequest(
+  id,
+  decision,
+  reviewerNotes,
+  timeoutMs = defaultSupabaseTimeoutMs,
+) {
+  if (!isValidUuid(id)) {
+    throw new Error('Invalid request UUID.');
+  }
+  if (decision !== 'approved' && decision !== 'rejected') {
+    throw new Error('Invalid review decision.');
+  }
+  const cleanId = id.trim();
+  const cleanNotes =
+    typeof reviewerNotes === 'string' && reviewerNotes.trim().length > 0 ? reviewerNotes.trim() : null;
+  const url = `${supabaseUrl}/rest/v1/sponsorship_requests?id=eq.${encodeURIComponent(cleanId)}&status=eq.pending`;
+  const response = await fetch(url, {
+    method: 'PATCH',
+    headers: buildSupabaseHeaders({
+      'Content-Type': 'application/json',
+      Prefer: 'return=representation',
+    }),
+    body: JSON.stringify({
+      status: decision,
+      reviewer_notes: cleanNotes,
+    }),
+    signal: AbortSignal.timeout(timeoutMs),
+  });
+  if (!response.ok) {
+    const details = await response.text().catch(() => '');
+    throw new Error(`Supabase PATCH sponsorship_requests failed (${response.status}): ${details.slice(0, 200)}`);
+  }
+  const updated = await response.json();
+  if (!Array.isArray(updated) || updated.length === 0) {
+    return null;
+  }
+  return updated[0];
 }
